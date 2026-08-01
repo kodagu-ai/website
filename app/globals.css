@@ -989,6 +989,50 @@ section { padding: 84px 0; }
 .scheme-src:hover { color: var(--red); }
 .scheme-asof { color: var(--ink-faint); font-size: 0.82rem; }
 
+/* ── Landslide & climate risk ────────────────────────────────────────────── */
+.risk-alert {
+  background: #fdeef0; border: 1px solid #f2c0c8; border-left: 5px solid var(--red);
+  border-radius: 10px; padding: 14px 18px; color: var(--ink); font-size: 1rem; margin-bottom: 26px;
+}
+.risk-alert a { color: var(--red); font-weight: 700; border-bottom: 1px solid var(--red); }
+
+.rain-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+@media (max-width: 860px) { .rain-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .rain-grid { grid-template-columns: 1fr; } }
+.rain-town { border: 1px solid var(--line); border-top: 4px solid var(--line); border-radius: 12px; padding: 14px; background: #fff; }
+.rain-town.tone-calm { border-top-color: #1a7f37; }
+.rain-town.tone-wet { border-top-color: #2b7fb8; }
+.rain-town.tone-high { border-top-color: var(--gold); }
+.rain-town.tone-extreme { border-top-color: var(--red); background: #fdeef0; }
+.rain-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.rain-name { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+.rain-band { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 999px; background: var(--bg-alt); color: var(--ink-soft); }
+.tone-calm .rain-band { color: #1a7f37; background: #eefaf1; }
+.tone-wet .rain-band { color: #2b7fb8; background: #eaf4fb; }
+.tone-high .rain-band { color: #9a6b00; background: #fdf7e6; }
+.tone-extreme .rain-band { color: var(--red); background: #fff; }
+.rain-figs { display: flex; gap: 18px; }
+.rain-val { display: block; font-size: 1.5rem; font-weight: 700; line-height: 1; }
+.rain-val i { font-style: normal; font-size: 0.8rem; color: var(--ink-faint); font-weight: 500; margin-left: 2px; }
+.rain-lbl { font-size: 0.72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; }
+.rain-skel { height: 112px; background: linear-gradient(90deg,#f2f2f2,#fafafa,#f2f2f2); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-color: transparent; }
+.rain-updated { color: var(--ink-faint); font-size: 0.85rem; margin-top: 14px; }
+
+.risk-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+@media (max-width: 760px) { .risk-cols { grid-template-columns: 1fr; gap: 24px; } }
+.risk-list { list-style: none; padding: 0; margin: 0; }
+.risk-list li { position: relative; padding-left: 26px; margin-bottom: 10px; color: var(--ink-soft); font-size: 1rem; }
+.risk-list.warn li::before { content: "⚠"; position: absolute; left: 0; color: var(--red); }
+.risk-list.do li::before { content: "✓"; position: absolute; left: 0; color: #1a7f37; font-weight: 700; }
+
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 760px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: #fff; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+.contact:hover { border-color: var(--red); box-shadow: var(--shadow); }
+.contact-num { font-size: 1.3rem; font-weight: 700; color: var(--red); }
+.contact-lbl { font-size: 0.84rem; color: var(--ink-soft); }
+
 .footer-signup { margin-top: 22px; max-width: 340px; }
 .footer-signup-label {
   display: block;
