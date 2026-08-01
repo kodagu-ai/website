@@ -24,8 +24,12 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
     siteName: site.name,
-    images: ["/kodagu-logo.png"],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
