@@ -682,3 +682,58 @@ section { padding: 84px 0; }
 }
 .submit-success h2 { text-transform: uppercase; }
 .submit-success p { color: var(--ink-soft); margin-bottom: 22px; }
+
+/* ── Email signup ────────────────────────────────────────────────────────── */
+.signup-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.signup-copy h2 { margin-bottom: 10px; }
+.signup-copy p { color: var(--ink-soft); font-size: 1.1rem; margin: 0; }
+@media (max-width: 800px) { .signup-band { grid-template-columns: 1fr; gap: 24px; } }
+
+.signup { width: 100%; }
+.signup-row { display: flex; gap: 10px; }
+.signup-input {
+  flex: 1;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 13px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+}
+.signup-input:focus { outline: none; border-color: var(--gold); }
+.signup .btn { white-space: nowrap; }
+.signup-err { display: block; margin-top: 8px; color: var(--red); font-weight: 600; font-size: 0.9rem; }
+.signup-success { color: #1a7f37; font-weight: 600; font-size: 1.05rem; }
+
+/* On-dark variant (footer) */
+.signup.on-dark .signup-input {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.signup.on-dark .signup-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.signup.on-dark .signup-input:focus { border-color: var(--gold); }
+.signup-success.on-dark { color: var(--gold); }
+
+@media (max-width: 420px) {
+  .signup-row { flex-direction: column; }
+  .signup .btn { width: 100%; justify-content: center; }
+}
+
+.footer-signup { margin-top: 22px; max-width: 340px; }
+.footer-signup-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}

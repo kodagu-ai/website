@@ -7,6 +7,7 @@ import {
   SustainableIcon,
   GitHubIcon,
 } from "./components/icons";
+import EmailSignup from "./components/EmailSignup";
 import { projects } from "./lib/projects";
 import { site } from "./lib/site";
 
@@ -130,6 +131,25 @@ export default function Home() {
                   </Link>
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stay updated ─────────────────────────────────────── */}
+      <section className="section-alt">
+        <div className="container">
+          <div className="signup-band">
+            <div className="signup-copy">
+              <div className="accent-bar" />
+              <h2>Stay in the loop</h2>
+              <p>
+                Get occasional updates on new projects, milestones, and ways to
+                help — sent only when there’s something worth sharing. No spam.
+              </p>
+            </div>
+            <div className="signup-form-wrap">
+              <EmailSignup />
             </div>
           </div>
         </div>

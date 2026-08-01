@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Wordmark from "./Wordmark";
+import EmailSignup from "./EmailSignup";
 import { site } from "../lib/site";
 
 export default function Footer() {
@@ -14,6 +15,10 @@ export default function Footer() {
               A unified, open-source platform for Kodagu. Our people. Our land.
               Our future.
             </p>
+            <div className="footer-signup">
+              <span className="footer-signup-label">Get updates</span>
+              <EmailSignup onDark />
+            </div>
           </div>
           <div className="footer-cols">
             <div className="footer-col">
