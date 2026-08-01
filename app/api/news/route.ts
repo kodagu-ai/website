@@ -8,20 +8,29 @@ import { NEWS } from "../../lib/news";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// We fetch rows unfiltered and select `status = 'published'` in JS rather than
+// with a PostgREST `.eq("status", ...)` predicate. On Vercel's pooled connection
+// to Supabase, the server-side status filter on this (recently-created) table
+// intermittently matched zero rows even though the rows plainly carry
+// status='published' (an unfiltered read returns them correctly). Filtering in
+// code sidesteps that and is trivially cheap for a small news table.
+type Row = {
+  id: string;
+  category: string;
+  headline: string;
+  summary: string;
+  badge: string;
+  score: number | null;
+  sources: unknown;
+  item_date: string | null;
+  status: string;
+  created_at: string;
+};
+
 export async function GET() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  // TEMP DIAG (build: db-diag-1): booleans only, no secrets — remove after debugging.
-  const diag: Record<string, unknown> = {
-    build: "db-diag-3",
-    hasUrl: !!url,
-    hasKey: !!key,
-    keyLen: key ? key.length : 0,
-    // Project ref (subdomain) is not a secret — it's in every browser request.
-    urlHost: url ? url.replace(/^https?:\/\//, "").split(".")[0] : null,
-  };
-  if (!url || !key)
-    return NextResponse.json({ items: NEWS, source: "static", _diag: diag });
+  if (!url || !key) return NextResponse.json({ items: NEWS, source: "static" });
 
   try {
     const supabase = createClient(url, key, {
@@ -29,29 +38,24 @@ export async function GET() {
     });
     const { data, error } = await supabase
       .from("news_items")
-      .select("id,category,headline,summary,badge,score,sources,item_date")
-      .eq("status", "published")
-      .order("created_at", { ascending: false })
-      .limit(60);
-    diag.rawCount = data ? data.length : null;
-    diag.err = error ? `${error.code ?? ""}:${error.message ?? error}` : null;
-    // Unfiltered probe: how many rows of ANY status does this project see?
-    const all = await supabase.from("news_items").select("id,status");
-    diag.allCount = all.data ? all.data.length : null;
-    diag.allErr = all.error ? `${all.error.code ?? ""}:${all.error.message ?? ""}` : null;
-    // Exact status strings Vercel sees, JSON-encoded to expose any whitespace/case.
-    diag.statuses = all.data
-      ? all.data.map((r: { id: string; status: string }) => `${r.id}=${JSON.stringify(r.status)}`)
-      : null;
+      .select(
+        "id,category,headline,summary,badge,score,sources,item_date,status,created_at"
+      )
+      .limit(200);
     if (error) throw error;
 
-    if (!data || data.length === 0)
+    const published = ((data ?? []) as Row[])
+      .filter((r) => r.status === "published")
+      .sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
+      .slice(0, 60);
+
+    if (published.length === 0)
       return NextResponse.json(
-        { items: NEWS, source: "static", _diag: diag },
-        { headers: { "Cache-Control": "no-store" } }
+        { items: NEWS, source: "static" },
+        { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
       );
 
-    const items = data.map((r) => ({
+    const items = published.map((r) => ({
       id: r.id,
       category: r.category,
       headline: r.headline,
@@ -62,12 +66,11 @@ export async function GET() {
       date: r.item_date ?? "",
     }));
     return NextResponse.json(
-      { items, source: "db", _diag: diag },
-      { headers: { "Cache-Control": "no-store" } }
+      { items, source: "db" },
+      { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
     );
   } catch (err) {
     console.error("news reader failed:", err);
-    diag.caught = `${err}`;
-    return NextResponse.json({ items: NEWS, source: "static-error", _diag: diag });
+    return NextResponse.json({ items: NEWS, source: "static-error" });
   }
 }
