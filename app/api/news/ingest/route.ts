@@ -2,9 +2,11 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 // Secured write endpoint for the daily news curation agent. The agent gathers +
-// scores news, then POSTs items here with a bearer secret. We apply the hybrid
-// rule (🟢 confirmed → published, 🟡/🔴 → pending for review) and upsert by id
-// so re-runs dedupe rather than duplicate.
+// scores news, then POSTs items here with a bearer secret. Hybrid rule:
+// 🟢 confirmed and 🟡 reported → published (both surface on the feed, each with
+// its own trust badge); 🔴 unverified → pending for human review. Upsert by id so
+// re-runs dedupe rather than duplicate. `date` is the article's ISO publish date
+// (YYYY-MM-DD); the reader uses it to keep the feed to a recent window.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -41,7 +43,8 @@ export async function POST(req: Request) {
     const category = str(it.category, 60);
     const badge = String(it.badge);
     if (!id || !headline || !summary || !category || !VALID_BADGES.has(badge)) continue;
-    const published = badge === "confirmed";
+    // Confirmed + reported publish live; only unverified is held for review.
+    const published = badge === "confirmed" || badge === "reported";
     const sources = Array.isArray(it.sources)
       ? (it.sources as Record<string, unknown>[])
           .filter((s) => s && typeof s.url === "string")

@@ -2,11 +2,16 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { NEWS } from "../../lib/news";
 
-// Returns the published news feed from Supabase, falling back to the static
-// seed (lib/news.ts) when the DB is empty or unconfigured. Dynamic + edge-cached
-// so freshly-published items appear without a rebuild.
+// Returns the recent published news feed from Supabase, falling back to the
+// static seed (lib/news.ts) only when the DB is unconfigured or unreachable.
+// Dynamic so freshly-published items appear without a rebuild.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// "Kodagu Today" is a daily brief: only show items from the last WINDOW_DAYS,
+// newest first. Older items age out of the feed automatically as the window
+// slides. Published = 🟢 confirmed + 🟡 reported; 🔴 unverified stays gated.
+const WINDOW_DAYS = 7;
 
 // We fetch rows unfiltered and select `status = 'published'` in JS rather than
 // with a PostgREST `.eq("status", ...)` predicate. On Vercel's pooled connection
@@ -48,18 +53,20 @@ export async function GET() {
       .limit(200);
     if (error) throw error;
 
-    const published = ((data ?? []) as Row[])
-      .filter((r) => r.status === "published")
-      .sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
+    // Sort/recency key: the article's publish date (item_date, ideally ISO),
+    // falling back to when we ingested it if that date is missing/unparseable.
+    const when = (r: Row) => {
+      const t = r.item_date ? Date.parse(r.item_date) : NaN;
+      return Number.isNaN(t) ? Date.parse(r.created_at) : t;
+    };
+    const cutoff = Date.now() - WINDOW_DAYS * 86_400_000;
+
+    const recent = ((data ?? []) as Row[])
+      .filter((r) => r.status === "published" && when(r) >= cutoff)
+      .sort((a, b) => when(b) - when(a))
       .slice(0, 60);
 
-    if (published.length === 0)
-      return NextResponse.json(
-        { items: NEWS, source: "static" },
-        { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
-      );
-
-    const items = published.map((r) => ({
+    const items = recent.map((r) => ({
       id: r.id,
       category: r.category,
       headline: r.headline,
@@ -69,8 +76,10 @@ export async function GET() {
       sources: r.sources ?? [],
       date: r.item_date ?? "",
     }));
+    // DB reachable but nothing recent → return an honest empty feed (a quiet
+    // week), NOT the stale seed. The seed is only for cold start / DB down.
     return NextResponse.json(
-      { items, source: "db" },
+      { items, source: "db", windowDays: WINDOW_DAYS },
       { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
     );
   } catch (err) {

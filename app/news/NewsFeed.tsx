@@ -3,17 +3,40 @@
 import { useEffect, useMemo, useState } from "react";
 import { NEWS, CATEGORIES, BADGES, type NewsCategory, type NewsItem } from "../lib/news";
 
+// Show the article date as a friendly relative label when it's an ISO date,
+// else fall back to whatever string we were given (e.g. legacy "Aug 2026").
+function fmtDate(s: string): string {
+  const t = Date.parse(s);
+  if (Number.isNaN(t)) return s;
+  const days = Math.floor((Date.now() - t) / 86_400_000);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  if (days < 7) return `${days} days ago`;
+  return new Date(t).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
 export default function NewsFeed() {
   const [cat, setCat] = useState<NewsCategory | "all">("all");
   // Start with the static seed so the feed renders instantly, then swap in the
-  // live published feed from the DB.
+  // live feed from the DB — including an empty one (a genuinely quiet week),
+  // which we must honour rather than keeping the seed on screen.
   const [feed, setFeed] = useState<NewsItem[]>(NEWS);
 
   useEffect(() => {
     let live = true;
     fetch("/api/news")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((d: { items?: NewsItem[] }) => live && d.items?.length && setFeed(d.items))
+      .then((d: { items?: NewsItem[]; source?: string }) => {
+        if (!live || !Array.isArray(d.items)) return;
+        // Adopt the DB feed whenever it answered (db / db-empty). Keep the seed
+        // only when the API fell back to it (source "static"/"static-error").
+        if (d.source && d.source.startsWith("db")) setFeed(d.items);
+        else if (d.items.length) setFeed(d.items);
+      })
       .catch(() => {});
     return () => {
       live = false;
@@ -86,7 +109,7 @@ export default function NewsFeed() {
                       </span>
                     ))}
                   </span>
-                  <span className="news-date">{n.date}</span>
+                  <span className="news-date">{fmtDate(n.date)}</span>
                 </div>
               </article>
             );
