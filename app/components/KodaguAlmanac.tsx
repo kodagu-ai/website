@@ -27,9 +27,20 @@ function fmtDate(iso: string): string {
   return `${d} ${months[(m || 1) - 1]}`;
 }
 
+type PriceItem = {
+  crop: string;
+  grade?: string;
+  price: string;
+  unit: string;
+  sourceUrl?: string;
+  asOf?: string;
+};
+
 export default function KodaguAlmanac() {
   const [wx, setWx] = useState<WeatherResp | null>(null);
   const [wxError, setWxError] = useState(false);
+  // Start with the static seed so prices render instantly, then refresh from DB.
+  const [prices, setPrices] = useState<PriceItem[]>(MARKET);
 
   useEffect(() => {
     let live = true;
@@ -37,10 +48,17 @@ export default function KodaguAlmanac() {
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d: WeatherResp) => live && setWx(d))
       .catch(() => live && setWxError(true));
+    fetch("/api/almanac/prices")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { items?: PriceItem[] }) => live && d.items?.length && setPrices(d.items))
+      .catch(() => {});
     return () => {
       live = false;
     };
   }, []);
+
+  const coffee = prices.filter((p) => p.crop === "Coffee");
+  const others = prices.filter((p) => p.crop !== "Coffee");
 
   return (
     <section className="section-alt">
@@ -93,8 +111,26 @@ export default function KodaguAlmanac() {
           <div className="almanac-grid">
             <div className="almanac-col">
               <div className="almanac-section-label">Market prices</div>
+
+              {coffee.length > 0 && (
+                <div className="mkt-group">
+                  <div className="mkt-group-head">
+                    <span className="mkt-crop">Coffee</span>
+                    <span className="mkt-group-unit">per 50 kg bag</span>
+                  </div>
+                  <ul className="mkt-sub">
+                    {coffee.map((m) => (
+                      <li className="mkt-sub-row" key={m.grade}>
+                        <span className="mkt-grade">{m.grade}</span>
+                        <span className="mkt-price">{m.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <ul className="mkt-list">
-                {MARKET.map((m) => (
+                {others.map((m) => (
                   <li className="mkt-item" key={`${m.crop}-${m.grade}`}>
                     <div className="mkt-left">
                       <span className="mkt-crop">{m.crop}</span>
@@ -107,10 +143,13 @@ export default function KodaguAlmanac() {
                   </li>
                 ))}
               </ul>
+
               <p className="mkt-note">
-                Indicative prices from{" "}
-                <a href="https://cpa.org.in" target="_blank" rel="noreferrer">Coorg Planters’ Association</a>{" "}
-                (coffee &amp; pepper, as of 16 Jun 2026) and commodityonline (paddy · Madikeri APMC).
+                Indicative prices — coffee, pepper &amp; cardamom from{" "}
+                <a href="https://cpa.org.in" target="_blank" rel="noreferrer">Coorg Planters’ Association</a>,
+                tea from{" "}
+                <a href="https://www.teaboard.gov.in" target="_blank" rel="noreferrer">Tea Board India</a>{" "}
+                (Coonoor auction), paddy from commodityonline (Madikeri APMC).
                 Verify with your buyer before trading.
               </p>
             </div>

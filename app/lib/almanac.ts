@@ -28,35 +28,33 @@ export type MarketItem = {
   asOf: string;
 };
 
-// Latest published prices. Kodagu is primarily a Robusta coffee & pepper region.
+// Latest published prices for Kodagu's plantation crops. Coffee, pepper and
+// cardamom come from the Coorg Planters' Association board (auto-refreshed by
+// the scheduled scraper); tea and paddy from their respective sources.
+const CPA = { source: "Coorg Planters’ Association", sourceUrl: "https://cpa.org.in", asOf: "16 Jun 2026" };
+
 export const MARKET: MarketItem[] = [
+  // Coffee — Robusta
+  { crop: "Coffee", grade: "Robusta Cherry", price: "₹9,400–10,200", unit: "/ 50 kg bag", ...CPA },
+  { crop: "Coffee", grade: "Robusta Parchment", price: "₹17,500–18,200", unit: "/ 50 kg bag", ...CPA },
+  // Coffee — Arabica
+  { crop: "Coffee", grade: "Arabica Cherry", price: "₹12,600–14,100", unit: "/ 50 kg bag", ...CPA },
+  { crop: "Coffee", grade: "Arabica Parchment", price: "₹21,500–22,200", unit: "/ 50 kg bag", ...CPA },
+  // Pepper
+  { crop: "Pepper", grade: "Black pepper", price: "₹697", unit: "/ kg", ...CPA },
+  // Cardamom
+  { crop: "Cardamom", grade: "", price: "₹3,352", unit: "/ 50 kg", ...CPA },
+  // Tea (CPA has no tea board; South India auction serving Kodagu is Coonoor)
   {
-    crop: "Coffee",
-    grade: "Robusta Cherry",
-    price: "₹9,400–10,200",
-    unit: "/ 50 kg bag",
-    source: "Coorg Planters’ Association",
-    sourceUrl: "https://cpa.org.in",
-    asOf: "16 Jun 2026",
-  },
-  {
-    crop: "Coffee",
-    grade: "Arabica Parchment",
-    price: "₹21,500–22,200",
-    unit: "/ 50 kg bag",
-    source: "Coorg Planters’ Association",
-    sourceUrl: "https://cpa.org.in",
-    asOf: "16 Jun 2026",
-  },
-  {
-    crop: "Pepper",
-    grade: "Black pepper",
-    price: "₹697",
+    crop: "Tea",
+    grade: "CTC leaf",
+    price: "₹112",
     unit: "/ kg",
-    source: "Coorg Planters’ Association",
-    sourceUrl: "https://cpa.org.in",
-    asOf: "16 Jun 2026",
+    source: "Coonoor auction · Tea Board India",
+    sourceUrl: "https://www.teaboard.gov.in/WEEKLYPRICES/2026",
+    asOf: "25 Jul 2026",
   },
+  // Paddy
   {
     crop: "Paddy",
     grade: "Common (Dhan)",

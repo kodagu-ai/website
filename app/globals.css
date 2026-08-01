@@ -818,6 +818,23 @@ section { padding: 84px 0; }
 @media (max-width: 820px) { .almanac-grid { grid-template-columns: 1fr; gap: 26px; } }
 
 .mkt-list { list-style: none; padding: 0; margin: 0; }
+
+/* Coffee group */
+.mkt-group { border-bottom: 1px solid #efe8d8; padding-bottom: 10px; margin-bottom: 4px; }
+.mkt-group-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 12px 0 8px;
+}
+.mkt-group-head .mkt-crop { font-weight: 700; text-transform: uppercase; font-size: 1.05rem; }
+.mkt-group-unit { font-size: 0.78rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+.mkt-sub { list-style: none; padding: 0 0 0 2px; margin: 0; }
+.mkt-sub-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 0;
+}
+.mkt-sub-row .mkt-grade { font-size: 0.95rem; color: var(--ink-soft); }
+.mkt-sub-row .mkt-price { font-size: 1.02rem; }
+
 .mkt-item {
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
   padding: 12px 0; border-bottom: 1px solid #efe8d8;
