@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { fetchRobusta } from "../../../lib/robusta";
 
 // Scheduled by Vercel Cron (see vercel.json). Scrapes the Coorg Planters'
 // Association price board via Firecrawl (it renders JS) and appends one row per
@@ -108,6 +109,22 @@ export async function GET(req: Request) {
     const rows = parseCpa(markdown);
     if (rows.length === 0) {
       return NextResponse.json({ error: "no prices parsed" }, { status: 502 });
+    }
+
+    // Also record London Robusta futures — builds Kodagu's key benchmark into history.
+    const rob = await fetchRobusta(fcKey);
+    if (rob) {
+      rows.push({
+        crop: "Robusta (London)",
+        grade: "ICE futures",
+        price_text: `$${rob.price.toLocaleString("en-US")}`,
+        price_min: rob.price,
+        price_max: rob.price,
+        unit: "/ tonne",
+        source: "ICE London (via Investing.com)",
+        source_url: "https://www.investing.com/commodities/london-coffee",
+        source_asof: null,
+      });
     }
 
     const supabase = createClient(supaUrl, supaKey, {

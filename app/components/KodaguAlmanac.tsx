@@ -126,7 +126,7 @@ export default function KodaguAlmanac() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/coffee" className="mkt-outlook">
+                  <Link href="/insights#coffee" className="mkt-outlook">
                     Coffee outlook — why prices move &amp; when to sell →
                   </Link>
                 </div>
