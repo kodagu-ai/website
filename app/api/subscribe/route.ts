@@ -32,23 +32,45 @@ export async function POST(req: Request) {
     );
   }
 
+  const kitHeaders = {
+    "Content-Type": "application/json",
+    "X-Kit-Api-Key": apiKey,
+  };
+
   try {
-    const res = await fetch(`https://api.kit.com/v4/tags/${tagId}/subscribers`, {
+    // 1) Create (or upsert) the subscriber by email.
+    const createRes = await fetch("https://api.kit.com/v4/subscribers", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Kit-Api-Key": apiKey,
-      },
+      headers: kitHeaders,
       body: JSON.stringify({ email_address: email }),
     });
-
-    if (!res.ok) {
-      const detail = await res.text();
-      console.error("Kit subscribe failed:", res.status, detail.slice(0, 300));
+    if (!createRes.ok) {
+      const detail = await createRes.text();
+      console.error("Kit create-subscriber failed:", createRes.status, detail.slice(0, 300));
       return NextResponse.json(
         { error: "Could not subscribe you right now. Please try again shortly." },
         { status: 502 }
       );
+    }
+    const created = await createRes.json();
+    const subscriberId = created?.subscriber?.id;
+    if (!subscriberId) {
+      console.error("Kit create-subscriber: no id in response");
+      return NextResponse.json(
+        { error: "Could not subscribe you right now. Please try again shortly." },
+        { status: 502 }
+      );
+    }
+
+    // 2) Add the "Kodagu.ai Updates" tag to that subscriber.
+    const tagRes = await fetch(
+      `https://api.kit.com/v4/tags/${tagId}/subscribers/${subscriberId}`,
+      { method: "POST", headers: kitHeaders }
+    );
+    if (!tagRes.ok) {
+      const detail = await tagRes.text();
+      console.error("Kit tag failed:", tagRes.status, detail.slice(0, 300));
+      // The subscriber was created; treat as success so we don't double-charge UX.
     }
 
     return NextResponse.json({ ok: true });
