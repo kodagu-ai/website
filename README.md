@@ -51,6 +51,68 @@ Common edits:
 
 ---
 
+## News & data pipelines
+
+Beyond the static project pages, the site runs a few **live data features** backed
+by Supabase and refreshed by Vercel Cron (see `vercel.json`).
+
+### Kodagu Today — the daily news brief (`/news`)
+
+A verified daily news brief for Kodagu and the Kodava community. Each item carries
+a **Trust Score**: 🟢 Confirmed (official or 2+ independent outlets) · 🟡 Reported
+(one reliable outlet) · 🔴 Unverified (single low-tier/social). Confirmed +
+Reported publish live; Unverified is held for review. The feed shows only the
+**last 7 days**, newest first, across 9 categories (incl. 🏑 Sports).
+
+It is produced by a fully server-side pipeline — no external agent, no manual step:
+
+```
+Vercel Cron (01:30 UTC / 7:00 AM IST daily)  →  /api/cron/news
+   1. GATHER  Firecrawl search — English + Kannada + the hyperlocal sites
+   2. CURATE  Claude clusters · categorises · Trust-scores  (real URLs only, last 7 days)
+   3. INGEST  upsert to Supabase `news_items`  →  live at /api/news → /news
+```
+
+Key files:
+
+| What | Where |
+| --- | --- |
+| Daily pipeline (gather → curate → ingest) | `app/api/cron/news/route.ts` |
+| Shared ingest + hybrid publish rule | `app/lib/newsIngest.ts` |
+| Manual write endpoint (bearer-secured) | `app/api/news/ingest/route.ts` |
+| Public feed reader (7-day window) | `app/api/news/route.ts` |
+| Categories, badges, static seed | `app/lib/news.ts` |
+| Page + feed UI | `app/news/page.tsx`, `app/news/NewsFeed.tsx` |
+| DB table | `supabase/migrations/0004_news_items.sql` |
+
+Trigger a run on demand (same as the daily cron):
+
+```bash
+curl -H "Authorization: Bearer $NEWS_INGEST_SECRET" https://www.kodagu.ai/api/cron/news
+```
+
+### Insights data tiles (`/insights`)
+
+`/api/cron/refresh-prices` (01:00 UTC daily) scrapes the Coorg Planters'
+Association board + London Robusta futures into `commodity_prices`, and records
+the Harangi reservoir level into `reservoir_levels`. Live rainfall/weather tiles
+call Open-Meteo directly. See `app/api/cron/refresh-prices/route.ts` and
+`app/lib/{robusta,harangi}.ts`.
+
+### Environment variables
+
+Set these in **Vercel → Settings → Environment Variables** (Production):
+
+| Var | Used for |
+| --- | --- |
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | server-side DB reads/writes (bypasses RLS) |
+| `FIRECRAWL_API_KEY` | news gather + price scraping |
+| `ANTHROPIC_API_KEY` | news curation (Claude) |
+| `CRON_SECRET` | authorises Vercel Cron calls to `/api/cron/*` |
+| `NEWS_INGEST_SECRET` | authorises `/api/news/ingest` + manual cron trigger |
+
+---
+
 ## Deploy to Vercel
 
 You have two options. **Option A (GitHub + Vercel)** is recommended because
@@ -122,9 +184,18 @@ app/
   about/page.tsx        # About
   join/page.tsx         # Get Involved
   projects/[slug]/      # auto-generated page for each project
+  insights/             # /insights hub — coffee, schemes, climate/risk, health tiles
+  news/                 # /news — Kodagu Today daily brief (page + NewsFeed)
+  api/
+    cron/               # scheduled jobs: refresh-prices, news
+    news/               # feed reader + secured ingest endpoint
+    insights/           # rainfall, harangi, robusta feeds
   lib/
     projects.ts         # ← the projects data (edit this to add projects)
     site.ts             # ← site-wide settings
+    news.ts             # news categories, trust badges, static seed
+    newsIngest.ts       # shared ingest + hybrid publish rule
   components/            # Header, Footer, Wordmark, ProjectCard, icons
 public/                 # logo, favicon, brand book
+supabase/migrations/    # DB tables (commodity_prices, reservoir_levels, news_items)
 ```
