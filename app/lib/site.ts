@@ -7,8 +7,8 @@ export const site = {
   tagline: "Rooted in Heritage. Driven by Purpose.",
   description:
     "Kodagu.ai is the community open-source hub for Kodagu — building technology that protects our land, empowers our people, and preserves our heritage.",
-  // 👉 Update this to your real GitHub organization once it exists.
+  // GitHub organization for the community's open-source projects.
   githubUrl: "https://github.com/kodagu-ai",
-  // 👉 Update to your community contact / mailing list.
-  contactEmail: "hello@kodagu.ai",
+  // Community contact address.
+  contactEmail: "poonacha@cyberhuman.ai",
 };
