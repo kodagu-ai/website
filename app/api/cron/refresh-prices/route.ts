@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { fetchRobusta } from "../../../lib/robusta";
+import { fetchHarangi } from "../../../lib/harangi";
 
 // Scheduled by Vercel Cron (see vercel.json). Scrapes the Coorg Planters'
 // Association price board via Firecrawl (it renders JS) and appends one row per
@@ -136,11 +137,29 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: "db insert failed" }, { status: 500 });
     }
 
+    // Also record Harangi reservoir into its history table (non-fatal).
+    let reservoir = "skipped";
+    const har = await fetchHarangi(fcKey);
+    if (har) {
+      const { error: rErr } = await supabase.from("reservoir_levels").insert({
+        name: "Harangi",
+        pct_full: har.pctFull,
+        storage_tmc: har.storageTMC,
+        capacity_tmc: har.capacityTMC,
+        inflow_cusecs: har.inflow,
+        outflow_cusecs: har.outflow,
+        source: "Karnataka Water Resources (Cauvery-basin monitor)",
+        source_date: har.date,
+      });
+      reservoir = rErr ? `error: ${rErr.message.slice(0, 80)}` : `Harangi ${har.pctFull}% full`;
+    }
+
     return NextResponse.json({
       ok: true,
       inserted: rows.length,
       asOf: rows[0]?.source_asof,
       crops: rows.map((r) => `${r.crop}${r.grade ? " / " + r.grade : ""}: ${r.price_text}`),
+      reservoir,
     });
   } catch (err) {
     console.error("refresh-prices error:", err);
