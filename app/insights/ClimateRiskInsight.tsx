@@ -1,4 +1,5 @@
 import RainfallWatch from "./RainfallWatch";
+import HarangiReservoir from "./HarangiReservoir";
 import {
   WHY_AT_RISK,
   WARNING_SIGNS,
@@ -32,6 +33,11 @@ export default function ClimateRiskInsight() {
       <div className="ci-section">
         <div className="almanac-section-label">Rainfall watch · live</div>
         <RainfallWatch />
+      </div>
+
+      <div className="ci-section">
+        <div className="almanac-section-label">Harangi reservoir · live</div>
+        <HarangiReservoir />
       </div>
 
       <div className="ci-section">
