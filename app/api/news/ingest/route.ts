@@ -1,19 +1,13 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { ingestNewsItems } from "../../../lib/newsIngest";
 
-// Secured write endpoint for the daily news curation agent. The agent gathers +
-// scores news, then POSTs items here with a bearer secret. Hybrid rule:
-// 🟢 confirmed and 🟡 reported → published (both surface on the feed, each with
-// its own trust badge); 🔴 unverified → pending for human review. Upsert by id so
-// re-runs dedupe rather than duplicate. `date` is the article's ISO publish date
-// (YYYY-MM-DD); the reader uses it to keep the feed to a recent window.
+// Secured write endpoint for news items. A caller (the daily cron, or a manual
+// run) POSTs curated items here with a bearer secret; ingestNewsItems applies
+// the shared validation + hybrid publish rule (🟢 confirmed + 🟡 reported →
+// published, 🔴 unverified → pending) and upserts by id.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
-
-const VALID_BADGES = new Set(["confirmed", "reported", "unverified"]);
-const str = (v: unknown, max = 2000) =>
-  typeof v === "string" ? v.trim().slice(0, max) : "";
 
 export async function POST(req: Request) {
   const secret = process.env.NEWS_INGEST_SECRET;
@@ -33,55 +27,11 @@ export async function POST(req: Request) {
   if (!Array.isArray(body.items) || body.items.length === 0)
     return NextResponse.json({ error: "no items" }, { status: 400 });
 
-  const now = new Date().toISOString();
-  const rows = [];
-  for (const raw of body.items.slice(0, 60)) {
-    const it = raw as Record<string, unknown>;
-    const id = str(it.id, 120).toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-|-$/g, "");
-    const headline = str(it.headline, 300);
-    const summary = str(it.summary, 1200);
-    const category = str(it.category, 60);
-    const badge = String(it.badge);
-    if (!id || !headline || !summary || !category || !VALID_BADGES.has(badge)) continue;
-    // Confirmed + reported publish live; only unverified is held for review.
-    const published = badge === "confirmed" || badge === "reported";
-    const sources = Array.isArray(it.sources)
-      ? (it.sources as Record<string, unknown>[])
-          .filter((s) => s && typeof s.url === "string")
-          .map((s) => ({ name: str(s.name, 80) || "source", url: str(s.url, 500) }))
-          .slice(0, 6)
-      : [];
-    rows.push({
-      id,
-      category,
-      headline,
-      summary,
-      badge,
-      score: Number.isFinite(Number(it.score)) ? Math.round(Number(it.score)) : null,
-      sources,
-      item_date: str(it.date, 40) || null,
-      status: published ? "published" : "pending",
-      published_at: published ? now : null,
-    });
-  }
-  if (rows.length === 0)
-    return NextResponse.json({ error: "no valid items" }, { status: 400 });
-
   try {
-    const supabase = createClient(supaUrl, supaKey, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { error } = await supabase
-      .from("news_items")
-      .upsert(rows, { onConflict: "id", ignoreDuplicates: false });
-    if (error) throw error;
-    return NextResponse.json({
-      ok: true,
-      received: body.items.length,
-      upserted: rows.length,
-      published: rows.filter((r) => r.status === "published").length,
-      pending: rows.filter((r) => r.status === "pending").length,
-    });
+    const result = await ingestNewsItems(body.items, supaUrl, supaKey);
+    if (result.upserted === 0)
+      return NextResponse.json({ error: "no valid items" }, { status: 400 });
+    return NextResponse.json({ ok: true, ...result });
   } catch (err) {
     console.error("news ingest failed:", err);
     return NextResponse.json({ error: "db error" }, { status: 500 });
