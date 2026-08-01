@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getProject, allProjectSlugs } from "../../lib/projects";
+import { getProject } from "../../lib/projects";
 import { contributorsForProject } from "../../lib/directory";
 import { GitHubIcon } from "../../components/icons";
 
-export function generateStaticParams() {
-  return allProjectSlugs().map((slug) => ({ slug }));
-}
+// Rendered per-request so the header/footer follow the EN/ಕನ್ನಡ locale cookie.
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({
   params,

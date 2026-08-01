@@ -11,31 +11,16 @@ import EmailSignup from "./components/EmailSignup";
 import KodaguAlmanac from "./components/KodaguAlmanac";
 import { projects } from "./lib/projects";
 import { site } from "./lib/site";
-
-const pillars = [
-  {
-    icon: RootedIcon,
-    title: "Rooted",
-    body: "Proud of our heritage, our land, and the values that shape Kodava life.",
-  },
-  {
-    icon: UnitedIcon,
-    title: "United",
-    body: "Stronger together — a community building shared tools for shared problems.",
-  },
-  {
-    icon: InnovativeIcon,
-    title: "Innovative",
-    body: "Using open technology to make a real, meaningful impact on the ground.",
-  },
-  {
-    icon: SustainableIcon,
-    title: "Sustainable",
-    body: "Building for a better, balanced future for Kodagu's people and nature.",
-  },
-];
+import { getLocale, S } from "./lib/i18n";
 
 export default function Home() {
+  const locale = getLocale();
+  const pillars = [
+    { icon: RootedIcon, title: S.home.pRootedT[locale], body: S.home.pRootedB[locale] },
+    { icon: UnitedIcon, title: S.home.pUnitedT[locale], body: S.home.pUnitedB[locale] },
+    { icon: InnovativeIcon, title: S.home.pInnovativeT[locale], body: S.home.pInnovativeB[locale] },
+    { icon: SustainableIcon, title: S.home.pSustainableT[locale], body: S.home.pSustainableB[locale] },
+  ];
   const sorted = [...projects].sort(
     (a, b) => Number(b.featured) - Number(a.featured)
   );
@@ -46,21 +31,17 @@ export default function Home() {
       <section className="hero">
         <div className="container">
           <p className="eyebrow" style={{ color: "rgba(255,255,255,0.65)" }}>
-            A unified platform for Kodagu
+            {S.home.eyebrow[locale]}
           </p>
           <h1 className="hero-tagline">
-            Rooted in Heritage.
+            {S.home.heroLine1[locale]}
             <br />
-            Driven by Purpose.
+            {S.home.heroLine2[locale]}
           </h1>
-          <p className="lead">
-            Kodagu.ai brings the Kodava community together to build open-source
-            projects that protect our land, empower our people, and preserve our
-            heritage for generations to come.
-          </p>
+          <p className="lead">{S.home.lead[locale]}</p>
           <div className="hero-actions">
             <Link href="/#projects" className="btn btn-primary">
-              Explore Projects
+              {S.home.exploreProjects[locale]}
             </Link>
             <a
               href={site.githubUrl}
@@ -68,7 +49,7 @@ export default function Home() {
               rel="noreferrer"
               className="btn btn-ghost-light"
             >
-              <GitHubIcon /> Contribute on GitHub
+              <GitHubIcon /> {S.home.contributeGithub[locale]}
             </a>
           </div>
         </div>
@@ -83,11 +64,8 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <div className="accent-bar" />
-            <h2>What brings us together</h2>
-            <p>
-              Every project on Kodagu.ai is guided by four principles drawn from
-              who we are as a community.
-            </p>
+            <h2>{S.home.pillarsHead[locale]}</h2>
+            <p>{S.home.pillarsSub[locale]}</p>
           </div>
           <div className="pillars">
             {pillars.map((p) => {
@@ -109,12 +87,8 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <div className="accent-bar" />
-            <h2>Community Projects</h2>
-            <p>
-              Open-source initiatives built by and for Kodagu. We are starting
-              with one and growing from here — new projects join as the
-              community builds them.
-            </p>
+            <h2>{S.home.projectsHead[locale]}</h2>
+            <p>{S.home.projectsSub[locale]}</p>
           </div>
           <div className="projects-grid">
             {sorted.map((project) => (
@@ -125,13 +99,13 @@ export default function Home() {
               <div>
                 <div className="pc-icon" aria-hidden="true">✨</div>
                 <h3 className="pc-name" style={{ fontSize: "1.4rem" }}>
-                  Your project here
+                  {S.home.yourProjectHere[locale]}
                 </h3>
                 <p className="pc-summary" style={{ marginTop: 8 }}>
-                  Have an idea that serves Kodagu? This hub is built to grow.
+                  {S.home.yourProjectBody[locale]}
                   <br />
                   <Link href="/join" style={{ color: "var(--red)", fontWeight: 600 }}>
-                    Propose a project →
+                    {S.home.proposeProject[locale]}
                   </Link>
                 </p>
               </div>
@@ -146,11 +120,8 @@ export default function Home() {
           <div className="signup-band">
             <div className="signup-copy">
               <div className="accent-bar" />
-              <h2>Stay in the loop</h2>
-              <p>
-                Get occasional updates on new projects, milestones, and ways to
-                help — sent only when there’s something worth sharing. No spam.
-              </p>
+              <h2>{S.home.stayHead[locale]}</h2>
+              <p>{S.home.staySub[locale]}</p>
             </div>
             <div className="signup-form-wrap">
               <EmailSignup />
@@ -164,15 +135,11 @@ export default function Home() {
         <div className="container">
           <div className="cta-band">
             <div className="accent-bar" />
-            <h2>Build with us</h2>
-            <p>
-              Kodagu.ai is a community effort. Whether you write code, know the
-              land, speak the language, or simply care — there is a place for you
-              here.
-            </p>
+            <h2>{S.home.ctaHead[locale]}</h2>
+            <p>{S.home.ctaSub[locale]}</p>
             <div className="hero-actions">
               <Link href="/join" className="btn btn-primary">
-                Get Involved
+                {S.home.getInvolved[locale]}
               </Link>
               <a
                 href={site.githubUrl}
@@ -180,7 +147,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="btn btn-ghost-light"
               >
-                <GitHubIcon /> View the code
+                <GitHubIcon /> {S.home.viewCode[locale]}
               </a>
             </div>
           </div>

@@ -1140,3 +1140,33 @@ section { padding: 84px 0; }
   color: #fff;
   margin-bottom: 10px;
 }
+
+/* ── Language toggle (EN / ಕನ್ನಡ) ─────────────────────────────── */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 11px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--black, #111111);
+  cursor: pointer;
+  line-height: 1.1;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.lang-toggle button.is-active {
+  background: var(--red, #c8102e);
+  color: #ffffff;
+}
+.lang-toggle button:not(.is-active):hover {
+  background: rgba(0, 0, 0, 0.06);
+}

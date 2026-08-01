@@ -4,6 +4,11 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { site } from "./lib/site";
+import { getLocale } from "./lib/i18n";
+
+// The header/footer/pages render from the `locale` cookie (EN/ಕನ್ನಡ), so every
+// page must be rendered per-request rather than prerendered at build time.
+export const dynamic = "force-dynamic";
 
 const barlow = Barlow_Condensed({
   subsets: ["latin"],
@@ -41,8 +46,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const locale = getLocale();
   return (
-    <html lang="en" className={barlow.variable}>
+    <html lang={locale} className={barlow.variable}>
       <body>
         <Header />
         <main>{children}</main>
