@@ -11,7 +11,15 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) return NextResponse.json({ items: NEWS, source: "static" });
+  // TEMP DIAG (build: db-diag-1): booleans only, no secrets — remove after debugging.
+  const diag: Record<string, unknown> = {
+    build: "db-diag-1",
+    hasUrl: !!url,
+    hasKey: !!key,
+    keyLen: key ? key.length : 0,
+  };
+  if (!url || !key)
+    return NextResponse.json({ items: NEWS, source: "static", _diag: diag });
 
   try {
     const supabase = createClient(url, key, {
@@ -23,12 +31,14 @@ export async function GET() {
       .eq("status", "published")
       .order("created_at", { ascending: false })
       .limit(60);
+    diag.rawCount = data ? data.length : null;
+    diag.err = error ? `${error.code ?? ""}:${error.message ?? error}` : null;
     if (error) throw error;
 
     if (!data || data.length === 0)
       return NextResponse.json(
-        { items: NEWS, source: "static" },
-        { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
+        { items: NEWS, source: "static", _diag: diag },
+        { headers: { "Cache-Control": "no-store" } }
       );
 
     const items = data.map((r) => ({
@@ -42,11 +52,12 @@ export async function GET() {
       date: r.item_date ?? "",
     }));
     return NextResponse.json(
-      { items, source: "db" },
-      { headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" } }
+      { items, source: "db", _diag: diag },
+      { headers: { "Cache-Control": "no-store" } }
     );
   } catch (err) {
     console.error("news reader failed:", err);
-    return NextResponse.json({ items: NEWS, source: "static-error" });
+    diag.caught = `${err}`;
+    return NextResponse.json({ items: NEWS, source: "static-error", _diag: diag });
   }
 }
