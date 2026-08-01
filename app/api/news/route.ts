@@ -13,7 +13,7 @@ export async function GET() {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   // TEMP DIAG (build: db-diag-1): booleans only, no secrets — remove after debugging.
   const diag: Record<string, unknown> = {
-    build: "db-diag-2",
+    build: "db-diag-3",
     hasUrl: !!url,
     hasKey: !!key,
     keyLen: key ? key.length : 0,
@@ -36,9 +36,13 @@ export async function GET() {
     diag.rawCount = data ? data.length : null;
     diag.err = error ? `${error.code ?? ""}:${error.message ?? error}` : null;
     // Unfiltered probe: how many rows of ANY status does this project see?
-    const all = await supabase.from("news_items").select("status");
+    const all = await supabase.from("news_items").select("id,status");
     diag.allCount = all.data ? all.data.length : null;
     diag.allErr = all.error ? `${all.error.code ?? ""}:${all.error.message ?? ""}` : null;
+    // Exact status strings Vercel sees, JSON-encoded to expose any whitespace/case.
+    diag.statuses = all.data
+      ? all.data.map((r: { id: string; status: string }) => `${r.id}=${JSON.stringify(r.status)}`)
+      : null;
     if (error) throw error;
 
     if (!data || data.length === 0)
