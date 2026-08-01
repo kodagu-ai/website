@@ -21,7 +21,12 @@ create table if not exists public.news_items (
 );
 
 alter table public.news_items enable row level security;
--- (No policies: only service_role, which bypasses RLS, has access.)
+
+-- Published news is public, so allow anyone to read published rows (pending /
+-- rejected stay hidden). The server routes (service_role) still handle writes.
+-- Creating this policy also forces a PostgREST schema reload for the new table.
+create policy "public read published news" on public.news_items
+  for select using (status = 'published');
 
 create index if not exists news_items_feed_idx
   on public.news_items (status, created_at desc);
