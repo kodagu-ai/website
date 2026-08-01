@@ -13,34 +13,6 @@ export async function GET() {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return NextResponse.json({ items: NEWS, source: "static" });
 
-  // TEMP DEBUG: compare supabase-js vs raw PostgREST with the same env key.
-  if (process.env.SUPABASE_URL) {
-    try {
-      const raw = await fetch(
-        `${url}/rest/v1/news_items?select=id&status=eq.published`,
-        { headers: { apikey: key, Authorization: `Bearer ${key}` }, cache: "no-store" }
-      );
-      const rawBody = await raw.json().catch(() => null);
-      const sb = createClient(url, key, { auth: { persistSession: false } });
-      const { data: sbData, error: sbErr } = await sb
-        .from("news_items").select("id").eq("status", "published");
-      return NextResponse.json({
-        items: NEWS,
-        source: "debug",
-        _debug: {
-          keyPrefix: key.slice(0, 6),
-          keyLen: key.length,
-          rawStatus: raw.status,
-          rawCount: Array.isArray(rawBody) ? rawBody.length : rawBody,
-          sbCount: sbData?.length ?? null,
-          sbErr: sbErr?.message ?? null,
-        },
-      });
-    } catch (e) {
-      return NextResponse.json({ items: NEWS, source: "debug-err", _e: String(e) });
-    }
-  }
-
   try {
     const supabase = createClient(url, key, {
       auth: { persistSession: false, autoRefreshToken: false },
