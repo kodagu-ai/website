@@ -10,7 +10,10 @@ import { ingestNewsItems } from "../../../lib/newsIngest";
 //   3. INGEST  — shared ingestNewsItems() upserts to news_items (confirmed +
 //                reported publish live, unverified held for review).
 export const runtime = "nodejs";
-export const maxDuration = 60;
+// Bilingual curation (English + Kannada) can run longer than 60s; needs a Pro
+// plan to exceed 60. If the deploy is on Hobby this caps at 60 and the run may
+// time out — in that case reduce the search count / item count below.
+export const maxDuration = 300;
 
 const MODEL = "claude-sonnet-5";
 
