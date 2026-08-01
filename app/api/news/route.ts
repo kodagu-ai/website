@@ -13,10 +13,12 @@ export async function GET() {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   // TEMP DIAG (build: db-diag-1): booleans only, no secrets — remove after debugging.
   const diag: Record<string, unknown> = {
-    build: "db-diag-1",
+    build: "db-diag-2",
     hasUrl: !!url,
     hasKey: !!key,
     keyLen: key ? key.length : 0,
+    // Project ref (subdomain) is not a secret — it's in every browser request.
+    urlHost: url ? url.replace(/^https?:\/\//, "").split(".")[0] : null,
   };
   if (!url || !key)
     return NextResponse.json({ items: NEWS, source: "static", _diag: diag });
@@ -33,6 +35,10 @@ export async function GET() {
       .limit(60);
     diag.rawCount = data ? data.length : null;
     diag.err = error ? `${error.code ?? ""}:${error.message ?? error}` : null;
+    // Unfiltered probe: how many rows of ANY status does this project see?
+    const all = await supabase.from("news_items").select("status");
+    diag.allCount = all.data ? all.data.length : null;
+    diag.allErr = all.error ? `${all.error.code ?? ""}:${all.error.message ?? ""}` : null;
     if (error) throw error;
 
     if (!data || data.length === 0)
