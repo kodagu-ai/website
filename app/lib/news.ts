@@ -16,6 +16,7 @@ export type TrustBadge = "confirmed" | "reported" | "unverified";
 export type NewsCategory =
   | "People"
   | "Culture & Heritage"
+  | "Sports"
   | "Agriculture"
   | "Technology"
   | "Business & Community"
@@ -26,6 +27,9 @@ export type NewsCategory =
 export const CATEGORIES: { key: NewsCategory; icon: string }[] = [
   { key: "People", icon: "🧑" },
   { key: "Culture & Heritage", icon: "🪔" },
+  // Kodagu is the "cradle of Indian hockey" — the Kodava Hockey Festival, KHPL,
+  // and Kodava players in the national side make Sports a live, on-brand beat.
+  { key: "Sports", icon: "🏑" },
   { key: "Agriculture", icon: "🌱" },
   { key: "Technology", icon: "💻" },
   { key: "Business & Community", icon: "🏪" },
