@@ -30,6 +30,8 @@ type Row = {
   item_date: string | null;
   status: string;
   created_at: string;
+  headline_kn?: string | null;
+  summary_kn?: string | null;
 };
 
 export async function GET() {
@@ -45,12 +47,21 @@ export async function GET() {
       // ingested items would never appear until the cache expired.
       global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
     });
-    const { data, error } = await supabase
+    const baseCols =
+      "id,category,headline,summary,badge,score,sources,item_date,status,created_at";
+    // Try with the Kannada columns; if migration 0005 hasn't run yet, retry
+    // without them so the feed keeps working.
+    const withKn = await supabase
       .from("news_items")
-      .select(
-        "id,category,headline,summary,badge,score,sources,item_date,status,created_at"
-      )
+      .select(`${baseCols},headline_kn,summary_kn`)
       .limit(200);
+    let data = withKn.data as Row[] | null;
+    let error: unknown = withKn.error;
+    if (error) {
+      const noKn = await supabase.from("news_items").select(baseCols).limit(200);
+      data = noKn.data as Row[] | null;
+      error = noKn.error;
+    }
     if (error) throw error;
 
     // Sort/recency key: the article's publish date (item_date, ideally ISO),
@@ -71,6 +82,8 @@ export async function GET() {
       category: r.category,
       headline: r.headline,
       summary: r.summary,
+      headlineKn: r.headline_kn ?? undefined,
+      summaryKn: r.summary_kn ?? undefined,
       badge: r.badge,
       score: r.score,
       sources: r.sources ?? [],

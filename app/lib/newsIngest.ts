@@ -50,6 +50,10 @@ export async function ingestNewsItems(
       category,
       headline,
       summary,
+      // Optional Kannada rendering (bilingual pipeline). Accepts headlineKn /
+      // headline_kn. Null when absent — the feed falls back to English.
+      headline_kn: str(it.headlineKn ?? it.headline_kn, 300) || null,
+      summary_kn: str(it.summaryKn ?? it.summary_kn, 1200) || null,
       badge,
       score: Number.isFinite(Number(it.score)) ? Math.round(Number(it.score)) : null,
       sources,
@@ -64,9 +68,17 @@ export async function ingestNewsItems(
   const supabase = createClient(supaUrl, supaKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const { error } = await supabase
+  let { error } = await supabase
     .from("news_items")
     .upsert(rows, { onConflict: "id", ignoreDuplicates: false });
+  // If the Kannada columns aren't there yet (migration 0005 not run), retry
+  // without them so ingest keeps working.
+  if (error) {
+    const rowsNoKn = rows.map(({ headline_kn, summary_kn, ...r }) => r);
+    ({ error } = await supabase
+      .from("news_items")
+      .upsert(rowsNoKn, { onConflict: "id", ignoreDuplicates: false }));
+  }
   if (error) throw error;
 
   return {

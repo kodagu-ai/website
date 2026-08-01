@@ -72,8 +72,10 @@ TRUST BADGE: "confirmed" (score 80-95) = an official/Tier-A source OR >=2 indepe
 
 For news about INDIVIDUALS: only corroborated, public-interest items — never unverified allegations about private people. Skip communal/inflammatory single-source items.
 
+BILINGUAL: also provide a natural Kannada rendering of each item — "headlineKn" (Kannada headline) and "summaryKn" (Kannada summary, 1-2 sentences). Keep proper nouns/brand names (people, places, outlets) as-is; translate the rest into fluent Kannada. Do not transliterate word-for-word.
+
 OUTPUT: a single JSON object and NOTHING else, shape:
-{"items":[{"id":"lowercase-slug","category":"<one of the 9>","headline":"...","summary":"neutral 1-2 sentences in English","sources":[{"name":"Outlet","url":"<verbatim candidate url>"}],"badge":"confirmed|reported|unverified","score":0,"date":"YYYY-MM-DD"}]}`;
+{"items":[{"id":"lowercase-slug","category":"<one of the 9>","headline":"...","summary":"neutral 1-2 sentences in English","headlineKn":"ಕನ್ನಡ ಶೀರ್ಷಿಕೆ","summaryKn":"ಕನ್ನಡ ಸಾರಾಂಶ","sources":[{"name":"Outlet","url":"<verbatim candidate url>"}],"badge":"confirmed|reported|unverified","score":0,"date":"YYYY-MM-DD"}]}`;
 
 async function curate(
   anthropicKey: string,
