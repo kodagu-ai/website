@@ -54,6 +54,7 @@ export const projects: Project[] = [
     category: "Wildlife & Conservation",
     featured: true,
     repoUrl: "https://github.com/kodagu-ai/aane-alert",
+    liveUrl: "https://aane.kodagu.ai",
     highlights: [
       "Real-time alerts by SMS, WhatsApp, and app notification",
       "Community-sourced sightings, verified by local coordinators",

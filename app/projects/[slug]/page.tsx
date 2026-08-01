@@ -42,6 +42,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
           <p className="detail-lead">{project.tagline}</p>
+          {project.liveUrl && (
+            <div style={{ marginTop: 26 }}>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-primary"
+                style={{ fontSize: "1.05rem", padding: "15px 30px" }}
+              >
+                Launch the app ↗
+              </a>
+            </div>
+          )}
         </div>
         <div className="hero-strip" />
       </div>
@@ -115,6 +128,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   ))}
                 </ul>
               </div>
+            )}
+
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-primary"
+                style={{ width: "100%", justifyContent: "center", marginBottom: 12 }}
+              >
+                Launch the app ↗
+              </a>
             )}
 
             {project.repoUrl && (
