@@ -74,31 +74,30 @@ export default function AboutPage() {
             <h2>The Founder</h2>
             <h3 className="founder-name">Poonacha Machaiah</h3>
             <p>
-              Poonacha Machaiah is the Co-Founder and CEO of Cyberhuman.ai, a
-              pioneering agentic AI strategic consulting firm. He has launched
-              initiatives such as AiJiv.Ai — a pioneering creator of an agentic
-              knowledge platform. He is also the founder of Peak Living, a
-              longevity and vitality services initiative, and Chief of AI and
-              Technology at ABWelll (an Augustinus Bader initiative).
+              Poonacha Machaiah (Balyatanda) is the founder of Kodagu.ai, an
+              open-source initiative applying agentic AI to conservation and
+              community challenges in Kodagu.
             </p>
             <p>
-              Previously, Poonacha served as the CEO of The Chopra Foundation,
-              where he led global initiatives to advance mental health, societal
-              well-being, and environmental sustainability. He is a founding
-              member of the Global Mental Health Task Force, focused on the UN
-              SDGs. Poonacha&rsquo;s leadership has driven powerful initiatives
-              such as NeverAlone, which addresses mental health and suicide
-              prevention.
+              He is also the founder of Cyberhuman.ai, a pioneering agentic-AI
+              strategic consulting firm, and the creator of AiJiv.ai, an agentic
+              knowledge platform. His other ventures include Peak Living, a
+              longevity and vitality services initiative, and Dharma, a media
+              platform he co-founded.
             </p>
             <p>
-              His career spans key roles as a technology leader at Nortel,
-              Iridium, Motorola, and Sasken, where he contributed to pioneering
-              innovations across global markets.
+              Previously, Poonacha served as CEO of The Chopra Foundation, where
+              he led global initiatives advancing mental health, societal
+              well-being, and environmental sustainability. A founding member of
+              the Global Mental Health Task Force aligned to the UN Sustainable
+              Development Goals, he spearheaded programs such as NeverAlone,
+              dedicated to mental health and suicide prevention.
             </p>
             <p>
-              He holds an MBA from the College of William &amp; Mary, a Bachelor
-              of Science in Computer Science and Engineering, and is pursuing a
-              Doctoral Degree in Public Health at Claremont Graduate University.
+              Earlier in his career, Poonacha held technology leadership roles at
+              Nortel, Iridium, Motorola, and Sasken, driving innovation across
+              global markets. He holds an MBA from the College of William &amp;
+              Mary and a Bachelor of Science in Computer Science and Engineering.
             </p>
           </div>
 
