@@ -3,6 +3,7 @@ import Link from "next/link";
 import CoffeeInsight from "./CoffeeInsight";
 import SchemesInsight from "./SchemesInsight";
 import ClimateRiskInsight from "./ClimateRiskInsight";
+import MonsoonHealthInsight from "./MonsoonHealthInsight";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -31,6 +32,7 @@ export default function InsightsPage() {
             <a href="#coffee">☕ Coffee Market</a>
             <a href="#schemes">📜 Schemes &amp; Compensation</a>
             <a href="#risk">⛰️ Landslide &amp; Climate Risk</a>
+            <a href="#health">🩺 Monsoon Health</a>
           </div>
         </div>
         <div className="hero-strip" />
@@ -40,6 +42,7 @@ export default function InsightsPage() {
         <CoffeeInsight />
         <SchemesInsight />
         <ClimateRiskInsight />
+        <MonsoonHealthInsight />
       </div>
     </>
   );
