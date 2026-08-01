@@ -14,6 +14,7 @@ export default function Header() {
           <Link href="/#projects">Projects</Link>
           <Link href="/insights" className="hide-sm">Insights</Link>
           <Link href="/community">Community</Link>
+          <Link href="/news">News</Link>
           <Link href="/about" className="hide-sm">About</Link>
           <Link href="/join" className="hide-sm">Get Involved</Link>
           <a
