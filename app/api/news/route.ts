@@ -35,6 +35,10 @@ export async function GET() {
   try {
     const supabase = createClient(url, key, {
       auth: { persistSession: false, autoRefreshToken: false },
+      // Bypass Next.js's App Router Data Cache, which otherwise memoizes
+      // supabase-js's GET to PostgREST and serves a stale snapshot — newly
+      // ingested items would never appear until the cache expired.
+      global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
     });
     const { data, error } = await supabase
       .from("news_items")
