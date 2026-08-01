@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NewsFeed from "./NewsFeed";
-import { NEWS, BADGES } from "../lib/news";
+import { BADGES } from "../lib/news";
 
 export const metadata: Metadata = {
   title: "News — Kodagu Today",
@@ -9,12 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function NewsPage() {
-  const counts = {
-    confirmed: NEWS.filter((n) => n.badge === "confirmed").length,
-    reported: NEWS.filter((n) => n.badge === "reported").length,
-    unverified: NEWS.filter((n) => n.badge === "unverified").length,
-  };
-
   return (
     <>
       <div className="detail-hero">
@@ -44,9 +38,9 @@ export default function NewsPage() {
           <div className="trust-legend">
             <span className="trust-legend-title">How we rate</span>
             <div className="trust-legend-items">
-              <span className="trust-badge confirmed">🟢 Confirmed · {counts.confirmed}</span>
-              <span className="trust-badge reported">🟡 Reported · {counts.reported}</span>
-              <span className="trust-badge unverified">🔴 Unverified · {counts.unverified}</span>
+              <span className="trust-badge confirmed">🟢 Confirmed</span>
+              <span className="trust-badge reported">🟡 Reported</span>
+              <span className="trust-badge unverified">🔴 Unverified</span>
             </div>
             <p className="trust-legend-note">
               {BADGES.confirmed.note} {BADGES.reported.note} {BADGES.unverified.note}{" "}

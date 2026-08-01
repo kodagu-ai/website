@@ -20,7 +20,8 @@ export type NewsCategory =
   | "Technology"
   | "Business & Community"
   | "Environment & Wildlife"
-  | "Civic & Governance";
+  | "Civic & Governance"
+  | "World & Kodagu";
 
 export const CATEGORIES: { key: NewsCategory; icon: string }[] = [
   { key: "People", icon: "🧑" },
@@ -30,6 +31,7 @@ export const CATEGORIES: { key: NewsCategory; icon: string }[] = [
   { key: "Business & Community", icon: "🏪" },
   { key: "Environment & Wildlife", icon: "🐘" },
   { key: "Civic & Governance", icon: "🏛️" },
+  { key: "World & Kodagu", icon: "🌍" },
 ];
 
 export const BADGES: Record<TrustBadge, { label: string; dot: string; note: string }> = {
@@ -156,5 +158,20 @@ export const NEWS: NewsItem[] = [
       { name: "Times of India", url: "https://timesofindia.indiatimes.com/city/mysuru/hailstorm-heavy-rain-damage-houses-and-crops-in-kodagu-district/articleshow/129638004.cms" },
     ],
     date: "Mar 2026",
+  },
+  {
+    id: "global-coffee-forces",
+    category: "World & Kodagu",
+    headline: "Global coffee swings on Brazil and Vietnam — and Kodagu feels every move",
+    summary:
+      "World coffee prices have whipsawed on delayed Brazilian harvests, a stronger real and rising Vietnam exports. These are the global forces that set the farmgate price Kodagu's Robusta growers receive — see the Coffee Intelligence page for the live read.",
+    badge: "confirmed",
+    score: 86,
+    sources: [
+      { name: "Barchart", url: "https://www.barchart.com/story/news/2238703/coffee-prices-fall-as-brazils-coffee-harvest-expected-to-resume" },
+      { name: "inkl", url: "https://www.inkl.com/news/coffee-prices-retreat-as-brazilian-real-weakness-spurs-long-liquidation" },
+      { name: "IndexBox · Conab", url: "https://www.indexbox.io/blog/coffee-prices-show-divergent-trends-in-domestic-and-international-markets-conab-report-june-2026/" },
+    ],
+    date: "Jul 2026",
   },
 ];

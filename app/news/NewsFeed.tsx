@@ -1,20 +1,34 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { NEWS, CATEGORIES, BADGES, type NewsCategory } from "../lib/news";
+import { useEffect, useMemo, useState } from "react";
+import { NEWS, CATEGORIES, BADGES, type NewsCategory, type NewsItem } from "../lib/news";
 
 export default function NewsFeed() {
   const [cat, setCat] = useState<NewsCategory | "all">("all");
+  // Start with the static seed so the feed renders instantly, then swap in the
+  // live published feed from the DB.
+  const [feed, setFeed] = useState<NewsItem[]>(NEWS);
+
+  useEffect(() => {
+    let live = true;
+    fetch("/api/news")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { items?: NewsItem[] }) => live && d.items?.length && setFeed(d.items))
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
 
   const counts = useMemo(() => {
     const m = new Map<string, number>();
-    for (const n of NEWS) m.set(n.category, (m.get(n.category) ?? 0) + 1);
+    for (const n of feed) m.set(n.category, (m.get(n.category) ?? 0) + 1);
     return m;
-  }, []);
+  }, [feed]);
 
   const items = useMemo(
-    () => (cat === "all" ? NEWS : NEWS.filter((n) => n.category === cat)),
-    [cat]
+    () => (cat === "all" ? feed : feed.filter((n) => n.category === cat)),
+    [cat, feed]
   );
 
   const catIcon = (c: string) => CATEGORIES.find((x) => x.key === c)?.icon ?? "";
@@ -27,7 +41,7 @@ export default function NewsFeed() {
           onClick={() => setCat("all")}
           type="button"
         >
-          All ({NEWS.length})
+          All ({feed.length})
         </button>
         {CATEGORIES.map((c) => (
           <button
