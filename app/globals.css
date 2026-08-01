@@ -898,6 +898,8 @@ section { padding: 84px 0; }
   background: #fff;
 }
 .ci-card-muted { background: var(--bg-alt); }
+.ci-card-key { border-color: #e4d9b8; box-shadow: inset 4px 0 0 var(--gold); }
+.ci-card-key .ci-card-label { color: #9a6b00; }
 .ci-card-label {
   text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem;
   font-weight: 700; color: var(--ink-faint); margin-bottom: 10px;
