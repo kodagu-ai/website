@@ -3,7 +3,7 @@ import Wordmark from "./Wordmark";
 import { site } from "../lib/site";
 
 export default function Footer() {
-  const year = 2025;
+  const year = new Date().getFullYear();
   return (
     <footer className="site-footer">
       <div className="container">
