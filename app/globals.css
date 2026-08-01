@@ -727,6 +727,125 @@ section { padding: 84px 0; }
   .signup .btn { width: 100%; justify-content: center; }
 }
 
+/* ── Kodagu Almanac blade ────────────────────────────────────────────────── */
+.almanac {
+  position: relative;
+  background: #fffdf8;
+  border: 1px solid #ece4d2;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 34px 34px 30px;
+  overflow: hidden;
+}
+.almanac-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--gradient);
+}
+.almanac-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #efe8d8;
+  margin-bottom: 22px;
+}
+.almanac-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--gold);
+}
+.almanac-title { font-size: 1.9rem; margin: 4px 0 0; text-transform: uppercase; }
+.almanac-when { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+.almanac-date { font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+.almanac-live {
+  display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end;
+  font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+.almanac-live i {
+  width: 8px; height: 8px; border-radius: 50%; background: #1a7f37;
+  box-shadow: 0 0 0 0 rgba(26,127,55,0.5); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(26,127,55,0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(26,127,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(26,127,55,0); }
+}
+
+.almanac-section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+/* Weather row */
+.wx-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.wx-town {
+  border: 1px solid #efe8d8;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+}
+.wx-top { display: flex; align-items: center; justify-content: space-between; }
+.wx-name { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.95rem; }
+.wx-icon { font-size: 1.3rem; }
+.wx-temp { font-size: 2.2rem; font-weight: 700; line-height: 1.1; margin-top: 6px; }
+.wx-label { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 10px; }
+.wx-meta { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; color: var(--ink-faint); }
+.wx-skel { height: 150px; background: linear-gradient(90deg,#f4efe4,#faf6ec,#f4efe4); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-color: transparent; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.wx-fallback { grid-column: 1 / -1; color: var(--ink-faint); padding: 20px; text-align: center; border: 1px dashed #e5dcc8; border-radius: 12px; }
+
+@media (max-width: 860px) { .wx-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .wx-row { grid-template-columns: 1fr; } }
+
+/* Markets + updates */
+.almanac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+@media (max-width: 820px) { .almanac-grid { grid-template-columns: 1fr; gap: 26px; } }
+
+.mkt-list { list-style: none; padding: 0; margin: 0; }
+.mkt-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid #efe8d8;
+}
+.mkt-item:last-child { border-bottom: none; }
+.mkt-left { display: flex; flex-direction: column; }
+.mkt-crop { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.mkt-grade { font-size: 0.85rem; color: var(--ink-faint); }
+.mkt-right { text-align: right; white-space: nowrap; }
+.mkt-price { font-weight: 700; color: var(--red); font-size: 1.15rem; }
+.mkt-unit { display: block; font-size: 0.78rem; color: var(--ink-faint); }
+.mkt-note { font-size: 0.82rem; color: var(--ink-faint); margin-top: 14px; line-height: 1.5; }
+.mkt-note a { color: var(--ink-soft); border-bottom: 1px solid var(--gold); font-weight: 600; }
+
+.upd-list { list-style: none; padding: 0; margin: 0; }
+.upd-item { padding: 12px 0; border-bottom: 1px solid #efe8d8; }
+.upd-item:last-child { border-bottom: none; }
+.upd-link { display: block; }
+.upd-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.upd-tag {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #9a6b00; background: #fdf7e6; border: 1px solid #f0dca0; border-radius: 999px; padding: 2px 9px;
+}
+.upd-date { font-size: 0.8rem; color: var(--ink-faint); }
+.upd-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; }
+.upd-link:hover .upd-title { color: var(--red); }
+.upd-body { color: var(--ink-soft); font-size: 0.95rem; }
+
 .footer-signup { margin-top: 22px; max-width: 340px; }
 .footer-signup-label {
   display: block;

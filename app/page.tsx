@@ -8,6 +8,7 @@ import {
   GitHubIcon,
 } from "./components/icons";
 import EmailSignup from "./components/EmailSignup";
+import KodaguAlmanac from "./components/KodaguAlmanac";
 import { projects } from "./lib/projects";
 import { site } from "./lib/site";
 
@@ -73,6 +74,9 @@ export default function Home() {
         </div>
         <div className="hero-strip" />
       </section>
+
+      {/* ── Kodagu Almanac (live weather + market prices + updates) ── */}
+      <KodaguAlmanac />
 
       {/* ── Pillars ──────────────────────────────────────────── */}
       <section>
