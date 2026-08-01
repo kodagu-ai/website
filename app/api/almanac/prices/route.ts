@@ -6,7 +6,9 @@ import { MARKET } from "../../../lib/almanac";
 // falling back to the static seed in lib/almanac.ts when the DB is empty or
 // unavailable. Cached 1h.
 export const runtime = "nodejs";
-export const revalidate = 3600;
+// Query the DB live (the scraper populates it out-of-band); the CDN caches the
+// response via the Cache-Control header below, so Supabase isn't hit per visit.
+export const dynamic = "force-dynamic";
 
 function fmtAsOf(d?: string | null): string | undefined {
   if (!d) return undefined;
@@ -61,7 +63,10 @@ export async function GET() {
       return seed; // static fallback for anything not yet in the DB (tea, paddy)
     });
 
-    return NextResponse.json({ items, source: data && data.length ? "db" : "static" });
+    return NextResponse.json(
+      { items, source: data && data.length ? "db" : "static" },
+      { headers: { "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=3600" } }
+    );
   } catch (err) {
     console.error("almanac prices read failed:", err);
     return NextResponse.json({ items: MARKET, source: "static-error" });
