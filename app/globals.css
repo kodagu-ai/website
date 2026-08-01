@@ -37,7 +37,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-barlow), "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: var(--font-barlow), var(--font-kannada), "Barlow Condensed", "Noto Sans Kannada", "Arial Narrow", sans-serif;
   font-size: 18px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;

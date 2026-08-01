@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed } from "next/font/google";
+import { Barlow_Condensed, Noto_Sans_Kannada } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,6 +14,15 @@ const barlow = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-barlow",
+  display: "swap",
+});
+
+// Kannada glyphs (Barlow Condensed is Latin-only). Latin text uses Barlow;
+// Kannada characters fall through to this in the body font stack.
+const kannada = Noto_Sans_Kannada({
+  subsets: ["kannada"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-kannada",
   display: "swap",
 });
 
@@ -48,7 +57,7 @@ export default function RootLayout({
 }) {
   const locale = getLocale();
   return (
-    <html lang={locale} className={barlow.variable}>
+    <html lang={locale} className={`${barlow.variable} ${kannada.variable}`}>
       <body>
         <Header />
         <main>{children}</main>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GitHubIcon } from "../components/icons";
 import { site } from "../lib/site";
+import { getLocale, S } from "../lib/i18n";
 
 export const metadata: Metadata = {
   title: "Get Involved",
@@ -8,35 +9,22 @@ export const metadata: Metadata = {
     "Join the Kodagu.ai community — contribute code, verify sightings, translate, or propose a new project.",
 };
 
-const roles = [
-  {
-    title: "Developers",
-    body: "Build and improve the projects — frontend, backend, mobile, data, and infrastructure. Every project is open source.",
-  },
-  {
-    title: "Community Coordinators",
-    body: "Be the trusted local link — verify information, onboard villages and estates, and keep projects grounded in reality.",
-  },
-  {
-    title: "Designers & Translators",
-    body: "Make everything clear and usable in Kodava thakk, Kannada, and English, with a design that respects the brand.",
-  },
-  {
-    title: "Domain Experts",
-    body: "Wildlife biologists, farmers, Forest Department partners, historians — your knowledge shapes what we build.",
-  },
-];
-
 export default function JoinPage() {
+  const locale = getLocale();
+  const roles = [
+    { title: S.join.devT[locale], body: S.join.devB[locale] },
+    { title: S.join.coordT[locale], body: S.join.coordB[locale] },
+    { title: S.join.designT[locale], body: S.join.designB[locale] },
+    { title: S.join.expertT[locale], body: S.join.expertB[locale] },
+  ];
   return (
     <>
       <section className="page-hero">
         <div className="container">
           <div className="accent-bar" />
-          <h1>Get Involved</h1>
+          <h1>{S.join.title[locale]}</h1>
           <p className="prose" style={{ fontSize: "1.2rem", color: "var(--ink-soft)" }}>
-            Kodagu.ai is built by the community, for the community. Here is how
-            you can be part of it.
+            {S.join.lead[locale]}
           </p>
         </div>
       </section>
@@ -53,28 +41,21 @@ export default function JoinPage() {
           </div>
 
           <div className="prose" style={{ marginTop: 48 }}>
-            <h2>Start here</h2>
-            <p>
-              All our work lives on GitHub. Browse the projects, open an issue,
-              or say hello — no contribution is too small.
-            </p>
+            <h2>{S.join.startHead[locale]}</h2>
+            <p>{S.join.startBody[locale]}</p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 8 }}>
               <a href={site.githubUrl} target="_blank" rel="noreferrer" className="btn btn-dark">
-                <GitHubIcon /> Visit our GitHub
+                <GitHubIcon /> {S.join.visitGithub[locale]}
               </a>
               <a href={`mailto:${site.contactEmail}`} className="btn btn-outline">
-                Email the team
+                {S.join.emailTeam[locale]}
               </a>
             </div>
           </div>
 
           <div className="prose" style={{ marginTop: 44 }}>
-            <h2>Propose a project</h2>
-            <p>
-              Have an idea that serves Kodagu — its people, land, language, or
-              wildlife? This hub is designed to grow. Reach out with your idea and
-              we will help you get it off the ground.
-            </p>
+            <h2>{S.join.proposeHead[locale]}</h2>
+            <p>{S.join.proposeBody[locale]}</p>
           </div>
         </div>
       </section>
