@@ -11,7 +11,8 @@ import EmailSignup from "./components/EmailSignup";
 import KodaguAlmanac from "./components/KodaguAlmanac";
 import { projects } from "./lib/projects";
 import { site } from "./lib/site";
-import { getLocale, S } from "./lib/i18n";
+import { S } from "./lib/i18n";
+import { getLocale } from "./lib/getLocale";
 
 export default function Home() {
   const locale = getLocale();

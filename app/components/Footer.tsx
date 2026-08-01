@@ -2,7 +2,8 @@ import Link from "next/link";
 import Wordmark from "./Wordmark";
 import EmailSignup from "./EmailSignup";
 import { site } from "../lib/site";
-import { getLocale, S, t } from "../lib/i18n";
+import { S, t } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export default function Footer() {
   const year = new Date().getFullYear();

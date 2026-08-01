@@ -1,17 +1,11 @@
-import { cookies } from "next/headers";
-
 // Lightweight i18n for Kodagu.ai. Locale is stored in a cookie (set by the
-// header LangToggle) and read in server components via getLocale(), so pages
-// render server-side in the chosen language. Strings live in the S dictionary
-// as { en, kn } leaves; access with S.section.key[locale]. Any leaf whose kn is
-// missing simply shows en (write kn as you translate — nothing breaks).
+// header LangToggle). Server components read it via getLocale() (in
+// ./getLocale — server-only, kept out of this file so client components can
+// import the dictionary too). Strings live in the S dictionary as { en, kn }
+// leaves; access with S.section.key[locale]. Any leaf whose kn is missing
+// simply shows en (write kn as you translate — nothing breaks).
 
 export type Locale = "en" | "kn";
-
-export function getLocale(): Locale {
-  const v = cookies().get("locale")?.value;
-  return v === "kn" ? "kn" : "en";
-}
 
 type Leaf = { en: string; kn: string };
 export const t = (locale: Locale, leaf: Leaf): string => leaf[locale] || leaf.en;
@@ -178,6 +172,54 @@ export const S = {
       kn: "ನೀವು ಡೆವಲಪರ್ ಆಗಿರಲಿ, ಡಿಸೈನರ್ ಆಗಿರಲಿ, ವನ್ಯಜೀವಿ ಪರಿಣತರಾಗಿರಲಿ, ಅನುವಾದಕರಾಗಿರಲಿ, ಅಥವಾ ಕೊಡಗಿನ ಬಗ್ಗೆ ಕಾಳಜಿ ಇರುವವರಾಗಿರಲಿ — ಇಲ್ಲಿ ನಿಮಗೊಂದು ಸ್ಥಾನವಿದೆ.",
     },
     joinCommunity: { en: "Join the community", kn: "ಸಮುದಾಯಕ್ಕೆ ಸೇರಿ" },
+  },
+  news: {
+    eyebrow: { en: "News · updated daily", kn: "ಸುದ್ದಿ · ಪ್ರತಿದಿನ ನವೀಕರಣ" },
+    brandTitle: { en: "Kodagu Today", kn: "ಕೊಡಗು ಇಂದು" },
+    brandSub: { en: "The verified daily brief", kn: "ಪರಿಶೀಲಿತ ದೈನಂದಿನ ಸಾರಾಂಶ" },
+    lead: {
+      en: "What’s happening across Kodagu and the Kodava community — gathered from many sources, sorted by topic, and rated for how much you can trust it. The antidote to the WhatsApp rumour mill.",
+      kn: "ಕೊಡಗು ಮತ್ತು ಕೊಡವ ಸಮುದಾಯದಾದ್ಯಂತ ಏನಾಗುತ್ತಿದೆ — ಹಲವು ಮೂಲಗಳಿಂದ ಸಂಗ್ರಹಿಸಿ, ವಿಷಯವಾರು ವಿಂಗಡಿಸಿ, ಎಷ್ಟು ನಂಬಬಹುದೆಂದು ರೇಟ್ ಮಾಡಲಾಗಿದೆ. ವಾಟ್ಸಾಪ್ ವದಂತಿಗಳಿಗೆ ಪರಿಹಾರ.",
+    },
+    howWeRate: { en: "How we rate", kn: "ನಾವು ಹೇಗೆ ರೇಟ್ ಮಾಡುತ್ತೇವೆ" },
+    legendTail: {
+      en: "Every item links to its sources so you can judge for yourself.",
+      kn: "ಪ್ರತಿಯೊಂದು ಸುದ್ದಿಯೂ ತನ್ನ ಮೂಲಗಳಿಗೆ ಲಿಂಕ್ ನೀಡುತ್ತದೆ — ನೀವೇ ನಿರ್ಣಯಿಸಬಹುದು.",
+    },
+    worksHead: { en: "How this works", kn: "ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ" },
+    worksBody: {
+      en: "Kodagu.ai aggregates — it doesn’t report. Each day we gather Kodagu news from established outlets, cluster the same story across sources, summarise it in plain language, and score it on source reliability, corroboration and verifiability. 🟢 Confirmed and 🟡 Reported items publish (each shown with its rating); 🔴 Unverified items are held for human review before they appear.",
+      kn: "Kodagu.ai ಸುದ್ದಿಯನ್ನು ಒಗ್ಗೂಡಿಸುತ್ತದೆ — ಸ್ವತಃ ವರದಿ ಮಾಡುವುದಿಲ್ಲ. ಪ್ರತಿದಿನ ನಾವು ಪ್ರತಿಷ್ಠಿತ ಮಾಧ್ಯಮಗಳಿಂದ ಕೊಡಗಿನ ಸುದ್ದಿಯನ್ನು ಸಂಗ್ರಹಿಸಿ, ಒಂದೇ ಸುದ್ದಿಯನ್ನು ಬೇರೆ ಬೇರೆ ಮೂಲಗಳಲ್ಲಿ ಗುಂಪುಗೂಡಿಸಿ, ಸರಳ ಭಾಷೆಯಲ್ಲಿ ಸಾರಾಂಶ ಮಾಡಿ, ಮೂಲದ ವಿಶ್ವಾಸಾರ್ಹತೆ, ಖಚಿತತೆ ಮತ್ತು ಪರಿಶೀಲನೆಯ ಆಧಾರದಲ್ಲಿ ಅಂಕ ನೀಡುತ್ತೇವೆ. 🟢 ದೃಢೀಕೃತ ಮತ್ತು 🟡 ವರದಿ ಸುದ್ದಿಗಳು ಪ್ರಕಟವಾಗುತ್ತವೆ (ಪ್ರತಿಯೊಂದೂ ಅದರ ರೇಟಿಂಗ್‌ನೊಂದಿಗೆ); 🔴 ಪರಿಶೀಲಿಸದ ಸುದ್ದಿಗಳು ಕಾಣಿಸಿಕೊಳ್ಳುವ ಮೊದಲು ಮಾನವ ಪರಿಶೀಲನೆಗೆ ಕಾದಿರಿಸಲಾಗುತ್ತದೆ.",
+    },
+    disclaimerPre: {
+      en: "This is a trust signal, not a guarantee, and not original journalism. We only publish items about individuals when they are corroborated and in the public interest. Spotted an error?",
+      kn: "ಇದು ವಿಶ್ವಾಸದ ಸೂಚನೆ, ಖಾತರಿ ಅಲ್ಲ, ಮತ್ತು ಮೂಲ ಪತ್ರಿಕೋದ್ಯಮವಲ್ಲ. ವ್ಯಕ್ತಿಗಳ ಬಗ್ಗೆ ಸುದ್ದಿಗಳನ್ನು ಖಚಿತಪಡಿಸಿ, ಸಾರ್ವಜನಿಕ ಹಿತಾಸಕ್ತಿ ಇದ್ದಾಗ ಮಾತ್ರ ಪ್ರಕಟಿಸುತ್ತೇವೆ. ದೋಷ ಕಂಡಿತೇ?",
+    },
+    tellUs: { en: "Tell us", kn: "ನಮಗೆ ತಿಳಿಸಿ" },
+    disclaimerPost: { en: "and we’ll fix it.", kn: "— ನಾವು ಸರಿಪಡಿಸುತ್ತೇವೆ." },
+    // NewsFeed (client) UI
+    all: { en: "All", kn: "ಎಲ್ಲಾ" },
+    emptyCat: {
+      en: "No verified items in today’s brief for this category. We only publish what we can source — nothing fabricated.",
+      kn: "ಈ ವಿಭಾಗಕ್ಕೆ ಇಂದಿನ ಸಾರಾಂಶದಲ್ಲಿ ಪರಿಶೀಲಿತ ಸುದ್ದಿಗಳಿಲ್ಲ. ಮೂಲ ಇರುವುದನ್ನು ಮಾತ್ರ ನಾವು ಪ್ರಕಟಿಸುತ್ತೇವೆ — ಸೃಷ್ಟಿಸಿದ್ದೇನೂ ಇಲ್ಲ.",
+    },
+    source: { en: "source", kn: "ಮೂಲ" },
+    sources: { en: "sources", kn: "ಮೂಲಗಳು" },
+    today: { en: "Today", kn: "ಇಂದು" },
+    yesterday: { en: "Yesterday", kn: "ನಿನ್ನೆ" },
+    daysAgo: { en: "days ago", kn: "ದಿನಗಳ ಹಿಂದೆ" },
+  },
+  community: {
+    title: { en: "Community Directory", kn: "ಸಮುದಾಯ ಡೈರೆಕ್ಟರಿ" },
+    lead: {
+      en: "The people and organizations building Kodagu.ai together. Find collaborators, see who works on what, and add yourself to the map.",
+      kn: "Kodagu.ai ಅನ್ನು ಒಟ್ಟಿಗೆ ನಿರ್ಮಿಸುತ್ತಿರುವ ಜನ ಮತ್ತು ಸಂಸ್ಥೆಗಳು. ಸಹಯೋಗಿಗಳನ್ನು ಹುಡುಕಿ, ಯಾರು ಯಾವುದರಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತಾರೆಂದು ನೋಡಿ, ಮತ್ತು ನಿಮ್ಮನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ.",
+    },
+    addYourself: { en: "Add yourself or your organization", kn: "ನಿಮ್ಮನ್ನು ಅಥವಾ ನಿಮ್ಮ ಸಂಸ್ಥೆಯನ್ನು ಸೇರಿಸಿ" },
+    note: {
+      en: "Listings are opt-in. Everyone here has asked to be included — we never add people from outside sources.",
+      kn: "ಪಟ್ಟಿಗಳು ಸ್ವಯಂ-ಆಯ್ಕೆ. ಇಲ್ಲಿರುವ ಪ್ರತಿಯೊಬ್ಬರೂ ಸೇರಿಸಿಕೊಳ್ಳಲು ಕೇಳಿಕೊಂಡಿದ್ದಾರೆ — ಹೊರಗಿನ ಮೂಲಗಳಿಂದ ನಾವು ಎಂದಿಗೂ ಜನರನ್ನು ಸೇರಿಸುವುದಿಲ್ಲ.",
+    },
   },
   footer: {
     tag: {

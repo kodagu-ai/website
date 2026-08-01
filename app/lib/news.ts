@@ -24,24 +24,47 @@ export type NewsCategory =
   | "Civic & Governance"
   | "World & Kodagu";
 
-export const CATEGORIES: { key: NewsCategory; icon: string }[] = [
-  { key: "People", icon: "🧑" },
-  { key: "Culture & Heritage", icon: "🪔" },
+// `key` is the stable match value stored on each item; `kn` is the Kannada
+// display label shown when the site is in Kannada (the key never changes).
+export const CATEGORIES: { key: NewsCategory; icon: string; kn: string }[] = [
+  { key: "People", icon: "🧑", kn: "ಜನ" },
+  { key: "Culture & Heritage", icon: "🪔", kn: "ಸಂಸ್ಕೃತಿ ಮತ್ತು ಪರಂಪರೆ" },
   // Kodagu is the "cradle of Indian hockey" — the Kodava Hockey Festival, KHPL,
   // and Kodava players in the national side make Sports a live, on-brand beat.
-  { key: "Sports", icon: "🏑" },
-  { key: "Agriculture", icon: "🌱" },
-  { key: "Technology", icon: "💻" },
-  { key: "Business & Community", icon: "🏪" },
-  { key: "Environment & Wildlife", icon: "🐘" },
-  { key: "Civic & Governance", icon: "🏛️" },
-  { key: "World & Kodagu", icon: "🌍" },
+  { key: "Sports", icon: "🏑", kn: "ಕ್ರೀಡೆ" },
+  { key: "Agriculture", icon: "🌱", kn: "ಕೃಷಿ" },
+  { key: "Technology", icon: "💻", kn: "ತಂತ್ರಜ್ಞಾನ" },
+  { key: "Business & Community", icon: "🏪", kn: "ವ್ಯಾಪಾರ ಮತ್ತು ಸಮುದಾಯ" },
+  { key: "Environment & Wildlife", icon: "🐘", kn: "ಪರಿಸರ ಮತ್ತು ವನ್ಯಜೀವಿ" },
+  { key: "Civic & Governance", icon: "🏛️", kn: "ನಾಗರಿಕ ಮತ್ತು ಆಡಳಿತ" },
+  { key: "World & Kodagu", icon: "🌍", kn: "ಜಗತ್ತು ಮತ್ತು ಕೊಡಗು" },
 ];
 
-export const BADGES: Record<TrustBadge, { label: string; dot: string; note: string }> = {
-  confirmed: { label: "Confirmed", dot: "🟢", note: "Official source, or 2+ reliable outlets agree." },
-  reported: { label: "Reported", dot: "🟡", note: "One reliable outlet — not yet corroborated." },
-  unverified: { label: "Unverified", dot: "🔴", note: "Single low-tier or social source — treat with caution." },
+export const BADGES: Record<
+  TrustBadge,
+  { label: string; labelKn: string; dot: string; note: string; noteKn: string }
+> = {
+  confirmed: {
+    label: "Confirmed",
+    labelKn: "ದೃಢೀಕೃತ",
+    dot: "🟢",
+    note: "Official source, or 2+ reliable outlets agree.",
+    noteKn: "ಅಧಿಕೃತ ಮೂಲ, ಅಥವಾ 2+ ವಿಶ್ವಾಸಾರ್ಹ ಮಾಧ್ಯಮಗಳ ಒಪ್ಪಿಗೆ.",
+  },
+  reported: {
+    label: "Reported",
+    labelKn: "ವರದಿ",
+    dot: "🟡",
+    note: "One reliable outlet — not yet corroborated.",
+    noteKn: "ಒಂದು ವಿಶ್ವಾಸಾರ್ಹ ಮಾಧ್ಯಮ — ಇನ್ನೂ ಖಚಿತಪಡಿಸಿಲ್ಲ.",
+  },
+  unverified: {
+    label: "Unverified",
+    labelKn: "ಪರಿಶೀಲಿಸದ",
+    dot: "🔴",
+    note: "Single low-tier or social source — treat with caution.",
+    noteKn: "ಒಂದೇ ಕೆಳಮಟ್ಟದ ಅಥವಾ ಸಾಮಾಜಿಕ ಮೂಲ — ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಗಣಿಸಿ.",
+  },
 };
 
 export type NewsItem = {
@@ -49,6 +72,10 @@ export type NewsItem = {
   category: NewsCategory;
   headline: string;
   summary: string;
+  // Optional Kannada rendering of the same item (filled by the bilingual
+  // pipeline); the feed falls back to the English headline/summary when absent.
+  headlineKn?: string;
+  summaryKn?: string;
   badge: TrustBadge;
   score: number; // 0–100
   sources: { name: string; url: string }[];

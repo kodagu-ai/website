@@ -6,7 +6,8 @@ import {
   InnovativeIcon,
   SustainableIcon,
 } from "../components/icons";
-import { getLocale, S } from "../lib/i18n";
+import { S } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export const metadata: Metadata = {
   title: "About",

@@ -3,6 +3,8 @@ import Link from "next/link";
 import DirectoryExplorer from "./DirectoryExplorer";
 import { directory } from "../lib/directory";
 import { projects } from "../lib/projects";
+import { S } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export const metadata: Metadata = {
   title: "Community Directory",
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityPage() {
+  const locale = getLocale();
   const projectNames = projects.map((p) => ({ slug: p.slug, name: p.name }));
 
   return (
@@ -18,14 +21,13 @@ export default function CommunityPage() {
       <section className="page-hero">
         <div className="container">
           <div className="accent-bar" />
-          <h1>Community Directory</h1>
+          <h1>{S.community.title[locale]}</h1>
           <p className="prose" style={{ fontSize: "1.2rem", color: "var(--ink-soft)" }}>
-            The people and organizations building Kodagu.ai together. Find
-            collaborators, see who works on what, and add yourself to the map.
+            {S.community.lead[locale]}
           </p>
           <div style={{ marginTop: 20 }}>
             <Link href="/community/submit" className="btn btn-primary">
-              Add yourself or your organization
+              {S.community.addYourself[locale]}
             </Link>
           </div>
         </div>
@@ -34,10 +36,7 @@ export default function CommunityPage() {
       <section style={{ paddingTop: 24 }}>
         <div className="container">
           <DirectoryExplorer entries={directory} projectNames={projectNames} />
-          <p className="dir-note">
-            Listings are opt-in. Everyone here has asked to be included — we never
-            add people from outside sources.
-          </p>
+          <p className="dir-note">{S.community.note[locale]}</p>
         </div>
       </section>
     </>

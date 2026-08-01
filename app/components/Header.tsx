@@ -3,7 +3,8 @@ import Wordmark from "./Wordmark";
 import { GitHubIcon } from "./icons";
 import LangToggle from "./LangToggle";
 import { site } from "../lib/site";
-import { getLocale, S } from "../lib/i18n";
+import { S } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export default function Header() {
   const locale = getLocale();

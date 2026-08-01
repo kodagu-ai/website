@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { site } from "./lib/site";
-import { getLocale } from "./lib/i18n";
+import { getLocale } from "./lib/getLocale";
 
 // The header/footer/pages render from the `locale` cookie (EN/ಕನ್ನಡ), so every
 // page must be rendered per-request rather than prerendered at build time.
