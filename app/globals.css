@@ -331,6 +331,29 @@ section { padding: 84px 0; }
 .pc-link .arrow { transition: transform 0.15s ease; display: inline-block; }
 .project-card:hover .pc-link .arrow { transform: translateX(4px); }
 
+/* Stretched link: its ::after covers the whole card so the entire card opens
+   the project page, while other links inside (e.g. Launch app) stay clickable. */
+.pc-stretched { position: relative; }
+.pc-stretched::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* "Launch app" link — sits above the stretched overlay and opens the live app */
+.pc-launch {
+  position: relative;
+  z-index: 2;
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.pc-launch:hover { text-decoration: underline; }
+
 .project-card.coming {
   background: repeating-linear-gradient(45deg, #fafafa, #fafafa 12px, #f4f4f4 12px, #f4f4f4 24px);
   border-style: dashed;

@@ -11,10 +11,11 @@ const statusClass: Record<ProjectStatus, string> = {
 export default function ProjectCard({ project }: { project: Project }) {
   const featured = project.featured;
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className={`project-card${featured ? " is-featured" : ""}`}
-    >
+    // Note: the card is an <article>, not an <a>, so we can place multiple
+    // links inside it. The "Explore project" link is a stretched link (its
+    // ::after covers the whole card) — clicking anywhere on the card opens the
+    // project page, while the "Launch app" link stays independently clickable.
+    <article className={`project-card${featured ? " is-featured" : ""}`}>
       <div>
         {project.logo ? (
           <img
@@ -36,9 +37,22 @@ export default function ProjectCard({ project }: { project: Project }) {
         <p className="pc-tagline">{project.tagline}</p>
         <p className="pc-summary">{project.summary}</p>
         <div className="pc-foot">
-          <span className="pc-link">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="pc-link pc-stretched"
+          >
             Explore project <span className="arrow">→</span>
-          </span>
+          </Link>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="pc-launch"
+            >
+              Launch app ↗
+            </a>
+          )}
         </div>
       </div>
       {featured && (
@@ -50,6 +64,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
       )}
-    </Link>
+    </article>
   );
 }
