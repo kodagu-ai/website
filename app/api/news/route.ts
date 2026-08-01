@@ -11,7 +11,8 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) return NextResponse.json({ items: NEWS, source: "static" });
+  if (!url || !key)
+    return NextResponse.json({ items: NEWS, source: "static", _debug: { host: null, envMissing: true } });
 
   try {
     const supabase = createClient(url, key, {
@@ -23,12 +24,18 @@ export async function GET() {
       .eq("status", "published")
       .order("created_at", { ascending: false })
       .limit(60);
+    const _debug = {
+      host: (url || "").replace(/^https?:\/\//, "").split(".")[0],
+      count: data?.length ?? null,
+      err: error?.message ?? null,
+    };
+
     if (error) throw error;
 
     if (!data || data.length === 0)
       return NextResponse.json(
-        { items: NEWS, source: "static" },
-        { headers: { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=1800" } }
+        { items: NEWS, source: "static", _debug },
+        { headers: { "Cache-Control": "no-store" } }
       );
 
     const items = data.map((r) => ({
@@ -42,8 +49,8 @@ export async function GET() {
       date: r.item_date ?? "",
     }));
     return NextResponse.json(
-      { items, source: "db" },
-      { headers: { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=1800" } }
+      { items, source: "db", _debug },
+      { headers: { "Cache-Control": "no-store" } }
     );
   } catch (err) {
     console.error("news reader failed:", err);
