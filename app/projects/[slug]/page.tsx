@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProject, allProjectSlugs } from "../../lib/projects";
+import { contributorsForProject } from "../../lib/directory";
 import { GitHubIcon } from "../../components/icons";
 
 export function generateStaticParams() {
@@ -24,6 +25,8 @@ export function generateMetadata({
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = getProject(params.slug);
   if (!project) notFound();
+
+  const contributors = contributorsForProject(project.slug);
 
   return (
     <>
@@ -127,6 +130,23 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <li key={h}>{h}</li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {contributors.length > 0 && (
+              <div className="card">
+                <h4>Community</h4>
+                <ul className="contrib-list">
+                  {contributors.map((c) => (
+                    <li key={c.slug} className="contrib">
+                      <span className="contrib-name">{c.name}</span>
+                      <span className="contrib-role">{c.role}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/community" className="contrib-link">
+                  See the full directory →
+                </Link>
               </div>
             )}
 

@@ -12,8 +12,9 @@ export default function Header() {
         </Link>
         <nav className="nav">
           <Link href="/#projects">Projects</Link>
+          <Link href="/community">Community</Link>
           <Link href="/about" className="hide-sm">About</Link>
-          <Link href="/join">Get Involved</Link>
+          <Link href="/join" className="hide-sm">Get Involved</Link>
           <a
             href={site.githubUrl}
             target="_blank"
