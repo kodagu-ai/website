@@ -61,7 +61,7 @@ export default function KodaguAlmanac() {
   const others = prices.filter((p) => p.crop !== "Coffee");
 
   return (
-    <section className="section-alt">
+    <section className="section-alt" id="almanac">
       <div className="container">
         <div className="almanac">
           <div className="almanac-bar" />
@@ -126,6 +126,9 @@ export default function KodaguAlmanac() {
                       </li>
                     ))}
                   </ul>
+                  <Link href="/coffee" className="mkt-outlook">
+                    Coffee outlook — why prices move &amp; when to sell →
+                  </Link>
                 </div>
               )}
 

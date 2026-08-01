@@ -162,9 +162,12 @@ img { max-width: 100%; display: block; }
 .nav a:hover { color: var(--black); }
 .nav .nav-cta { color: #fff; }
 
+@media (max-width: 1000px) {
+  .nav { gap: 20px; }
+  .nav .hide-sm { display: none; }
+}
 @media (max-width: 640px) {
   .nav { gap: 16px; }
-  .nav .hide-sm { display: none; }
 }
 
 /* ── Hero ────────────────────────────────────────────────────────────────── */
@@ -862,6 +865,81 @@ section { padding: 84px 0; }
 .upd-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; }
 .upd-link:hover .upd-title { color: var(--red); }
 .upd-body { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Link from the almanac coffee group to the Coffee Intelligence page */
+.mkt-outlook {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+}
+.mkt-outlook:hover { text-decoration: underline; }
+
+/* About — founder */
+.founder-name { color: var(--red); font-size: 1.5rem; margin-bottom: 10px; }
+
+/* ── Coffee Intelligence page ────────────────────────────────────────────── */
+.ci-section { padding: 40px 0; border-bottom: 1px solid var(--line); }
+.ci-section:last-child { border-bottom: none; }
+.ci-section h2 { margin-top: 4px; }
+.ci-prose { max-width: 760px; }
+.ci-prose p { color: var(--ink-soft); font-size: 1.1rem; }
+.ci-note { color: var(--ink-faint); }
+
+.ci-bench { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 760px) { .ci-bench { grid-template-columns: 1fr; } }
+.ci-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  background: #fff;
+}
+.ci-card-muted { background: var(--bg-alt); }
+.ci-card-label {
+  text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem;
+  font-weight: 700; color: var(--ink-faint); margin-bottom: 10px;
+}
+.ci-value { font-size: 2.4rem; font-weight: 700; line-height: 1; }
+.ci-value-sm { font-size: 1.5rem; }
+.ci-unit { font-size: 1rem; color: var(--ink-faint); font-weight: 500; margin-left: 4px; }
+.ci-sub { color: var(--ink-soft); font-size: 0.92rem; margin-top: 8px; }
+.ci-chg { font-weight: 700; }
+.ci-chg.up { color: #1a7f37; }
+.ci-chg.down { color: var(--red); }
+.ci-skel { height: 54px; border-radius: 8px; background: linear-gradient(90deg,#f2f2f2,#fafafa,#f2f2f2); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+
+.ci-local { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 30px; max-width: 640px; }
+@media (max-width: 560px) { .ci-local { grid-template-columns: 1fr; } }
+.ci-local-item { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.ci-local-grade { color: var(--ink-soft); }
+.ci-local-price { font-weight: 700; white-space: nowrap; }
+.ci-local-price em { font-style: normal; font-weight: 500; color: var(--ink-faint); font-size: 0.82rem; }
+
+.ci-drivers { list-style: none; padding: 0; margin: 22px 0 0; max-width: 820px; }
+.ci-driver { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.ci-driver:last-child { border-bottom: none; }
+.ci-driver-dir { font-weight: 700; margin-top: 2px; }
+.ci-driver.up .ci-driver-dir { color: #1a7f37; }
+.ci-driver.down .ci-driver-dir { color: var(--red); }
+.ci-driver-text { color: var(--ink-soft); font-size: 1.02rem; }
+.ci-driver-src { color: var(--ink-faint); font-weight: 600; white-space: nowrap; }
+.ci-driver-src:hover { color: var(--black); }
+
+.ci-chain { list-style: none; padding: 0; margin: 20px 0 0; max-width: 720px; }
+.ci-chain-step { display: flex; gap: 16px; align-items: flex-start; padding: 12px 0; }
+.ci-chain-num {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--gradient); color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.ci-chain-label { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.ci-chain-note { color: var(--ink-soft); font-size: 0.98rem; }
+
+.ci-disclaimer p { color: var(--ink-faint); font-size: 0.92rem; max-width: 820px; }
+.ci-disclaimer a { color: var(--ink-soft); border-bottom: 1px solid var(--gold); }
 
 .footer-signup { margin-top: 22px; max-width: 340px; }
 .footer-signup-label {

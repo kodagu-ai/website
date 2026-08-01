@@ -69,6 +69,39 @@ export default function AboutPage() {
             })}
           </div>
 
+          <div className="prose founder" style={{ marginTop: 48 }}>
+            <div className="accent-bar" />
+            <h2>The Founder</h2>
+            <h3 className="founder-name">Poonacha Machaiah</h3>
+            <p>
+              Poonacha Machaiah is the Co-Founder and CEO of Cyberhuman.ai, a
+              pioneering agentic AI strategic consulting firm. He has launched
+              initiatives such as AiJiv.Ai — a pioneering creator of an agentic
+              knowledge platform. He is also the founder of Peak Living, a
+              longevity and vitality services initiative, and Chief of AI and
+              Technology at ABWelll (an Augustinus Bader initiative).
+            </p>
+            <p>
+              Previously, Poonacha served as the CEO of The Chopra Foundation,
+              where he led global initiatives to advance mental health, societal
+              well-being, and environmental sustainability. He is a founding
+              member of the Global Mental Health Task Force, focused on the UN
+              SDGs. Poonacha&rsquo;s leadership has driven powerful initiatives
+              such as NeverAlone, which addresses mental health and suicide
+              prevention.
+            </p>
+            <p>
+              His career spans key roles as a technology leader at Nortel,
+              Iridium, Motorola, and Sasken, where he contributed to pioneering
+              innovations across global markets.
+            </p>
+            <p>
+              He holds an MBA from the College of William &amp; Mary, a Bachelor
+              of Science in Computer Science and Engineering, and is pursuing a
+              Doctoral Degree in Public Health at Claremont Graduate University.
+            </p>
+          </div>
+
           <div className="prose" style={{ marginTop: 40 }}>
             <h2>Get involved</h2>
             <p>

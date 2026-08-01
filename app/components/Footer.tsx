@@ -24,6 +24,7 @@ export default function Footer() {
             <div className="footer-col">
               <h4>Explore</h4>
               <Link href="/#projects">Projects</Link>
+              <Link href="/coffee">Coffee</Link>
               <Link href="/community">Community</Link>
               <Link href="/about">About</Link>
               <Link href="/join">Get Involved</Link>
