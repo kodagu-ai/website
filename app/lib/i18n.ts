@@ -233,6 +233,59 @@ export const S = {
     navSchemes: { en: "📜 Schemes & Compensation", kn: "📜 ಯೋಜನೆಗಳು ಮತ್ತು ಪರಿಹಾರ" },
     navRisk: { en: "⛰️ Landslide & Climate Risk", kn: "⛰️ ಭೂಕುಸಿತ ಮತ್ತು ಹವಾಮಾನ ಅಪಾಯ" },
     navHealth: { en: "🩺 Monsoon Health", kn: "🩺 ಮುಂಗಾರು ಆರೋಗ್ಯ" },
+
+    // Landslide & Climate Risk blade
+    riskH2: { en: "Landslide & Climate Risk", kn: "ಭೂಕುಸಿತ ಮತ್ತು ಹವಾಮಾನ ಅಪಾಯ" },
+    riskSub: {
+      en: "A live rainfall watch for Kodagu, with the context and the steps that matter when the monsoon turns dangerous.",
+      kn: "ಕೊಡಗಿಗೆ ಲೈವ್ ಮಳೆ ವೀಕ್ಷಣೆ — ಮುಂಗಾರು ಅಪಾಯಕಾರಿಯಾದಾಗ ಮುಖ್ಯವಾಗುವ ಸಂದರ್ಭ ಮತ್ತು ಕ್ರಮಗಳೊಂದಿಗೆ.",
+    },
+    riskAlertBold: {
+      en: "⚠️ This is a rainfall indicator, not an official warning.",
+      kn: "⚠️ ಇದು ಮಳೆಯ ಸೂಚಕ, ಅಧಿಕೃತ ಎಚ್ಚರಿಕೆ ಅಲ್ಲ.",
+    },
+    riskAlertMid: {
+      en: "It never replaces IMD or Kodagu district (KSNDMC / DDMA) alerts. In an emergency, call",
+      kn: "ಇದು IMD ಅಥವಾ ಕೊಡಗು ಜಿಲ್ಲೆಯ (KSNDMC / DDMA) ಎಚ್ಚರಿಕೆಗಳನ್ನು ಎಂದಿಗೂ ಬದಲಿಸುವುದಿಲ್ಲ. ತುರ್ತು ಸಂದರ್ಭದಲ್ಲಿ, ಕರೆ ಮಾಡಿ",
+    },
+    riskAlertOr: { en: "or the disaster helpline", kn: "ಅಥವಾ ವಿಪತ್ತು ಸಹಾಯವಾಣಿ" },
+    rainfallLabel: { en: "Rainfall watch · live", kn: "ಮಳೆ ವೀಕ್ಷಣೆ · ಲೈವ್" },
+    harangiLabel: { en: "Harangi reservoir · live", kn: "ಹಾರಂಗಿ ಜಲಾಶಯ · ಲೈವ್" },
+    whyHead: { en: "Why Kodagu is at risk", kn: "ಕೊಡಗು ಏಕೆ ಅಪಾಯದಲ್ಲಿದೆ" },
+    warnHead: { en: "Warning signs", kn: "ಎಚ್ಚರಿಕೆ ಚಿಹ್ನೆಗಳು" },
+    doHead: { en: "What to do", kn: "ಏನು ಮಾಡಬೇಕು" },
+    contactsHead: { en: "Emergency contacts · Kodagu", kn: "ತುರ್ತು ಸಂಪರ್ಕಗಳು · ಕೊಡಗು" },
+    riskDisPre: {
+      en: "Rainfall is live from Open-Meteo; district context from",
+      kn: "ಮಳೆ ಡೇಟಾ Open-Meteo ಇಂದ ಲೈವ್; ಜಿಲ್ಲಾ ಸಂದರ್ಭ",
+    },
+    riskDisPost: {
+      en: ". Bands describe rainfall intensity, not slope stability. Always follow official IMD and Kodagu district alerts.",
+      kn: " ಇಂದ. ಬ್ಯಾಂಡ್‌ಗಳು ಮಳೆಯ ತೀವ್ರತೆಯನ್ನು ವಿವರಿಸುತ್ತವೆ, ಇಳಿಜಾರಿನ ಸ್ಥಿರತೆಯನ್ನಲ್ಲ. ಯಾವಾಗಲೂ ಅಧಿಕೃತ IMD ಮತ್ತು ಕೊಡಗು ಜಿಲ್ಲಾ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಅನುಸರಿಸಿ.",
+    },
+    // Rainfall tile
+    rainUnavail: { en: "Live rainfall data is unavailable right now.", kn: "ಲೈವ್ ಮಳೆ ಡೇಟಾ ಈಗ ಲಭ್ಯವಿಲ್ಲ." },
+    rainLast3: { en: "last 3 days", kn: "ಕಳೆದ 3 ದಿನ" },
+    rainNext3: { en: "next 3 days", kn: "ಮುಂದಿನ 3 ದಿನ" },
+    rainUpdatedPre: { en: "Rainfall accumulation, updated", kn: "ಮಳೆ ಸಂಗ್ರಹ, ನವೀಕರಣ" },
+    rainUpdatedPost: {
+      en: "IST · a higher band means heavier recent rain, which raises landslide risk on steep slopes.",
+      kn: "IST · ಹೆಚ್ಚಿನ ಬ್ಯಾಂಡ್ ಎಂದರೆ ಇತ್ತೀಚಿನ ಭಾರೀ ಮಳೆ, ಇದು ಕಡಿದಾದ ಇಳಿಜಾರುಗಳಲ್ಲಿ ಭೂಕುಸಿತ ಅಪಾಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.",
+    },
+    // Harangi tile
+    harangiUnavail: { en: "Live Harangi reservoir data is unavailable right now.", kn: "ಲೈವ್ ಹಾರಂಗಿ ಜಲಾಶಯ ಡೇಟಾ ಈಗ ಲಭ್ಯವಿಲ್ಲ." },
+    pctFull: { en: "% full", kn: "% ತುಂಬಿದೆ" },
+    cusecsIn: { en: "cusecs in", kn: "ಕ್ಯುಸೆಕ್ಸ್ ಒಳಹರಿವು" },
+    cusecsReleased: { en: "cusecs released", kn: "ಕ್ಯುಸೆಕ್ಸ್ ಬಿಡುಗಡೆ" },
+    harangiNote: {
+      en: "Harangi sits inside Kodagu; heavy releases raise the Cauvery downstream — watch Kushalnagar and low-lying riverside areas. Source: Karnataka Water Resources (Cauvery-basin monitor).",
+      kn: "ಹಾರಂಗಿ ಕೊಡಗಿನ ಒಳಗಿದೆ; ಭಾರೀ ಬಿಡುಗಡೆಗಳು ಕೆಳಭಾಗದ ಕಾವೇರಿಯನ್ನು ಏರಿಸುತ್ತವೆ — ಕುಶಾಲನಗರ ಮತ್ತು ತಗ್ಗು ಪ್ರದೇಶದ ನದಿತೀರಗಳನ್ನು ಗಮನಿಸಿ. ಮೂಲ: ಕರ್ನಾಟಕ ಜಲಸಂಪನ್ಮೂಲ (ಕಾವೇರಿ-ಕಣಿವೆ ಮಾನಿಟರ್).",
+    },
+    // rainfall band labels (map the API's English band → Kannada)
+    bandCalm: { en: "Calm", kn: "ಶಾಂತ" },
+    bandWet: { en: "Wet", kn: "ಒದ್ದೆ" },
+    bandVeryWet: { en: "Very wet", kn: "ಬಹಳ ಒದ್ದೆ" },
+    bandExtreme: { en: "Extreme", kn: "ತೀವ್ರ" },
   },
   footer: {
     tag: {

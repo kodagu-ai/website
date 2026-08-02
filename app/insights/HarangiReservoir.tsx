@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { S, type Locale } from "../lib/i18n";
 
 type Data = {
   pctFull: number;
@@ -13,7 +14,7 @@ type Data = {
   tone: string;
 };
 
-export default function HarangiReservoir() {
+export default function HarangiReservoir({ locale = "en" }: { locale?: Locale }) {
   const [d, setD] = useState<Data | null>(null);
   const [err, setErr] = useState(false);
 
@@ -28,15 +29,14 @@ export default function HarangiReservoir() {
     };
   }, []);
 
-  if (err)
-    return <p className="ci-note">Live Harangi reservoir data is unavailable right now.</p>;
+  if (err) return <p className="ci-note">{S.insights.harangiUnavail[locale]}</p>;
   if (!d) return <div className="harangi-card"><div className="ci-skel" style={{ height: 130 }} /></div>;
 
   return (
     <div className={`harangi-card tone-${d.tone}`}>
       <div className="harangi-main">
         <div className="harangi-pct">
-          {d.pctFull}<span>% full</span>
+          {d.pctFull}<span>{S.insights.pctFull[locale]}</span>
         </div>
         <div className="harangi-meta">
           <div className="harangi-status">{d.status}</div>
@@ -55,15 +55,11 @@ export default function HarangiReservoir() {
       </div>
 
       <div className="harangi-flows">
-        <span><b>{d.inflow.toLocaleString("en-IN")}</b> cusecs in</span>
-        <span><b>{d.outflow.toLocaleString("en-IN")}</b> cusecs released</span>
+        <span><b>{d.inflow.toLocaleString("en-IN")}</b> {S.insights.cusecsIn[locale]}</span>
+        <span><b>{d.outflow.toLocaleString("en-IN")}</b> {S.insights.cusecsReleased[locale]}</span>
       </div>
 
-      <p className="harangi-note">
-        Harangi sits inside Kodagu; heavy releases raise the Cauvery downstream —
-        watch Kushalnagar and low-lying riverside areas. Source: Karnataka Water
-        Resources (Cauvery-basin monitor).
-      </p>
+      <p className="harangi-note">{S.insights.harangiNote[locale]}</p>
     </div>
   );
 }

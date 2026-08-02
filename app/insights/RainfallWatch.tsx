@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { S, type Locale } from "../lib/i18n";
 
 type Town = {
   name: string;
@@ -11,7 +12,15 @@ type Town = {
 };
 type Resp = { towns: Town[]; updated: string };
 
-export default function RainfallWatch() {
+// Map the API's English band label to Kannada.
+const BAND_KN: Record<string, string> = {
+  Calm: S.insights.bandCalm.kn,
+  Wet: S.insights.bandWet.kn,
+  "Very wet": S.insights.bandVeryWet.kn,
+  Extreme: S.insights.bandExtreme.kn,
+};
+
+export default function RainfallWatch({ locale = "en" }: { locale?: Locale }) {
   const [data, setData] = useState<Resp | null>(null);
   const [err, setErr] = useState(false);
 
@@ -26,8 +35,8 @@ export default function RainfallWatch() {
     };
   }, []);
 
-  if (err)
-    return <p className="ci-note">Live rainfall data is unavailable right now.</p>;
+  if (err) return <p className="ci-note">{S.insights.rainUnavail[locale]}</p>;
+  const kn = locale === "kn";
 
   return (
     <>
@@ -37,16 +46,16 @@ export default function RainfallWatch() {
               <div className={`rain-town tone-${t.tone}`} key={t.name}>
                 <div className="rain-top">
                   <span className="rain-name">{t.name}</span>
-                  <span className="rain-band">{t.band}</span>
+                  <span className="rain-band">{kn ? BAND_KN[t.band] ?? t.band : t.band}</span>
                 </div>
                 <div className="rain-figs">
                   <div>
                     <span className="rain-val">{t.recentMm}<i>mm</i></span>
-                    <span className="rain-lbl">last 3 days</span>
+                    <span className="rain-lbl">{S.insights.rainLast3[locale]}</span>
                   </div>
                   <div>
                     <span className="rain-val">{t.forecastMm}<i>mm</i></span>
-                    <span className="rain-lbl">next 3 days</span>
+                    <span className="rain-lbl">{S.insights.rainNext3[locale]}</span>
                   </div>
                 </div>
               </div>
@@ -55,8 +64,7 @@ export default function RainfallWatch() {
       </div>
       {data?.updated && (
         <p className="rain-updated">
-          Rainfall accumulation, updated {data.updated} IST · a higher band means
-          heavier recent rain, which raises landslide risk on steep slopes.
+          {S.insights.rainUpdatedPre[locale]} {data.updated} {S.insights.rainUpdatedPost[locale]}
         </p>
       )}
     </>
