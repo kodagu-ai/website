@@ -5,10 +5,12 @@ _Rooted in Heritage. Driven by Purpose._
 
 Built with [Next.js](https://nextjs.org) (App Router) and deployed on
 [Vercel](https://vercel.com). Styled directly from the Kodagu.ai Brand Book —
-Barlow Condensed type; Black `#111111`, Gold `#D4AF37`, Red `#C8102E`.
+Barlow Condensed type (with Noto Sans Kannada for Kannada); Black `#111111`,
+Gold `#D4AF37`, Red `#C8102E`.
 
-The first project is **Aane Alert**, an open elephant early-warning network.
-The site is built to grow: adding a project is a single-file edit.
+The whole site is **bilingual — English / ಕನ್ನಡ** — with a header toggle. The
+first project is **Aane Alert**, an open elephant early-warning network. The
+site is built to grow: adding a project is a single-file edit.
 
 ---
 
@@ -47,7 +49,36 @@ Common edits:
 | Home page copy | `app/page.tsx` |
 | About page | `app/about/page.tsx` |
 | Get Involved page | `app/join/page.tsx` |
+| UI text & Kannada translations | `app/lib/i18n.ts` (the `S` dictionary) |
 | Logo / favicon | `public/kodagu-logo.png`, `public/icon.svg` |
+
+---
+
+## Bilingual — English / ಕನ್ನಡ
+
+Every page is server-rendered in the reader's chosen language, toggled from the
+header (**EN | ಕನ್ನಡ**) and remembered in a `locale` cookie.
+
+- **Strings** live in **`app/lib/i18n.ts`** as the `S` dictionary of `{ en, kn }`
+  leaves — read them with `S.section.key[locale]`. A missing `kn` simply falls
+  back to `en`, so partial translations never break the page.
+- **Server components** read the language with `getLocale()` from
+  **`app/lib/getLocale.ts`** (kept separate from `i18n.ts` because it imports
+  `next/headers`, so client components can still import the `S` dictionary).
+- **Client components** (e.g. the live tiles, the news feed) receive a `locale`
+  prop from their server parent.
+- **Data files** (`news.ts`, `climate.ts`, `health.ts`, `schemes.ts`,
+  `coffee.ts`, `projects.ts`, `updates.ts`) carry parallel Kannada fields
+  (`*Kn`, or `{ en, kn }` records) that the components pick by locale.
+- The **daily news itself is bilingual** — the pipeline writes a Kannada
+  headline + summary alongside the English (see below).
+
+To translate new copy: add the `kn` value beside its `en` in `app/lib/i18n.ts`
+(or the relevant data file), and render it via the locale. The toggle component
+is `app/components/LangToggle.tsx`; the Kannada font is loaded in `app/layout.tsx`.
+
+Intentionally left in English: phone numbers, ₹ amounts, URLs, official
+source/office names, and commodity grade names.
 
 ---
 
@@ -58,18 +89,21 @@ by Supabase and refreshed by Vercel Cron (see `vercel.json`).
 
 ### Kodagu Today — the daily news brief (`/news`)
 
-A verified daily news brief for Kodagu and the Kodava community. Each item carries
-a **Trust Score**: 🟢 Confirmed (official or 2+ independent outlets) · 🟡 Reported
-(one reliable outlet) · 🔴 Unverified (single low-tier/social). Confirmed +
-Reported publish live; Unverified is held for review. The feed shows only the
-**last 7 days**, newest first, across 9 categories (incl. 🏑 Sports).
+A verified, **bilingual** daily news brief for Kodagu and the Kodava community.
+Each item carries a **Trust Score**: 🟢 Confirmed (official or 2+ independent
+outlets) · 🟡 Reported (one reliable outlet) · 🔴 Unverified (single
+low-tier/social). Confirmed + Reported publish live; Unverified is held for
+review. The feed shows only the **last 7 days**, newest first, across 9
+categories (incl. 🏑 Sports), and flips to Kannada with the site toggle.
 
 It is produced by a fully server-side pipeline — no external agent, no manual step:
 
 ```
 Vercel Cron (01:30 UTC / 7:00 AM IST daily)  →  /api/cron/news
    1. GATHER  Firecrawl search — English + Kannada + the hyperlocal sites
-   2. CURATE  Claude clusters · categorises · Trust-scores  (real URLs only, last 7 days)
+   2. CURATE  Claude clusters · categorises · Trust-scores · writes EN + Kannada
+              (real URLs only, last 7 days), and DEDUPES against the last ~10
+              days so a repeat of an existing story reuses its id (no dupes)
    3. INGEST  upsert to Supabase `news_items`  →  live at /api/news → /news
 ```
 
@@ -77,13 +111,13 @@ Key files:
 
 | What | Where |
 | --- | --- |
-| Daily pipeline (gather → curate → ingest) | `app/api/cron/news/route.ts` |
+| Daily pipeline (gather → curate → dedupe → ingest) | `app/api/cron/news/route.ts` |
 | Shared ingest + hybrid publish rule | `app/lib/newsIngest.ts` |
 | Manual write endpoint (bearer-secured) | `app/api/news/ingest/route.ts` |
 | Public feed reader (7-day window) | `app/api/news/route.ts` |
-| Categories, badges, static seed | `app/lib/news.ts` |
+| Categories, badges (+ Kannada labels), static seed | `app/lib/news.ts` |
 | Page + feed UI | `app/news/page.tsx`, `app/news/NewsFeed.tsx` |
-| DB table | `supabase/migrations/0004_news_items.sql` |
+| DB table + bilingual columns | `supabase/migrations/0004_news_items.sql`, `0005_news_items_kn.sql` |
 
 Trigger a run on demand (same as the daily cron):
 
@@ -193,9 +227,12 @@ app/
   lib/
     projects.ts         # ← the projects data (edit this to add projects)
     site.ts             # ← site-wide settings
+    i18n.ts             # ← the S dictionary of EN/Kannada strings
+    getLocale.ts        # server-only locale reader (cookie)
     news.ts             # news categories, trust badges, static seed
     newsIngest.ts       # shared ingest + hybrid publish rule
-  components/            # Header, Footer, Wordmark, ProjectCard, icons
+  components/            # Header, Footer, LangToggle, ProjectCard, icons
 public/                 # logo, favicon, brand book
-supabase/migrations/    # DB tables (commodity_prices, reservoir_levels, news_items)
+supabase/migrations/    # DB tables + columns (commodity_prices, reservoir_levels,
+                        #   news_items, news_items_kn)
 ```
