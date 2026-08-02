@@ -17,7 +17,7 @@ export default function Footer() {
             <p className="footer-tag">{S.footer.tag[locale]}</p>
             <div className="footer-signup">
               <span className="footer-signup-label">{S.footer.getUpdates[locale]}</span>
-              <EmailSignup onDark />
+              <EmailSignup onDark locale={locale} />
             </div>
           </div>
           <div className="footer-cols">

@@ -35,7 +35,7 @@ export default function CommunityPage() {
 
       <section style={{ paddingTop: 24 }}>
         <div className="container">
-          <DirectoryExplorer entries={directory} projectNames={projectNames} />
+          <DirectoryExplorer entries={directory} projectNames={projectNames} locale={locale} />
           <p className="dir-note">{S.community.note[locale]}</p>
         </div>
       </section>

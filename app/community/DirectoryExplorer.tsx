@@ -3,15 +3,18 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { DirectoryEntry } from "../lib/directory";
+import { S, type Locale } from "../lib/i18n";
 
 type ProjectName = { slug: string; name: string };
 
 export default function DirectoryExplorer({
   entries,
   projectNames,
+  locale = "en",
 }: {
   entries: DirectoryEntry[];
   projectNames: ProjectName[];
+  locale?: Locale;
 }) {
   const [type, setType] = useState<"all" | "person" | "organization">("all");
   const [query, setQuery] = useState("");
@@ -45,9 +48,9 @@ export default function DirectoryExplorer({
   );
 
   const tabs: { key: "all" | "person" | "organization"; label: string }[] = [
-    { key: "all", label: `All (${counts.all})` },
-    { key: "person", label: `People (${counts.person})` },
-    { key: "organization", label: `Organizations (${counts.organization})` },
+    { key: "all", label: `${S.dir.all[locale]} (${counts.all})` },
+    { key: "person", label: `${S.dir.people[locale]} (${counts.person})` },
+    { key: "organization", label: `${S.dir.orgs[locale]} (${counts.organization})` },
   ];
 
   return (
@@ -68,7 +71,7 @@ export default function DirectoryExplorer({
         <input
           className="dir-search"
           type="search"
-          placeholder="Search by name, skill, place…"
+          placeholder={S.dir.searchP[locale]}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search the directory"
@@ -77,9 +80,9 @@ export default function DirectoryExplorer({
 
       {filtered.length === 0 ? (
         <p className="dir-empty">
-          No matches yet.{" "}
+          {S.dir.noMatches[locale]}{" "}
           <Link href="/community/submit" style={{ color: "var(--red)", fontWeight: 600 }}>
-            Add the first one →
+            {S.dir.addFirst[locale]}
           </Link>
         </p>
       ) : (
@@ -99,7 +102,7 @@ export default function DirectoryExplorer({
                   <div className="dir-role">{e.role}</div>
                 </div>
                 <span className={`badge ${e.type === "person" ? "badge-person" : "badge-org"}`}>
-                  {e.type === "person" ? "Person" : "Org"}
+                  {e.type === "person" ? S.dir.person[locale] : S.dir.org[locale]}
                 </span>
               </div>
 
@@ -116,7 +119,7 @@ export default function DirectoryExplorer({
 
               {e.projects && e.projects.length > 0 && (
                 <div className="dir-projects">
-                  <span className="dir-projects-label">Works on:</span>{" "}
+                  <span className="dir-projects-label">{S.dir.worksOn[locale]}</span>{" "}
                   {e.projects.map((slug, i) => (
                     <span key={slug}>
                       <Link href={`/projects/${slug}`} className="dir-project-link">

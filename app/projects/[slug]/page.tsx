@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { getProject } from "../../lib/projects";
 import { contributorsForProject } from "../../lib/directory";
 import { GitHubIcon } from "../../components/icons";
+import { S } from "../../lib/i18n";
+import { getLocale } from "../../lib/getLocale";
 
 // Rendered per-request so the header/footer follow the EN/ಕನ್ನಡ locale cookie.
 export const dynamic = "force-dynamic";
@@ -25,14 +27,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = getProject(params.slug);
   if (!project) notFound();
 
+  const locale = getLocale();
+  const kn = locale === "kn";
   const contributors = contributorsForProject(project.slug);
+  const sections = kn && project.sectionsKn ? project.sectionsKn : project.sections;
+  const contribute = kn && project.contributeKn ? project.contributeKn : project.contribute;
+  const highlights = kn && project.highlightsKn ? project.highlightsKn : project.highlights;
 
   return (
     <>
       <div className="detail-hero">
         <div className="container">
           <Link href="/#projects" className="back-link">
-            ← All projects
+            {S.projPage.backAll[locale]}
           </Link>
           <div className="detail-title">
             <span className="d-icon" aria-hidden="true">{project.icon}</span>
@@ -43,7 +50,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               )}
             </div>
           </div>
-          <p className="detail-lead">{project.tagline}</p>
+          <p className="detail-lead">{kn && project.taglineKn ? project.taglineKn : project.tagline}</p>
           {project.liveUrl && (
             <div style={{ marginTop: 26 }}>
               <a
@@ -53,7 +60,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 className="btn btn-primary"
                 style={{ fontSize: "1.05rem", padding: "15px 30px" }}
               >
-                Launch the app ↗
+                {S.projPage.launchApp[locale]}
               </a>
             </div>
           )}
@@ -64,7 +71,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <div className="container">
         <div className="article">
           <div className="article-body">
-            {project.sections?.map((s) => (
+            {sections?.map((s) => (
               <div key={s.heading}>
                 <h2>{s.heading}</h2>
                 {s.body.map((para, i) => (
@@ -73,17 +80,17 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               </div>
             ))}
 
-            {project.contribute && project.contribute.length > 0 && (
+            {contribute && contribute.length > 0 && (
               <>
-                <h2>How you can help</h2>
+                <h2>{S.projPage.howHelp[locale]}</h2>
                 <ul className="checklist">
-                  {project.contribute.map((c) => (
+                  {contribute.map((c) => (
                     <li key={c}>{c}</li>
                   ))}
                 </ul>
                 <div style={{ marginTop: 28, display: "flex", gap: 14, flexWrap: "wrap" }}>
                   <Link href="/join" className="btn btn-primary">
-                    Get Involved
+                    {S.home.getInvolved[locale]}
                   </Link>
                   {project.repoUrl && (
                     <a
@@ -92,7 +99,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                       rel="noreferrer"
                       className="btn btn-outline"
                     >
-                      <GitHubIcon /> View Repository
+                      <GitHubIcon /> {S.projPage.viewRepo[locale]}
                     </a>
                   )}
                 </div>
@@ -102,30 +109,30 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           <aside className="article-aside">
             <div className="card">
-              <h4>Project details</h4>
+              <h4>{S.projPage.details[locale]}</h4>
               <div className="kv">
-                <span className="k">Status</span>
-                <span className="v">{project.status}</span>
+                <span className="k">{S.projPage.status[locale]}</span>
+                <span className="v">{S.projStatus[project.status][locale]}</span>
               </div>
               <div className="kv">
-                <span className="k">Category</span>
-                <span className="v">{project.category}</span>
+                <span className="k">{S.projPage.category[locale]}</span>
+                <span className="v">{kn && project.categoryKn ? project.categoryKn : project.category}</span>
               </div>
               <div className="kv">
-                <span className="k">Region</span>
-                <span className="v">Kodagu, Karnataka</span>
+                <span className="k">{S.projPage.region[locale]}</span>
+                <span className="v">{S.projPage.regionVal[locale]}</span>
               </div>
               <div className="kv">
-                <span className="k">License</span>
-                <span className="v">Open Source</span>
+                <span className="k">{S.projPage.license[locale]}</span>
+                <span className="v">{S.projPage.openSource[locale]}</span>
               </div>
             </div>
 
-            {project.highlights && project.highlights.length > 0 && (
+            {highlights && highlights.length > 0 && (
               <div className="card">
-                <h4>Highlights</h4>
+                <h4>{S.projPage.highlights[locale]}</h4>
                 <ul className="checklist">
-                  {project.highlights.map((h) => (
+                  {highlights.map((h) => (
                     <li key={h}>{h}</li>
                   ))}
                 </ul>
@@ -134,7 +141,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
             {contributors.length > 0 && (
               <div className="card">
-                <h4>Community</h4>
+                <h4>{S.projPage.community[locale]}</h4>
                 <ul className="contrib-list">
                   {contributors.map((c) => (
                     <li key={c.slug} className="contrib">
@@ -144,7 +151,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   ))}
                 </ul>
                 <Link href="/community" className="contrib-link">
-                  See the full directory →
+                  {S.projPage.seeFullDir[locale]}
                 </Link>
               </div>
             )}
@@ -157,7 +164,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 className="btn btn-primary"
                 style={{ width: "100%", justifyContent: "center", marginBottom: 12 }}
               >
-                Launch the app ↗
+                {S.projPage.launchApp[locale]}
               </a>
             )}
 
@@ -169,7 +176,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 className="btn btn-dark"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                <GitHubIcon /> GitHub Repository
+                <GitHubIcon /> {S.projPage.githubRepo[locale]}
               </a>
             )}
           </aside>

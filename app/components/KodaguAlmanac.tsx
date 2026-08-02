@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MARKET } from "../lib/almanac";
 import { UPDATES } from "../lib/updates";
+import { S, type Locale } from "../lib/i18n";
 
 type TownWeather = {
   name: string;
@@ -36,7 +37,8 @@ type PriceItem = {
   asOf?: string;
 };
 
-export default function KodaguAlmanac() {
+export default function KodaguAlmanac({ locale = "en" }: { locale?: Locale }) {
+  const kn = locale === "kn";
   const [wx, setWx] = useState<WeatherResp | null>(null);
   const [wxError, setWxError] = useState(false);
   // Start with the static seed so prices render instantly, then refresh from DB.
@@ -68,23 +70,23 @@ export default function KodaguAlmanac() {
 
           <div className="almanac-head">
             <div>
-              <span className="almanac-kicker">❖ Kodagu Almanac</span>
-              <h2 className="almanac-title">The district, today</h2>
+              <span className="almanac-kicker">{S.almanac.kicker[locale]}</span>
+              <h2 className="almanac-title">{S.almanac.title[locale]}</h2>
             </div>
             <div className="almanac-when">
               {wx ? (
                 <>
                   <span className="almanac-date">{wx.dateLabel}</span>
-                  <span className="almanac-live"><i /> Live · {wx.timeLabel} IST</span>
+                  <span className="almanac-live"><i /> {S.almanac.live[locale]} · {wx.timeLabel} IST</span>
                 </>
               ) : (
-                <span className="almanac-date">Kodagu, Karnataka</span>
+                <span className="almanac-date">{S.almanac.place[locale]}</span>
               )}
             </div>
           </div>
 
           {/* Weather */}
-          <div className="almanac-section-label">Weather across Kodagu</div>
+          <div className="almanac-section-label">{S.almanac.weatherLabel[locale]}</div>
           <div className="wx-row">
             {wx?.towns
               ? wx.towns.map((t) => (
@@ -103,20 +105,20 @@ export default function KodaguAlmanac() {
                   </div>
                 ))
               : wxError
-              ? <div className="wx-fallback">Live weather is unavailable right now.</div>
+              ? <div className="wx-fallback">{S.almanac.weatherUnavail[locale]}</div>
               : [0, 1, 2, 3, 4].map((i) => <div className="wx-town wx-skel" key={i} />)}
           </div>
 
           {/* Markets + Updates */}
           <div className="almanac-grid">
             <div className="almanac-col">
-              <div className="almanac-section-label">Market prices</div>
+              <div className="almanac-section-label">{S.almanac.marketPrices[locale]}</div>
 
               {coffee.length > 0 && (
                 <div className="mkt-group">
                   <div className="mkt-group-head">
-                    <span className="mkt-crop">Coffee</span>
-                    <span className="mkt-group-unit">per 50 kg bag</span>
+                    <span className="mkt-crop">{S.almanac.coffee[locale]}</span>
+                    <span className="mkt-group-unit">{S.almanac.per50[locale]}</span>
                   </div>
                   <ul className="mkt-sub">
                     {coffee.map((m) => (
@@ -127,7 +129,7 @@ export default function KodaguAlmanac() {
                     ))}
                   </ul>
                   <Link href="/insights#coffee" className="mkt-outlook">
-                    Coffee outlook — why prices move &amp; when to sell →
+                    {S.almanac.coffeeOutlook[locale]}
                   </Link>
                 </div>
               )}
@@ -148,27 +150,26 @@ export default function KodaguAlmanac() {
               </ul>
 
               <p className="mkt-note">
-                Indicative prices — coffee, pepper &amp; cardamom from{" "}
-                <a href="https://cpa.org.in" target="_blank" rel="noreferrer">Coorg Planters’ Association</a>,
-                tea from{" "}
+                {S.almanac.mktNotePre[locale]}{" "}
+                <a href="https://cpa.org.in" target="_blank" rel="noreferrer">Coorg Planters’ Association</a>
+                {S.almanac.mktNoteMid[locale]}{" "}
                 <a href="https://www.teaboard.gov.in" target="_blank" rel="noreferrer">Tea Board India</a>{" "}
-                (Coonoor auction), paddy from commodityonline (Madikeri APMC).
-                Verify with your buyer before trading.
+                {S.almanac.mktNotePost[locale]}
               </p>
             </div>
 
             <div className="almanac-col">
-              <div className="almanac-section-label">Latest updates</div>
+              <div className="almanac-section-label">{S.almanac.latestUpdates[locale]}</div>
               <ul className="upd-list">
                 {UPDATES.map((u) => {
                   const inner = (
                     <>
                       <div className="upd-meta">
-                        <span className="upd-tag">{u.tag}</span>
+                        <span className="upd-tag">{S.updTag[u.tag][locale]}</span>
                         <span className="upd-date">{fmtDate(u.date)}</span>
                       </div>
-                      <div className="upd-title">{u.title}</div>
-                      <div className="upd-body">{u.body}</div>
+                      <div className="upd-title">{kn ? u.titleKn : u.title}</div>
+                      <div className="upd-body">{kn ? u.bodyKn : u.body}</div>
                     </>
                   );
                   return (

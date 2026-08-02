@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { S, type Locale } from "../../lib/i18n";
 
 // Submissions POST to /api/directory/submit, which stores them securely in
 // Supabase for review. If that ever fails, we fall back to an email link.
@@ -8,7 +9,7 @@ const REVIEW_EMAIL = "poonacha@cyberhuman.ai";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function SubmitForm() {
+export default function SubmitForm({ locale = "en" }: { locale?: Locale }) {
   const [type, setType] = useState<"person" | "organization">("person");
   const [form, setForm] = useState({
     name: "",
@@ -81,13 +82,11 @@ export default function SubmitForm() {
     return (
       <div className="submit-success">
         <div className="submit-success-mark">✓</div>
-        <h2>Thank you — submission received</h2>
+        <h2>{S.form.successTitle[locale]}</h2>
         <p>
-          Your details have been sent for review. Once approved, {form.name} will
-          appear in the community directory. We’ll be in touch if we need
-          anything.
+          {S.form.successPre[locale]} {form.name} {S.form.successPost[locale]}
         </p>
-        <a href="/community" className="btn btn-outline">Back to the directory</a>
+        <a href="/community" className="btn btn-outline">{S.form.backToDir[locale]}</a>
       </div>
     );
   }
@@ -95,51 +94,51 @@ export default function SubmitForm() {
   return (
     <form className="submit-form" onSubmit={handleSubmit}>
       <div className="field">
-        <label>Listing type</label>
+        <label>{S.form.listingType[locale]}</label>
         <div className="seg">
           <button type="button" className={`seg-btn${type === "person" ? " is-active" : ""}`} onClick={() => setType("person")}>
-            A person
+            {S.form.aPerson[locale]}
           </button>
           <button type="button" className={`seg-btn${type === "organization" ? " is-active" : ""}`} onClick={() => setType("organization")}>
-            An organization
+            {S.form.anOrg[locale]}
           </button>
         </div>
       </div>
 
       <div className="field">
-        <label htmlFor="name">Name *</label>
+        <label htmlFor="name">{S.form.nameLbl[locale]}</label>
         <input id="name" value={form.name} onChange={set("name")}
           placeholder={type === "person" ? "e.g. Ponnu Cariappa" : "e.g. Kodagu Wildlife Trust"} />
-        {touched && !form.name.trim() && <span className="err">Please add a name.</span>}
+        {touched && !form.name.trim() && <span className="err">{S.form.nameErr[locale]}</span>}
       </div>
 
       <div className="field">
-        <label htmlFor="role">{type === "person" ? "Role / title" : "Kind of organization"}</label>
+        <label htmlFor="role">{type === "person" ? S.form.roleP[locale] : S.form.roleO[locale]}</label>
         <input id="role" value={form.role} onChange={set("role")}
           placeholder={type === "person" ? "e.g. Developer, Coordinator, Wildlife biologist" : "e.g. NGO, College, Estate, Community group"} />
       </div>
 
       <div className="field">
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">{S.form.locationLbl[locale]}</label>
         <input id="location" value={form.location} onChange={set("location")} placeholder="e.g. Madikeri, Kodagu" />
       </div>
 
       <div className="field">
-        <label htmlFor="blurb">Short description *</label>
+        <label htmlFor="blurb">{S.form.blurbLbl[locale]}</label>
         <textarea id="blurb" rows={3} value={form.blurb} onChange={set("blurb")}
           placeholder="One or two sentences about you / your organization and how you'd like to contribute." />
-        {touched && !form.blurb.trim() && <span className="err">Please add a short description.</span>}
+        {touched && !form.blurb.trim() && <span className="err">{S.form.blurbErr[locale]}</span>}
       </div>
 
       <div className="field">
-        <label htmlFor="tags">{type === "person" ? "Skills" : "Focus areas"} (comma-separated)</label>
+        <label htmlFor="tags">{type === "person" ? S.form.skills[locale] : S.form.focus[locale]} {S.form.commaSep[locale]}</label>
         <input id="tags" value={form.tags} onChange={set("tags")}
           placeholder={type === "person" ? "e.g. React, Maps, Translation" : "e.g. Conservation, Education"} />
       </div>
 
       <div className="field-row">
         <div className="field">
-          <label htmlFor="website">Website</label>
+          <label htmlFor="website">{S.form.website[locale]}</label>
           <input id="website" value={form.website} onChange={set("website")} placeholder="https://" />
         </div>
         <div className="field">
@@ -149,38 +148,36 @@ export default function SubmitForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="projects">Projects you want to work on / support</label>
+        <label htmlFor="projects">{S.form.projectsLbl[locale]}</label>
         <input id="projects" value={form.projects} onChange={set("projects")} placeholder="e.g. Aane Alert" />
       </div>
 
       <div className="field">
-        <label htmlFor="contact">Your contact (so we can follow up)</label>
-        <input id="contact" value={form.contact} onChange={set("contact")} placeholder="Email or phone — not published without asking" />
+        <label htmlFor="contact">{S.form.contactLbl[locale]}</label>
+        <input id="contact" value={form.contact} onChange={set("contact")} placeholder="Email or phone" />
       </div>
 
       <label className="consent">
         <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-        <span>I consent to this information being listed publicly on the Kodagu.ai community directory.</span>
+        <span>{S.form.consent[locale]}</span>
       </label>
-      {touched && !consent && <span className="err">Consent is required to be listed.</span>}
+      {touched && !consent && <span className="err">{S.form.consentErr[locale]}</span>}
 
       {status === "error" && (
         <div className="submit-error">
-          <p>{errorMsg || "Could not send your submission."}</p>
+          <p>{errorMsg || S.form.couldNotSend[locale]}</p>
           <button type="button" className="btn btn-outline" onClick={mailtoFallback}>
-            Email it instead ↗
+            {S.form.emailInstead[locale]}
           </button>
         </div>
       )}
 
       <div className="submit-actions">
         <button type="submit" className="btn btn-primary" disabled={!ready || status === "submitting"}>
-          {status === "submitting" ? "Sending…" : "Send submission"}
+          {status === "submitting" ? S.form.sending[locale] : S.form.send[locale]}
         </button>
       </div>
-      <p className="submit-hint">
-        Submissions are reviewed before they appear. Everything is opt-in.
-      </p>
+      <p className="submit-hint">{S.form.hint[locale]}</p>
     </form>
   );
 }

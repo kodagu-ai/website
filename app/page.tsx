@@ -58,7 +58,7 @@ export default function Home() {
       </section>
 
       {/* ── Kodagu Almanac (live weather + market prices + updates) ── */}
-      <KodaguAlmanac />
+      <KodaguAlmanac locale={locale} />
 
       {/* ── Pillars ──────────────────────────────────────────── */}
       <section>
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
           <div className="projects-grid">
             {sorted.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <ProjectCard key={project.slug} project={project} locale={locale} />
             ))}
             {/* Placeholder that invites the next project */}
             <div className="project-card coming">
@@ -125,7 +125,7 @@ export default function Home() {
               <p>{S.home.staySub[locale]}</p>
             </div>
             <div className="signup-form-wrap">
-              <EmailSignup />
+              <EmailSignup locale={locale} />
             </div>
           </div>
         </div>

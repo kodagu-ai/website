@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SubmitForm from "./SubmitForm";
+import { S } from "../../lib/i18n";
+import { getLocale } from "../../lib/getLocale";
 
 export const metadata: Metadata = {
   title: "Add to the Directory",
@@ -9,19 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default function SubmitPage() {
+  const locale = getLocale();
   return (
     <>
       <section className="page-hero">
         <div className="container">
           <Link href="/community" className="back-link" style={{ color: "var(--ink-faint)" }}>
-            ← Back to directory
+            {S.submitP.back[locale]}
           </Link>
           <div className="accent-bar" />
-          <h1>Join the Directory</h1>
+          <h1>{S.submitP.title[locale]}</h1>
           <p className="prose" style={{ fontSize: "1.15rem", color: "var(--ink-soft)" }}>
-            Tell us who you are and how you’d like to contribute. Submissions are
-            reviewed before they go live, and everything here is opt-in — you’re
-            in control of what’s shown.
+            {S.submitP.lead[locale]}
           </p>
         </div>
       </section>
@@ -29,7 +30,7 @@ export default function SubmitPage() {
       <section style={{ paddingTop: 20 }}>
         <div className="container">
           <div className="submit-wrap">
-            <SubmitForm />
+            <SubmitForm locale={locale} />
           </div>
         </div>
       </section>

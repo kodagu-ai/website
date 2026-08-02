@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { S, type Locale } from "../lib/i18n";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 // Branded email capture. Posts to /api/subscribe, which adds the address to the
 // "Kodagu.ai Updates" tag in Kit. Works on light (default) or dark sections.
-export default function EmailSignup({ onDark = false }: { onDark?: boolean }) {
+export default function EmailSignup({ onDark = false, locale = "en" }: { onDark?: boolean; locale?: Locale }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [msg, setMsg] = useState("");
@@ -34,9 +35,7 @@ export default function EmailSignup({ onDark = false }: { onDark?: boolean }) {
 
   if (status === "success") {
     return (
-      <p className={`signup-success${onDark ? " on-dark" : ""}`}>
-        ✓ You’re on the list. Watch your inbox for Kodagu.ai updates.
-      </p>
+      <p className={`signup-success${onDark ? " on-dark" : ""}`}>{S.email.success[locale]}</p>
     );
   }
 
@@ -54,7 +53,7 @@ export default function EmailSignup({ onDark = false }: { onDark?: boolean }) {
           disabled={status === "submitting"}
         />
         <button type="submit" className="btn btn-primary" disabled={status === "submitting"}>
-          {status === "submitting" ? "Joining…" : "Keep me posted"}
+          {status === "submitting" ? S.email.joining[locale] : S.email.keepPosted[locale]}
         </button>
       </div>
       {status === "error" && <span className="signup-err">{msg}</span>}
