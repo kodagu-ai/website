@@ -346,6 +346,7 @@
       <div class="fg"><label>Anything you've already tried or built?</label><textarea id="prior" maxlength="3000"></textarea></div>
       <div class="fg"><label>Link to a photo, video or document</label><div class="hint">Optional — a Google Drive / YouTube / photo link showing the problem or your prototype.</div><input id="link" maxlength="500" placeholder="https://"></div>
       <label class="consent"><input type="checkbox" id="consent"> <span>I confirm this is my own idea and I'm happy to be contacted about my entry.</span></label>
+      <label class="consent" style="margin-top:10px"><input type="checkbox" id="joinDir" checked> <span>Also add me to the <a href="/community">Kodagu.ai community directory</a> — just my name, place and a short line about my idea (contact details stay private). Shown after review.</span></label>
       <div class="err" id="entryerr" style="display:none"></div>
       <div class="formactions">
         <button type="submit" class="btn" id="entrybtn">Submit entry</button>
@@ -490,7 +491,8 @@
   function payload(){ return {
     name:val('name'), place:val('place'), phone:val('phone'), email:val('email'),
     entrantType:etype(), teamName:val('teamName'), area:document.getElementById('area').value,
-    problem:val('problem'), solution:val('solution'), impact:val('impact'), prior:val('prior'), link:val('link')
+    problem:val('problem'), solution:val('solution'), impact:val('impact'), prior:val('prior'), link:val('link'),
+    joinDirectory: document.getElementById('joinDir').checked
   }; }
 
   function buildMail(){
