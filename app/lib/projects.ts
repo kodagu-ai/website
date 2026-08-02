@@ -138,6 +138,100 @@ export const projects: Project[] = [
       "ಕ್ಷೇತ್ರ ಪರಿಣತರು: ಕಾರಿಡಾರ್ ನಕ್ಷೆಗೆ ಮಾರ್ಗದರ್ಶನ ನೀಡಲು ವನ್ಯಜೀವಿ ಜೀವಶಾಸ್ತ್ರಜ್ಞರು ಮತ್ತು ಅರಣ್ಯ ಇಲಾಖೆ ಪಾಲುದಾರರು",
     ],
   },
+  {
+    slug: "nela",
+    name: "Nela",
+    localName: "ನೆಲ",
+    tagline:
+      "An open, satellite-based read on landslide risk and land health across Kodagu.",
+    taglineKn:
+      "ಉಪಗ್ರಹ ಆಧಾರಿತ — ಕೊಡಗಿನ ಭೂಕುಸಿತ ಅಪಾಯ ಮತ್ತು ನೆಲದ ಆರೋಗ್ಯದ ಒಂದು ಮುಕ್ತ ಓದು.",
+    summary:
+      "Nela reads Kodagu's land from space every day and hands it back to the people who live here in plain Kannada. A transparent model turns free public satellite data into a simple landslide-risk map — plus layers for forest, soil & water, and crop & coffee — so residents, farmers, and panchayats can see what's changing on the ground.",
+    summaryKn:
+      "ನೆಲ ಪ್ರತಿದಿನ ಬಾಹ್ಯಾಕಾಶದಿಂದ ಕೊಡಗಿನ ನೆಲವನ್ನು ಓದಿ, ಅದನ್ನು ಇಲ್ಲಿ ವಾಸಿಸುವ ಜನರಿಗೆ ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಹಿಂತಿರುಗಿಸುತ್ತದೆ. ಪಾರದರ್ಶಕ ಮಾದರಿಯು ಉಚಿತ ಸಾರ್ವಜನಿಕ ಉಪಗ್ರಹ ದತ್ತಾಂಶವನ್ನು ಸರಳ ಭೂಕುಸಿತ-ಅಪಾಯ ನಕ್ಷೆಯಾಗಿ ಪರಿವರ್ತಿಸುತ್ತದೆ — ಜೊತೆಗೆ ಕಾಡು, ಮಣ್ಣು ಮತ್ತು ನೀರು, ಬೆಳೆ ಮತ್ತು ಕಾಫಿ ಪದರಗಳು — ಇದರಿಂದ ನಿವಾಸಿಗಳು, ರೈತರು ಮತ್ತು ಪಂಚಾಯಿತಿಗಳು ನೆಲದ ಮೇಲೆ ಏನು ಬದಲಾಗುತ್ತಿದೆ ಎಂಬುದನ್ನು ನೋಡಬಹುದು.",
+    icon: "🛰️",
+    status: "Beta",
+    category: "Land & Climate Resilience",
+    categoryKn: "ಭೂಮಿ ಮತ್ತು ಹವಾಮಾನ ಸ್ಥಿತಿಸ್ಥಾಪಕತೆ",
+    featured: true,
+    repoUrl: "https://github.com/poonacha-ai/nela",
+    liveUrl: "https://nela.kodagu.ai",
+    highlights: [
+      "Daily landslide-risk map, colour-coded by hexagon cell, each with a plain-language 'why'",
+      "Four layers on one map: landslide risk, forest & canopy, soil & water, crop & coffee",
+      "Transparent model — risk = susceptibility (slope, forest loss, road-cuts) × trigger (rainfall + soil saturation), backtested on the 2018–2019 disasters",
+      "Built from free public satellites: Copernicus, Sentinel, GPM, SMAP, Hansen",
+      "Fast, offline-capable app in Kannada and English — your phone never processes imagery",
+      "Free, open-source decision-support that complements official advisories, not replaces them",
+    ],
+    highlightsKn: [
+      "ದೈನಂದಿನ ಭೂಕುಸಿತ-ಅಪಾಯ ನಕ್ಷೆ — ಷಟ್ಕೋನ ಕೋಶದ ಪ್ರಕಾರ ಬಣ್ಣ, ಪ್ರತಿಯೊಂದಕ್ಕೂ ಸರಳ ಭಾಷೆಯ 'ಏಕೆ' ವಿವರಣೆ",
+      "ಒಂದೇ ನಕ್ಷೆಯಲ್ಲಿ ನಾಲ್ಕು ಪದರಗಳು: ಭೂಕುಸಿತ ಅಪಾಯ, ಕಾಡು ಮತ್ತು ಮೇಲ್ಛಾವಣಿ, ಮಣ್ಣು ಮತ್ತು ನೀರು, ಬೆಳೆ ಮತ್ತು ಕಾಫಿ",
+      "ಪಾರದರ್ಶಕ ಮಾದರಿ — ಅಪಾಯ = ಸೂಕ್ಷ್ಮತೆ (ಇಳಿಜಾರು, ಕಾಡು ನಷ್ಟ, ರಸ್ತೆ-ಕಡಿತ) × ಪ್ರಚೋದನೆ (ಮಳೆ + ಮಣ್ಣಿನ ಶುದ್ಧತೆ), 2018–2019 ವಿಪತ್ತುಗಳ ವಿರುದ್ಧ ಪರೀಕ್ಷಿಸಲಾಗಿದೆ",
+      "ಉಚಿತ ಸಾರ್ವಜನಿಕ ಉಪಗ್ರಹಗಳಿಂದ ನಿರ್ಮಿಸಲಾಗಿದೆ: Copernicus, Sentinel, GPM, SMAP, Hansen",
+      "ಕನ್ನಡ ಮತ್ತು ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ವೇಗದ, ಆಫ್‌ಲೈನ್ ಸಾಮರ್ಥ್ಯದ ಆ್ಯಪ್ — ನಿಮ್ಮ ಫೋನ್ ಎಂದಿಗೂ ಚಿತ್ರಗಳನ್ನು ಸಂಸ್ಕರಿಸುವುದಿಲ್ಲ",
+      "ಉಚಿತ, ಮುಕ್ತ-ಮೂಲ ನಿರ್ಧಾರ-ಸಹಾಯ ಸಾಧನ — ಅಧಿಕೃತ ಸೂಚನೆಗಳಿಗೆ ಪೂರಕ, ಬದಲಿ ಅಲ್ಲ",
+    ],
+    sections: [
+      {
+        heading: "The problem",
+        body: [
+          "Kodagu's hills are steep, its monsoon is intense, and its land is changing — forest thins, slopes are cut for roads and building, and soil saturates fast. The 2018 and 2019 landslides showed how quickly that combination can turn deadly.",
+          "The data that could warn people — slope, rainfall, soil moisture, vegetation and forest loss — exists in public satellites, but it sits locked in formats and languages that no resident, farmer, or panchayat member can read in time.",
+        ],
+      },
+      {
+        heading: "What Nela does",
+        body: [
+          "Nela reads Kodagu's land from space and returns it in plain language to the people who live here. It shows a daily landslide-risk map — coloured from low to severe — with a simple Kannada explanation of why each area is rated the way it is.",
+          "Four layers sit on one map: landslide risk, forest & canopy, soil & water, and crop & coffee. It works fast, offline, and free, so it's useful in exactly the low-connectivity conditions where warnings matter most.",
+        ],
+      },
+      {
+        heading: "How it works",
+        body: [
+          "Every day, free public satellites (Copernicus, Sentinel, GPM, SMAP, Hansen) record slope, rainfall, soil moisture, vegetation and forest loss. A nightly Google Earth Engine job divides the taluk into H3 hexagon cells and computes numbers for each one — your phone never processes imagery.",
+          "A transparent model then rates risk as susceptibility (slope, forest loss, road-cuts) multiplied by trigger (rainfall + soil saturation), backtested against the 2018/2019 disasters. Built on open technology — Google Earth Engine, H3, Supabase/PostGIS, a Next.js PWA, and Leaflet/OpenStreetMap — Nela is open-source and decision-support: it complements official advisories, it does not guarantee outcomes. It currently covers Madikeri taluk, with the rest of Kodagu to follow.",
+        ],
+      },
+    ],
+    sectionsKn: [
+      {
+        heading: "ಸಮಸ್ಯೆ",
+        body: [
+          "ಕೊಡಗಿನ ಗುಡ್ಡಗಳು ಕಡಿದಾದವು, ಮಳೆ ತೀವ್ರ, ಮತ್ತು ನೆಲ ಬದಲಾಗುತ್ತಿದೆ — ಕಾಡು ತೆಳುವಾಗುತ್ತದೆ, ರಸ್ತೆ ಮತ್ತು ಕಟ್ಟಡಕ್ಕಾಗಿ ಇಳಿಜಾರುಗಳನ್ನು ಕತ್ತರಿಸಲಾಗುತ್ತದೆ, ಮಣ್ಣು ಬೇಗ ತೇವಗೊಳ್ಳುತ್ತದೆ. 2018 ಮತ್ತು 2019ರ ಭೂಕುಸಿತಗಳು ಈ ಸಂಯೋಜನೆ ಎಷ್ಟು ಬೇಗ ಮಾರಕವಾಗಬಲ್ಲದು ಎಂಬುದನ್ನು ತೋರಿಸಿದವು.",
+          "ಜನರಿಗೆ ಎಚ್ಚರಿಸಬಲ್ಲ ದತ್ತಾಂಶ — ಇಳಿಜಾರು, ಮಳೆ, ಮಣ್ಣಿನ ತೇವ, ಸಸ್ಯ ಮತ್ತು ಕಾಡು ನಷ್ಟ — ಸಾರ್ವಜನಿಕ ಉಪಗ್ರಹಗಳಲ್ಲಿ ಇದೆ, ಆದರೆ ಅದು ಯಾವುದೇ ನಿವಾಸಿ, ರೈತ ಅಥವಾ ಪಂಚಾಯಿತಿ ಸದಸ್ಯರು ಸಮಯಕ್ಕೆ ಓದಲಾಗದ ರೂಪ ಮತ್ತು ಭಾಷೆಗಳಲ್ಲಿ ಬಂಧಿಯಾಗಿದೆ.",
+        ],
+      },
+      {
+        heading: "ನೆಲ ಏನು ಮಾಡುತ್ತದೆ",
+        body: [
+          "ನೆಲ ಬಾಹ್ಯಾಕಾಶದಿಂದ ಕೊಡಗಿನ ನೆಲವನ್ನು ಓದಿ, ಅದನ್ನು ಇಲ್ಲಿ ವಾಸಿಸುವ ಜನರಿಗೆ ಸರಳ ಭಾಷೆಯಲ್ಲಿ ಹಿಂತಿರುಗಿಸುತ್ತದೆ. ಇದು ದೈನಂದಿನ ಭೂಕುಸಿತ-ಅಪಾಯ ನಕ್ಷೆಯನ್ನು — ಕಡಿಮೆಯಿಂದ ತೀವ್ರದವರೆಗೆ ಬಣ್ಣಗಳಲ್ಲಿ — ಪ್ರತಿ ಪ್ರದೇಶಕ್ಕೆ ಆ ಮಟ್ಟ ಏಕೆ ಎಂಬ ಸರಳ ಕನ್ನಡ ವಿವರಣೆಯೊಂದಿಗೆ ತೋರಿಸುತ್ತದೆ.",
+          "ಒಂದೇ ನಕ್ಷೆಯಲ್ಲಿ ನಾಲ್ಕು ಪದರಗಳು: ಭೂಕುಸಿತ ಅಪಾಯ, ಕಾಡು ಮತ್ತು ಮೇಲ್ಛಾವಣಿ, ಮಣ್ಣು ಮತ್ತು ನೀರು, ಬೆಳೆ ಮತ್ತು ಕಾಫಿ. ಇದು ವೇಗವಾಗಿ, ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಮತ್ತು ಉಚಿತವಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ — ಎಚ್ಚರಿಕೆ ಹೆಚ್ಚು ಮುಖ್ಯವಾಗುವ ಕಡಿಮೆ-ಸಂಪರ್ಕದ ಪರಿಸ್ಥಿತಿಗಳಲ್ಲೇ ಉಪಯುಕ್ತ.",
+        ],
+      },
+      {
+        heading: "ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
+        body: [
+          "ಪ್ರತಿದಿನ ಉಚಿತ ಸಾರ್ವಜನಿಕ ಉಪಗ್ರಹಗಳು (Copernicus, Sentinel, GPM, SMAP, Hansen) ಇಳಿಜಾರು, ಮಳೆ, ಮಣ್ಣಿನ ತೇವ, ಸಸ್ಯ ಮತ್ತು ಕಾಡು ನಷ್ಟವನ್ನು ದಾಖಲಿಸುತ್ತವೆ. ರಾತ್ರಿ ನಡೆಯುವ Google Earth Engine ಕೆಲಸ ತಾಲೂಕನ್ನು H3 ಷಟ್ಕೋನ ಕೋಶಗಳಾಗಿ ವಿಂಗಡಿಸಿ ಪ್ರತಿ ಕೋಶಕ್ಕೆ ಸಂಖ್ಯೆಗಳನ್ನು ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ — ನಿಮ್ಮ ಫೋನ್ ಎಂದಿಗೂ ಚಿತ್ರಗಳನ್ನು ಸಂಸ್ಕರಿಸುವುದಿಲ್ಲ.",
+          "ಪಾರದರ್ಶಕ ಮಾದರಿ ಅಪಾಯವನ್ನು ಸೂಕ್ಷ್ಮತೆ (ಇಳಿಜಾರು, ಕಾಡು ನಷ್ಟ, ರಸ್ತೆ-ಕಡಿತ) × ಪ್ರಚೋದನೆ (ಮಳೆ + ಮಣ್ಣಿನ ಶುದ್ಧತೆ) ಎಂದು ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ, 2018/2019 ವಿಪತ್ತುಗಳ ವಿರುದ್ಧ ಪರೀಕ್ಷಿಸಲಾಗಿದೆ. ಮುಕ್ತ ತಂತ್ರಜ್ಞಾನದ ಮೇಲೆ — Google Earth Engine, H3, Supabase/PostGIS, Next.js PWA, ಮತ್ತು Leaflet/OpenStreetMap — ನಿರ್ಮಿಸಲಾಗಿದೆ. ನೆಲ ಮುಕ್ತ-ಮೂಲ ಮತ್ತು ನಿರ್ಧಾರ-ಸಹಾಯ ಸಾಧನ: ಅಧಿಕೃತ ಸೂಚನೆಗಳಿಗೆ ಪೂರಕ, ಫಲಿತಾಂಶದ ಖಾತರಿ ಅಲ್ಲ. ಸದ್ಯ ಮಡಿಕೇರಿ ತಾಲೂಕನ್ನು ಒಳಗೊಂಡಿದೆ, ಉಳಿದ ಕೊಡಗು ಮುಂದೆ ಸೇರಲಿದೆ.",
+        ],
+      },
+    ],
+    contribute: [
+      "Developers: improve the Earth Engine pipeline, the risk model, and the PWA",
+      "Local validators: ground-truth landslide and land-change signals against what you see on the ground",
+      "Translators & designers: keep the 'why' explanations clear in Kannada and Kodava thakk",
+      "Domain experts: geologists, hydrologists, and disaster-management / forest-department partners to refine the model",
+    ],
+    contributeKn: [
+      "ಡೆವಲಪರ್‌ಗಳು: Earth Engine ಪೈಪ್‌ಲೈನ್, ಅಪಾಯ ಮಾದರಿ ಮತ್ತು PWA ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ",
+      "ಸ್ಥಳೀಯ ಪರಿಶೀಲಕರು: ಭೂಕುಸಿತ ಮತ್ತು ಭೂ-ಬದಲಾವಣೆ ಸೂಚನೆಗಳನ್ನು ನೆಲದ ಮೇಲೆ ನೀವು ನೋಡುವುದರೊಂದಿಗೆ ಹೋಲಿಸಿ ಖಚಿತಪಡಿಸಿ",
+      "ಅನುವಾದಕರು ಮತ್ತು ಡಿಸೈನರ್‌ಗಳು: 'ಏಕೆ' ವಿವರಣೆಗಳನ್ನು ಕನ್ನಡ ಮತ್ತು ಕೊಡವ ತಕ್ಕ್‌ನಲ್ಲಿ ಸ್ಪಷ್ಟವಾಗಿ ಇರಿಸಿ",
+      "ಕ್ಷೇತ್ರ ಪರಿಣತರು: ಮಾದರಿಯನ್ನು ಪರಿಷ್ಕರಿಸಲು ಭೂವಿಜ್ಞಾನಿಗಳು, ಜಲವಿಜ್ಞಾನಿಗಳು ಮತ್ತು ವಿಪತ್ತು-ನಿರ್ವಹಣೆ / ಅರಣ್ಯ ಇಲಾಖೆ ಪಾಲುದಾರರು",
+    ],
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
