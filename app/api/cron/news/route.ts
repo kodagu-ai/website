@@ -65,7 +65,7 @@ HARD RULES:
 - Use ONLY urls that appear verbatim in the CANDIDATES. NEVER invent or guess a url, headline, source, or date. If unsure, drop the item.
 - RECENCY: include ONLY items published within the LAST 7 DAYS of today's date. Interpret relative dates ("12 hours ago", "2 days ago") against today's date; convert to ISO. If a candidate's date is older than 7 days or undeterminable, DROP it.
 - Cluster duplicate stories across candidates into ONE item (combine their urls as sources).
-- Aim for 5-10 items. A short, genuinely-recent brief is better than a padded stale one.
+- Aim for 5-8 items (hard max 8). A short, genuinely-recent brief is better than a padded stale one.
 
 CATEGORIES (use EXACTLY one of these strings): "People", "Culture & Heritage", "Sports", "Agriculture", "Technology", "Business & Community", "Environment & Wildlife", "Civic & Governance", "World & Kodagu".
 
@@ -97,7 +97,7 @@ async function curate(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 4096,
+      max_tokens: 8000,
       system: CURATION_SYSTEM,
       messages: [{ role: "user", content: userText }],
     }),
@@ -110,11 +110,13 @@ async function curate(
   const text: string = (j?.content ?? [])
     .map((b: { type?: string; text?: string }) => (b.type === "text" ? b.text : ""))
     .join("");
-  // Extract the JSON object even if wrapped in prose/fences.
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start === -1 || end === -1) throw new Error("no JSON in model output");
-  const parsed = JSON.parse(text.slice(start, end + 1));
+  // Extract the JSON object even if wrapped in prose/```json fences.
+  const cleaned = text.replace(/```json\s*/gi, "").replace(/```/g, "");
+  const start = cleaned.indexOf("{");
+  const end = cleaned.lastIndexOf("}");
+  if (start === -1 || end === -1)
+    throw new Error(`no JSON in model output; raw="${text.slice(0, 200)}"`);
+  const parsed = JSON.parse(cleaned.slice(start, end + 1));
   return Array.isArray(parsed?.items) ? parsed.items : [];
 }
 
@@ -159,7 +161,7 @@ export async function GET(req: Request) {
     const results = await Promise.all(queries.map((x) => fcSearch(fcKey, x.q, x.type)));
     const byUrl = new Map<string, Candidate>();
     for (const c of results.flat()) if (!byUrl.has(c.url)) byUrl.set(c.url, c);
-    const candidates = [...byUrl.values()].slice(0, 45);
+    const candidates = [...byUrl.values()].slice(0, 30);
     if (candidates.length === 0)
       return NextResponse.json({ error: "no candidates gathered" }, { status: 502 });
 
