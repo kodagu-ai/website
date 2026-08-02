@@ -21,7 +21,7 @@ export default function ProjectCard({ project, locale = "en" }: { project: Proje
       <div>
         {project.logo ? (
           <img
-            src={project.logo}
+            src={project.logoMark || project.logo}
             alt={`${project.name} logo`}
             className="pc-logo"
           />

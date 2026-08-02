@@ -26,6 +26,10 @@ export type Project = {
   icon: string;
   /** Optional path to a logo image in /public. Overrides the emoji icon. */
   logo?: string;
+  /** Optional compact mark (no wordmark) for the small card badge. Falls back
+   *  to `logo` when unset. Use when the full logo is a wide lockup that reads
+   *  poorly at ~56px. */
+  logoMark?: string;
   status: ProjectStatus;
   /** Grouping label, e.g. "Wildlife & Conservation" */
   category: string;
@@ -152,6 +156,7 @@ export const projects: Project[] = [
       "ನೆಲ ಪ್ರತಿದಿನ ಬಾಹ್ಯಾಕಾಶದಿಂದ ಕೊಡಗಿನ ನೆಲವನ್ನು ಓದಿ, ಅದನ್ನು ಇಲ್ಲಿ ವಾಸಿಸುವ ಜನರಿಗೆ ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಹಿಂತಿರುಗಿಸುತ್ತದೆ. ಪಾರದರ್ಶಕ ಮಾದರಿಯು ಉಚಿತ ಸಾರ್ವಜನಿಕ ಉಪಗ್ರಹ ದತ್ತಾಂಶವನ್ನು ಸರಳ ಭೂಕುಸಿತ-ಅಪಾಯ ನಕ್ಷೆಯಾಗಿ ಪರಿವರ್ತಿಸುತ್ತದೆ — ಜೊತೆಗೆ ಕಾಡು, ಮಣ್ಣು ಮತ್ತು ನೀರು, ಬೆಳೆ ಮತ್ತು ಕಾಫಿ ಪದರಗಳು — ಇದರಿಂದ ನಿವಾಸಿಗಳು, ರೈತರು ಮತ್ತು ಪಂಚಾಯಿತಿಗಳು ನೆಲದ ಮೇಲೆ ಏನು ಬದಲಾಗುತ್ತಿದೆ ಎಂಬುದನ್ನು ನೋಡಬಹುದು.",
     icon: "🛰️",
     logo: "/nela-logo.svg",
+    logoMark: "/nela-emblem.svg",
     status: "Beta",
     category: "Land & Climate Resilience",
     categoryKn: "ಭೂಮಿ ಮತ್ತು ಹವಾಮಾನ ಸ್ಥಿತಿಸ್ಥಾಪಕತೆ",
