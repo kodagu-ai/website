@@ -42,7 +42,16 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {S.projPage.backAll[locale]}
           </Link>
           <div className="detail-title">
-            <span className="d-icon" aria-hidden="true">{project.icon}</span>
+            {project.logo ? (
+              <img
+                src={project.logo}
+                alt={`${project.name} logo`}
+                className="d-logo"
+                style={{ height: 64, width: "auto", display: "block" }}
+              />
+            ) : (
+              <span className="d-icon" aria-hidden="true">{project.icon}</span>
+            )}
             <div>
               <h1 style={{ margin: 0 }}>{project.name}</h1>
               {project.localName && (
