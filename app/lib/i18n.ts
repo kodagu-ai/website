@@ -286,6 +286,36 @@ export const S = {
     bandWet: { en: "Wet", kn: "ಒದ್ದೆ" },
     bandVeryWet: { en: "Very wet", kn: "ಬಹಳ ಒದ್ದೆ" },
     bandExtreme: { en: "Extreme", kn: "ತೀವ್ರ" },
+
+    // Monsoon Health blade
+    healthH2: { en: "Monsoon Health Watch", kn: "ಮುಂಗಾರು ಆರೋಗ್ಯ ವೀಕ್ಷಣೆ" },
+    healthSub: {
+      en: "The illnesses that rise with Kodagu’s rain — what to watch for, how to prevent them, and when to get help.",
+      kn: "ಕೊಡಗಿನ ಮಳೆಯೊಂದಿಗೆ ಏರುವ ಕಾಯಿಲೆಗಳು — ಏನನ್ನು ಗಮನಿಸಬೇಕು, ಹೇಗೆ ತಡೆಗಟ್ಟಬೇಕು ಮತ್ತು ಯಾವಾಗ ಸಹಾಯ ಪಡೆಯಬೇಕು.",
+    },
+    healthAlertBold: { en: "⚠️ Health-risk awareness, not medical advice.", kn: "⚠️ ಆರೋಗ್ಯ-ಅಪಾಯದ ಅರಿವು, ವೈದ್ಯಕೀಯ ಸಲಹೆ ಅಲ್ಲ." },
+    healthAlertMid: {
+      en: "If you or someone is unwell, see a doctor. In an emergency call",
+      kn: "ನೀವು ಅಥವಾ ಯಾರಾದರೂ ಅಸ್ವಸ್ಥರಾಗಿದ್ದರೆ, ವೈದ್ಯರನ್ನು ಕಾಣಿ. ತುರ್ತು ಸಂದರ್ಭದಲ್ಲಿ ಕರೆ ಮಾಡಿ",
+    },
+    healthAlertAmb: { en: "or an ambulance on", kn: "ಅಥವಾ ಆಂಬ್ಯುಲೆನ್ಸ್‌ಗೆ" },
+    thisWeekLabel: { en: "This week’s watch · from live rainfall", kn: "ಈ ವಾರದ ವೀಕ್ಷಣೆ · ಲೈವ್ ಮಳೆಯಿಂದ" },
+    risksHead: { en: "Monsoon health risks", kn: "ಮುಂಗಾರು ಆರೋಗ್ಯ ಅಪಾಯಗಳು" },
+    watchForLabel: { en: "Watch for", kn: "ಗಮನಿಸಿ" },
+    preventLabel: { en: "Prevent", kn: "ತಡೆಗಟ್ಟಿ" },
+    whenToActLabel: { en: "When to act", kn: "ಯಾವಾಗ ಕ್ರಮ ಕೈಗೊಳ್ಳಬೇಕು" },
+    healthDisclaimer: {
+      en: "Guidance drawn from WHO and India’s National Centre for Disease Control, tied to Kodagu’s live rainfall. It raises awareness of seasonal risk — it does not diagnose or treat. Follow your doctor and any district health advisories.",
+      kn: "WHO ಮತ್ತು ಭಾರತದ ರಾಷ್ಟ್ರೀಯ ರೋಗ ನಿಯಂತ್ರಣ ಕೇಂದ್ರದಿಂದ ಪಡೆದ ಮಾರ್ಗದರ್ಶನ, ಕೊಡಗಿನ ಲೈವ್ ಮಳೆಗೆ ಜೋಡಿಸಲಾಗಿದೆ. ಇದು ಋತುಮಾನದ ಅಪಾಯದ ಬಗ್ಗೆ ಅರಿವು ಮೂಡಿಸುತ್ತದೆ — ಇದು ರೋಗನಿರ್ಣಯ ಅಥವಾ ಚಿಕಿತ್ಸೆ ನೀಡುವುದಿಲ್ಲ. ನಿಮ್ಮ ವೈದ್ಯರ ಮತ್ತು ಜಿಲ್ಲಾ ಆರೋಗ್ಯ ಸೂಚನೆಗಳನ್ನು ಅನುಸರಿಸಿ.",
+    },
+    // Health watch tile
+    hwSeasonalCare: { en: "Seasonal care", kn: "ಋತುಮಾನದ ಕಾಳಜಿ" },
+    hwUnavail: {
+      en: "Live rainfall is unavailable — take the usual monsoon precautions below.",
+      kn: "ಲೈವ್ ಮಳೆ ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ — ಕೆಳಗಿನ ಸಾಮಾನ್ಯ ಮುಂಗಾರು ಮುನ್ನೆಚ್ಚರಿಕೆಗಳನ್ನು ವಹಿಸಿ.",
+    },
+    hwPeakPre: { en: "heaviest recent rain:", kn: "ಇತ್ತೀಚಿನ ಗರಿಷ್ಠ ಮಳೆ:" },
+    hwDays: { en: "3 days", kn: "3 ದಿನ" },
   },
   footer: {
     tag: {

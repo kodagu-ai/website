@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { HEALTH_LEVELS } from "../lib/health";
+import { S, type Locale } from "../lib/i18n";
 
 type Town = { name: string; recentMm: number };
 
@@ -12,7 +13,7 @@ function levelFor(maxRecent: number): keyof typeof HEALTH_LEVELS {
   return "calm";
 }
 
-export default function HealthWatch() {
+export default function HealthWatch({ locale = "en" }: { locale?: Locale }) {
   const [level, setLevel] = useState<keyof typeof HEALTH_LEVELS | null>(null);
   const [peak, setPeak] = useState<{ name: string; mm: number } | null>(null);
   const [err, setErr] = useState(false);
@@ -35,13 +36,12 @@ export default function HealthWatch() {
     };
   }, []);
 
+  const kn = locale === "kn";
   if (err)
     return (
       <div className="health-watch tone-calm">
-        <div className="hw-level">Seasonal care</div>
-        <p className="hw-line">
-          Live rainfall is unavailable — take the usual monsoon precautions below.
-        </p>
+        <div className="hw-level">{S.insights.hwSeasonalCare[locale]}</div>
+        <p className="hw-line">{S.insights.hwUnavail[locale]}</p>
       </div>
     );
 
@@ -51,14 +51,14 @@ export default function HealthWatch() {
   return (
     <div className={`health-watch tone-${info.tone}`}>
       <div className="hw-top">
-        <span className="hw-level">{info.label}</span>
+        <span className="hw-level">{kn ? info.labelKn : info.label}</span>
         {peak && (
           <span className="hw-peak">
-            heaviest recent rain: {peak.name} {peak.mm}mm / 3 days
+            {S.insights.hwPeakPre[locale]} {peak.name} {peak.mm}mm / {S.insights.hwDays[locale]}
           </span>
         )}
       </div>
-      <p className="hw-line">{info.line}</p>
+      <p className="hw-line">{kn ? info.lineKn : info.line}</p>
     </div>
   );
 }
