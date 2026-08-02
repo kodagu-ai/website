@@ -19,6 +19,8 @@ export default function Header() {
           <Link href="/insights" className="hide-sm">{S.nav.insights[locale]}</Link>
           <Link href="/community">{S.nav.community[locale]}</Link>
           <Link href="/news">{S.nav.news[locale]}</Link>
+          {/* Standalone sub-brand page → plain <a> for a full-document load. */}
+          <a href="/sankalpa">{S.nav.sankalpa[locale]}</a>
           <Link href="/about" className="hide-sm">{S.nav.about[locale]}</Link>
           <Link href="/join" className="hide-sm">{S.nav.join[locale]}</Link>
           <LangToggle locale={locale} />

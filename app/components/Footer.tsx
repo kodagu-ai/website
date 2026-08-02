@@ -27,6 +27,7 @@ export default function Footer() {
               <Link href="/insights">{S.nav.insights[locale]}</Link>
               <Link href="/community">{S.nav.community[locale]}</Link>
               <Link href="/news">{S.nav.news[locale]}</Link>
+              <a href="/sankalpa">{S.nav.sankalpa[locale]}</a>
               <Link href="/about">{S.nav.about[locale]}</Link>
               <Link href="/join">{S.nav.join[locale]}</Link>
             </div>
