@@ -4,6 +4,8 @@ import CoffeeInsight from "./CoffeeInsight";
 import SchemesInsight from "./SchemesInsight";
 import ClimateRiskInsight from "./ClimateRiskInsight";
 import MonsoonHealthInsight from "./MonsoonHealthInsight";
+import { S } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -12,27 +14,25 @@ export const metadata: Metadata = {
 };
 
 export default function InsightsPage() {
+  const locale = getLocale();
   return (
     <>
       <div className="detail-hero">
         <div className="container">
-          <Link href="/#almanac" className="back-link">← Kodagu Almanac</Link>
+          <Link href="/#almanac" className="back-link">{S.insights.back[locale]}</Link>
           <div className="detail-title">
             <span className="d-icon" aria-hidden="true">🔎</span>
             <div>
-              <h1 style={{ margin: 0 }}>Kodagu Insights</h1>
-              <div className="detail-local">Intelligence that&rsquo;s hard to find, made clear</div>
+              <h1 style={{ margin: 0 }}>{S.insights.title[locale]}</h1>
+              <div className="detail-local">{S.insights.sub[locale]}</div>
             </div>
           </div>
-          <p className="detail-lead">
-            Using AI to pull together scattered market, government and local data
-            into insights Kodagu residents rarely get to see — and can act on.
-          </p>
+          <p className="detail-lead">{S.insights.lead[locale]}</p>
           <div className="insights-nav">
-            <a href="#coffee">☕ Coffee Market</a>
-            <a href="#schemes">📜 Schemes &amp; Compensation</a>
-            <a href="#risk">⛰️ Landslide &amp; Climate Risk</a>
-            <a href="#health">🩺 Monsoon Health</a>
+            <a href="#coffee">{S.insights.navCoffee[locale]}</a>
+            <a href="#schemes">{S.insights.navSchemes[locale]}</a>
+            <a href="#risk">{S.insights.navRisk[locale]}</a>
+            <a href="#health">{S.insights.navHealth[locale]}</a>
           </div>
         </div>
         <div className="hero-strip" />

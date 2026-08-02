@@ -221,6 +221,19 @@ export const S = {
       kn: "ಪಟ್ಟಿಗಳು ಸ್ವಯಂ-ಆಯ್ಕೆ. ಇಲ್ಲಿರುವ ಪ್ರತಿಯೊಬ್ಬರೂ ಸೇರಿಸಿಕೊಳ್ಳಲು ಕೇಳಿಕೊಂಡಿದ್ದಾರೆ — ಹೊರಗಿನ ಮೂಲಗಳಿಂದ ನಾವು ಎಂದಿಗೂ ಜನರನ್ನು ಸೇರಿಸುವುದಿಲ್ಲ.",
     },
   },
+  insights: {
+    back: { en: "← Kodagu Almanac", kn: "← ಕೊಡಗು ಪಂಚಾಂಗ" },
+    title: { en: "Kodagu Insights", kn: "ಕೊಡಗು ಒಳನೋಟಗಳು" },
+    sub: { en: "Intelligence that’s hard to find, made clear", kn: "ಹುಡುಕಲು ಕಷ್ಟವಾದ ಮಾಹಿತಿ, ಸ್ಪಷ್ಟವಾಗಿ" },
+    lead: {
+      en: "Using AI to pull together scattered market, government and local data into insights Kodagu residents rarely get to see — and can act on.",
+      kn: "ಚದುರಿದ ಮಾರುಕಟ್ಟೆ, ಸರ್ಕಾರಿ ಮತ್ತು ಸ್ಥಳೀಯ ಡೇಟಾವನ್ನು AI ಬಳಸಿ ಒಗ್ಗೂಡಿಸಿ, ಕೊಡಗಿನ ನಿವಾಸಿಗಳು ವಿರಳವಾಗಿ ನೋಡುವ — ಮತ್ತು ಕಾರ್ಯರೂಪಕ್ಕೆ ತರಬಹುದಾದ — ಒಳನೋಟಗಳಾಗಿಸಲಾಗಿದೆ.",
+    },
+    navCoffee: { en: "☕ Coffee Market", kn: "☕ ಕಾಫಿ ಮಾರುಕಟ್ಟೆ" },
+    navSchemes: { en: "📜 Schemes & Compensation", kn: "📜 ಯೋಜನೆಗಳು ಮತ್ತು ಪರಿಹಾರ" },
+    navRisk: { en: "⛰️ Landslide & Climate Risk", kn: "⛰️ ಭೂಕುಸಿತ ಮತ್ತು ಹವಾಮಾನ ಅಪಾಯ" },
+    navHealth: { en: "🩺 Monsoon Health", kn: "🩺 ಮುಂಗಾರು ಆರೋಗ್ಯ" },
+  },
   footer: {
     tag: {
       en: "A unified, open-source platform for Kodagu. Our people. Our land. Our future.",
