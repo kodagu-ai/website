@@ -1,0 +1,53 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nela">
+  <!-- Nela emblem — leaf cradling Kodagu's land, satellite + gold signal above.
+       Palette from brand/BRANDGUIDE.md: Forest Green #1C3A1C, Canopy Lime #8B9130,
+       Kodagu Soil #6E4E1A, Signal Gold #C9A03A. -->
+  <defs>
+    <clipPath id="leaf">
+      <path d="M120 300
+               C120 190 210 96 330 96
+               C372 96 408 108 430 120
+               C420 250 360 416 214 416
+               C158 416 120 372 120 300 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- leaf body -->
+  <path d="M120 300 C120 190 210 96 330 96 C372 96 408 108 430 120
+           C420 250 360 416 214 416 C158 416 120 372 120 300 Z"
+        fill="#1c3a1c"/>
+  <!-- leaf midrib -->
+  <path d="M398 130 C300 190 210 300 176 392" fill="none"
+        stroke="#fcfbf7" stroke-opacity="0.85" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- land scene, clipped inside the leaf -->
+  <g clip-path="url(#leaf)">
+    <!-- forested hills -->
+    <path d="M120 300 C170 250 220 250 270 278 C320 306 370 268 430 250 L430 416 L120 416 Z" fill="#274d27"/>
+    <!-- shade trees on the ridge -->
+    <g fill="#1c3a1c">
+      <circle cx="196" cy="262" r="20"/>
+      <circle cx="228" cy="270" r="15"/>
+      <circle cx="166" cy="272" r="14"/>
+      <rect x="192" y="270" width="8" height="26" rx="3"/>
+    </g>
+    <!-- terraced fields: canopy lime → soil -->
+    <path d="M120 320 C190 292 300 300 430 288 L430 322 C300 334 190 326 120 352 Z" fill="#8b9130"/>
+    <path d="M120 352 C190 326 300 334 430 322 L430 356 C300 368 190 360 120 384 Z" fill="#b07a2e"/>
+    <path d="M120 384 C190 360 300 368 430 356 L430 416 L120 416 Z" fill="#6e4e1a"/>
+  </g>
+
+  <!-- satellite -->
+  <g fill="#1c3a1c" transform="translate(330 96) rotate(18)">
+    <rect x="-14" y="-16" width="28" height="30" rx="5"/>
+    <rect x="-46" y="-8" width="24" height="14" rx="3"/>
+    <rect x="22" y="-8" width="24" height="14" rx="3"/>
+    <circle cx="0" cy="24" r="6" fill="#c9a03a"/>
+  </g>
+  <!-- gold signal arcs beaming down -->
+  <g fill="none" stroke="#c9a03a" stroke-width="9" stroke-linecap="round">
+    <path d="M300 150 A34 34 0 0 0 266 184"/>
+    <path d="M286 138 A52 52 0 0 0 234 190"/>
+    <path d="M272 126 A70 70 0 0 0 202 196"/>
+  </g>
+</svg>
