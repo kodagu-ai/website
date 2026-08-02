@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { S, type Locale } from "../lib/i18n";
 
 type Market = {
   arabica: { usdPerLb: number; centsPerLb: number; changePct: number } | null;
@@ -25,7 +26,7 @@ function Change({ pct }: { pct: number }) {
   );
 }
 
-export default function CoffeeBenchmarks() {
+export default function CoffeeBenchmarks({ locale = "en" }: { locale?: Locale }) {
   const [m, setM] = useState<Market | null>(null);
   const [mErr, setMErr] = useState(false);
   const [rob, setRob] = useState<Robusta>(null);
@@ -50,22 +51,22 @@ export default function CoffeeBenchmarks() {
     <div className="ci-bench">
       {/* Robusta first — the benchmark Kodagu tracks */}
       <div className="ci-card ci-card-key">
-        <div className="ci-card-label">London Robusta · ICE</div>
+        <div className="ci-card-label">{S.insights.cbRobusta[locale]}</div>
         {rob ? (
           <>
             <div className="ci-value">
               ${rob.price.toLocaleString("en-US")}
-              <span className="ci-unit">/ tonne</span>
+              <span className="ci-unit">{S.insights.perTonne[locale]}</span>
             </div>
             <div className="ci-sub">
-              <Change pct={rob.changePct} /> today
+              <Change pct={rob.changePct} /> {S.insights.cbToday[locale]}
               {rob.contract ? ` · ${rob.contract}` : ""}
             </div>
           </>
         ) : robErr ? (
           <>
-            <div className="ci-value ci-value-sm">Off July high</div>
-            <div className="ci-sub">Live feed unavailable — see outlook below.</div>
+            <div className="ci-value ci-value-sm">{S.insights.cbOffHigh[locale]}</div>
+            <div className="ci-sub">{S.insights.cbLiveUnavail[locale]}</div>
           </>
         ) : (
           <div className="ci-skel" />
@@ -73,33 +74,33 @@ export default function CoffeeBenchmarks() {
       </div>
 
       <div className="ci-card">
-        <div className="ci-card-label">Arabica · ICE New York</div>
+        <div className="ci-card-label">{S.insights.cbArabica[locale]}</div>
         {m?.arabica ? (
           <>
             <div className="ci-value">
               ${m.arabica.usdPerLb.toFixed(2)}
-              <span className="ci-unit">/ lb</span>
+              <span className="ci-unit">{S.insights.perLb[locale]}</span>
             </div>
             <div className="ci-sub">
-              {m.arabica.centsPerLb}¢ · <Change pct={m.arabica.changePct} /> today
+              {m.arabica.centsPerLb}¢ · <Change pct={m.arabica.changePct} /> {S.insights.cbToday[locale]}
             </div>
           </>
         ) : mErr ? (
-          <div className="ci-sub">Unavailable right now.</div>
+          <div className="ci-sub">{S.insights.cbUnavail[locale]}</div>
         ) : (
           <div className="ci-skel" />
         )}
       </div>
 
       <div className="ci-card">
-        <div className="ci-card-label">Rupee · USD / INR</div>
+        <div className="ci-card-label">{S.insights.cbRupee[locale]}</div>
         {m?.usdInr ? (
           <>
             <div className="ci-value">₹{m.usdInr.toFixed(2)}</div>
-            <div className="ci-sub">per US dollar · a weaker ₹ lifts farmgate prices</div>
+            <div className="ci-sub">{S.insights.cbPerDollar[locale]}</div>
           </>
         ) : mErr ? (
-          <div className="ci-sub">Unavailable right now.</div>
+          <div className="ci-sub">{S.insights.cbUnavail[locale]}</div>
         ) : (
           <div className="ci-skel" />
         )}

@@ -316,6 +316,57 @@ export const S = {
     },
     hwPeakPre: { en: "heaviest recent rain:", kn: "ಇತ್ತೀಚಿನ ಗರಿಷ್ಠ ಮಳೆ:" },
     hwDays: { en: "3 days", kn: "3 ದಿನ" },
+
+    // Coffee blade
+    coffeeH2: { en: "Coffee Market Intelligence", kn: "ಕಾಫಿ ಮಾರುಕಟ್ಟೆ ಗುಪ್ತಚರ" },
+    coffeeSub: {
+      en: "What moves your farmgate price — and when to sell. The global signals, in plain language.",
+      kn: "ನಿಮ್ಮ farmgate ಬೆಲೆಯನ್ನು ಚಲಿಸುವುದೇನು — ಮತ್ತು ಯಾವಾಗ ಮಾರಬೇಕು. ಜಾಗತಿಕ ಸೂಚನೆಗಳು, ಸರಳ ಭಾಷೆಯಲ್ಲಿ.",
+    },
+    globalBench: { en: "Global benchmarks · live", kn: "ಜಾಗತಿಕ ಮಾನದಂಡಗಳು · ಲೈವ್" },
+    cpaLocal: { en: "Kodagu farmgate · CPA board", kn: "ಕೊಡಗು farmgate · CPA ಬೋರ್ಡ್" },
+    movingHead: { en: "What’s moving the market", kn: "ಮಾರುಕಟ್ಟೆಯನ್ನು ಚಲಿಸುತ್ತಿರುವುದೇನು" },
+    chainHead: { en: "How a price in London reaches your estate", kn: "ಲಂಡನ್‌ನ ಬೆಲೆ ನಿಮ್ಮ ಎಸ್ಟೇಟ್‌ಗೆ ಹೇಗೆ ತಲುಪುತ್ತದೆ" },
+    sellHead: { en: "When to sell", kn: "ಯಾವಾಗ ಮಾರಬೇಕು" },
+    coffeeDisBold: { en: "Market information, not financial advice.", kn: "ಮಾರುಕಟ್ಟೆ ಮಾಹಿತಿ, ಹಣಕಾಸು ಸಲಹೆ ಅಲ್ಲ." },
+    coffeeDisMid: {
+      en: "Global prices are delayed and indicative; local figures are from the",
+      kn: "ಜಾಗತಿಕ ಬೆಲೆಗಳು ವಿಳಂಬಿತ ಮತ್ತು ಸೂಚಕ; ಸ್ಥಳೀಯ ಅಂಕಿಅಂಶಗಳು",
+    },
+    coffeeDisPost: {
+      en: "Confirm with your buyer before selling. Outlook as of",
+      kn: "ಇಂದ. ಮಾರುವ ಮೊದಲು ನಿಮ್ಮ ಖರೀದಿದಾರರೊಂದಿಗೆ ಖಚಿತಪಡಿಸಿ. ಮುನ್ನೋಟ",
+    },
+
+    // Schemes blade
+    schemesH2: { en: "Schemes & Compensation Decoder", kn: "ಯೋಜನೆಗಳು ಮತ್ತು ಪರಿಹಾರ ಡಿಕೋಡರ್" },
+    schemesSub: {
+      en: "The government support Kodagu residents are entitled to — what it’s for, who qualifies, and exactly how to claim it.",
+      kn: "ಕೊಡಗಿನ ನಿವಾಸಿಗಳಿಗೆ ಹಕ್ಕಿರುವ ಸರ್ಕಾರಿ ನೆರವು — ಅದು ಯಾವುದಕ್ಕಾಗಿ, ಯಾರು ಅರ್ಹರು, ಮತ್ತು ಅದನ್ನು ನಿಖರವಾಗಿ ಹೇಗೆ ಕ್ಲೈಮ್ ಮಾಡುವುದು.",
+    },
+    whatYouGet: { en: "What you get", kn: "ನಿಮಗೆ ಸಿಗುವುದು" },
+    whoQualifies: { en: "Who qualifies", kn: "ಯಾರು ಅರ್ಹರು" },
+    howToClaim: { en: "How to claim", kn: "ಹೇಗೆ ಕ್ಲೈಮ್ ಮಾಡುವುದು" },
+    asOfLabel: { en: "as of", kn: "ಇಂದಿನಂತೆ" },
+    schemesDisBold: { en: "Guidance, not official confirmation.", kn: "ಮಾರ್ಗದರ್ಶನ, ಅಧಿಕೃತ ದೃಢೀಕರಣ ಅಲ್ಲ." },
+    schemesDisRest: {
+      en: "Amounts, eligibility and deadlines change and vary case by case. Always verify with the named office before acting. Kodagu.ai is not affiliated with any government body.",
+      kn: "ಮೊತ್ತ, ಅರ್ಹತೆ ಮತ್ತು ಗಡುವುಗಳು ಬದಲಾಗುತ್ತವೆ ಮತ್ತು ಪ್ರಕರಣದಿಂದ ಪ್ರಕರಣಕ್ಕೆ ಭಿನ್ನವಾಗಿರುತ್ತವೆ. ಕ್ರಮ ಕೈಗೊಳ್ಳುವ ಮೊದಲು ಯಾವಾಗಲೂ ಹೆಸರಿಸಿದ ಕಚೇರಿಯೊಂದಿಗೆ ಪರಿಶೀಲಿಸಿ. Kodagu.ai ಯಾವುದೇ ಸರ್ಕಾರಿ ಸಂಸ್ಥೆಯೊಂದಿಗೆ ಸಂಬಂಧ ಹೊಂದಿಲ್ಲ.",
+    },
+    // Coffee benchmarks tile
+    cbRobusta: { en: "London Robusta · ICE", kn: "ಲಂಡನ್ ರೊಬಸ್ಟಾ · ICE" },
+    perTonne: { en: "/ tonne", kn: "/ ಟನ್" },
+    cbToday: { en: "today", kn: "ಇಂದು" },
+    cbOffHigh: { en: "Off July high", kn: "ಜುಲೈ ಗರಿಷ್ಠದಿಂದ ಕೆಳಗೆ" },
+    cbLiveUnavail: { en: "Live feed unavailable — see outlook below.", kn: "ಲೈವ್ ಫೀಡ್ ಲಭ್ಯವಿಲ್ಲ — ಕೆಳಗಿನ ಮುನ್ನೋಟ ನೋಡಿ." },
+    cbArabica: { en: "Arabica · ICE New York", kn: "ಅರೇಬಿಕಾ · ICE ನ್ಯೂಯಾರ್ಕ್" },
+    perLb: { en: "/ lb", kn: "/ ಪೌಂಡ್" },
+    cbUnavail: { en: "Unavailable right now.", kn: "ಈಗ ಲಭ್ಯವಿಲ್ಲ." },
+    cbRupee: { en: "Rupee · USD / INR", kn: "ರೂಪಾಯಿ · USD / INR" },
+    cbPerDollar: {
+      en: "per US dollar · a weaker ₹ lifts farmgate prices",
+      kn: "ಪ್ರತಿ US ಡಾಲರ್‌ಗೆ · ದುರ್ಬಲ ₹ farmgate ಬೆಲೆಗಳನ್ನು ಏರಿಸುತ್ತದೆ",
+    },
   },
   footer: {
     tag: {

@@ -1,17 +1,18 @@
 import { SCHEMES } from "../lib/schemes";
+import { S } from "../lib/i18n";
+import { getLocale } from "../lib/getLocale";
 
 export default function SchemesInsight() {
+  const locale = getLocale();
+  const kn = locale === "kn";
   return (
     <section className="insight" id="schemes">
       <div className="insight-head">
         <span className="insight-icon" aria-hidden="true">📜</span>
         <div>
           <div className="accent-bar" />
-          <h2>Schemes &amp; Compensation Decoder</h2>
-          <p className="insight-sub">
-            The government support Kodagu residents are entitled to — what it&rsquo;s
-            for, who qualifies, and exactly how to claim it.
-          </p>
+          <h2>{S.insights.schemesH2[locale]}</h2>
+          <p className="insight-sub">{S.insights.schemesSub[locale]}</p>
         </div>
       </div>
 
@@ -21,31 +22,31 @@ export default function SchemesInsight() {
             <div className="scheme-top">
               <span className="scheme-icon" aria-hidden="true">{s.icon}</span>
               <div>
-                <span className="scheme-tag">{s.tag}</span>
-                <h3 className="scheme-title">{s.title}</h3>
+                <span className="scheme-tag">{kn ? s.tagKn : s.tag}</span>
+                <h3 className="scheme-title">{kn ? s.titleKn : s.title}</h3>
               </div>
             </div>
 
-            <p className="scheme-for">{s.forWhom}</p>
+            <p className="scheme-for">{kn ? s.forWhomKn : s.forWhom}</p>
 
             <div className="scheme-benefit">
-              <span className="scheme-benefit-label">What you get</span>
-              <p>{s.benefit}</p>
+              <span className="scheme-benefit-label">{S.insights.whatYouGet[locale]}</span>
+              <p>{kn ? s.benefitKn : s.benefit}</p>
             </div>
 
             <div className="scheme-cols">
               <div>
-                <span className="scheme-col-label">Who qualifies</span>
+                <span className="scheme-col-label">{S.insights.whoQualifies[locale]}</span>
                 <ul className="scheme-list">
-                  {s.eligibility.map((e, i) => (
+                  {(kn ? s.eligibilityKn : s.eligibility).map((e, i) => (
                     <li key={i}>{e}</li>
                   ))}
                 </ul>
               </div>
               <div>
-                <span className="scheme-col-label">How to claim</span>
+                <span className="scheme-col-label">{S.insights.howToClaim[locale]}</span>
                 <ol className="scheme-steps">
-                  {s.howToApply.map((h, i) => (
+                  {(kn ? s.howToApplyKn : s.howToApply).map((h, i) => (
                     <li key={i}>{h}</li>
                   ))}
                 </ol>
@@ -56,16 +57,14 @@ export default function SchemesInsight() {
               <a href={s.sourceUrl} target="_blank" rel="noreferrer" className="scheme-src">
                 {s.source} ↗
               </a>
-              <span className="scheme-asof">as of {s.asOf}</span>
+              <span className="scheme-asof">{S.insights.asOfLabel[locale]} {s.asOf}</span>
             </div>
           </div>
         ))}
       </div>
 
       <p className="insight-disclaimer">
-        <strong>Guidance, not official confirmation.</strong> Amounts, eligibility
-        and deadlines change and vary case by case. Always verify with the named
-        office before acting. Kodagu.ai is not affiliated with any government body.
+        <strong>{S.insights.schemesDisBold[locale]}</strong> {S.insights.schemesDisRest[locale]}
       </p>
     </section>
   );
