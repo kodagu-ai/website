@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import { ingestNewsItems } from "../../../lib/newsIngest";
 
 // Daily "Kodagu Today" pipeline, run entirely in our own infra (no cloud
@@ -65,6 +66,7 @@ HARD RULES:
 - Use ONLY urls that appear verbatim in the CANDIDATES. NEVER invent or guess a url, headline, source, or date. If unsure, drop the item.
 - RECENCY: include ONLY items published within the LAST 7 DAYS of today's date. Interpret relative dates ("12 hours ago", "2 days ago") against today's date; convert to ISO. If a candidate's date is older than 7 days or undeterminable, DROP it.
 - Cluster duplicate stories across candidates into ONE item (combine their urls as sources).
+- DEDUP: You will also receive ALREADY_PUBLISHED — items posted in the last several days (id + headline). Do NOT publish a fresh item for a story that is ALREADY there. If a candidate is the SAME ongoing story as an already-published one (even worded differently), and there is nothing genuinely new, DROP it. If there IS a genuinely new development of that same story, you MAY include it but you MUST reuse that item's EXACT id (copy it verbatim) so it updates in place instead of duplicating. Only mint a NEW slug id for a story that is NOT already in ALREADY_PUBLISHED.
 - Aim for 5-8 items (hard max 8). A short, genuinely-recent brief is better than a padded stale one.
 
 CATEGORIES (use EXACTLY one of these strings): "People", "Culture & Heritage", "Sports", "Agriculture", "Technology", "Business & Community", "Environment & Wildlife", "Civic & Governance", "World & Kodagu".
@@ -80,13 +82,18 @@ BILINGUAL: also provide a natural Kannada rendering of each item — "headlineKn
 OUTPUT: a single JSON object and NOTHING else, shape:
 {"items":[{"id":"lowercase-slug","category":"<one of the 9>","headline":"...","summary":"neutral 1-2 sentences in English","headlineKn":"ಕನ್ನಡ ಶೀರ್ಷಿಕೆ","summaryKn":"ಕನ್ನಡ ಸಾರಾಂಶ","sources":[{"name":"Outlet","url":"<verbatim candidate url>"}],"badge":"confirmed|reported|unverified","score":0,"date":"YYYY-MM-DD"}]}`;
 
+type Recent = { id: string; headline: string; date: string | null };
+
 async function curate(
   anthropicKey: string,
   today: string,
-  candidates: Candidate[]
+  candidates: Candidate[],
+  recent: Recent[]
 ): Promise<unknown[]> {
   const userText =
-    `Today's date: ${today}\n\nCANDIDATES (${candidates.length}):\n` +
+    `Today's date: ${today}\n\nALREADY_PUBLISHED (${recent.length}) — do NOT duplicate these; reuse the exact id only for a genuinely new development:\n` +
+    JSON.stringify(recent, null, 0) +
+    `\n\nCANDIDATES (${candidates.length}):\n` +
     JSON.stringify(candidates, null, 0);
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -118,6 +125,39 @@ async function curate(
     throw new Error(`no JSON in model output; raw="${text.slice(0, 200)}"`);
   const parsed = JSON.parse(cleaned.slice(start, end + 1));
   return Array.isArray(parsed?.items) ? parsed.items : [];
+}
+
+// Distinctive words (>=4 chars) of a headline, lowercased and de-punctuated.
+function keyWords(s: string): Set<string> {
+  return new Set(
+    (s || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter((w) => w.length >= 4)
+  );
+}
+// Overlap coefficient = shared / smaller set. Conservative "same story" test.
+function sameStory(a: string, b: string): boolean {
+  const A = keyWords(a), B = keyWords(b);
+  if (A.size < 3 || B.size < 3) return false;
+  let shared = 0;
+  for (const t of A) if (B.has(t)) shared++;
+  return shared >= 3 && shared / Math.min(A.size, B.size) >= 0.75;
+}
+
+// Belt-and-suspenders dedup: if the model minted a NEW id for a story that is
+// clearly one already published (near-identical headline), remap it to that id
+// so the upsert updates in place rather than creating a duplicate row.
+function remapDuplicates(items: unknown[], recent: Recent[]): number {
+  let remapped = 0;
+  for (const raw of items) {
+    const it = raw as { id?: unknown; headline?: unknown };
+    if (!it || typeof it.id !== "string" || typeof it.headline !== "string") continue;
+    if (recent.some((r) => r.id === it.id)) continue; // already reusing an id — good
+    const match = recent.find((r) => sameStory(it.headline as string, r.headline));
+    if (match) {
+      it.id = match.id;
+      remapped++;
+    }
+  }
+  return remapped;
 }
 
 export async function GET(req: Request) {
@@ -165,8 +205,29 @@ export async function GET(req: Request) {
     if (candidates.length === 0)
       return NextResponse.json({ error: "no candidates gathered" }, { status: 502 });
 
+    // 1b. DEDUP CONTEXT — recently-ingested items (last ~10 days) so the model
+    // doesn't re-publish the same story under a new slug. Fetch unfiltered and
+    // window in JS (avoids the pooled-PostgREST predicate quirks we hit before).
+    const supabase = createClient(supaUrl, supaKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: { fetch: (u, i) => fetch(u, { ...i, cache: "no-store" }) },
+    });
+    const cutoff = Date.now() - 10 * 86_400_000;
+    const { data: recentRows } = await supabase
+      .from("news_items")
+      .select("id,headline,item_date,created_at")
+      .limit(200);
+    const recent: Recent[] = ((recentRows ?? []) as { id: string; headline: string; item_date: string | null; created_at: string }[])
+      .filter((r) => Date.parse(r.created_at) >= cutoff)
+      .sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
+      .slice(0, 40)
+      .map((r) => ({ id: r.id, headline: r.headline, date: r.item_date }));
+
     // 2. CURATE
-    const items = await curate(anthropicKey, today, candidates);
+    const items = await curate(anthropicKey, today, candidates, recent);
+
+    // 2b. DEDUP safety net (in case the model minted a new id for a known story)
+    const remapped = remapDuplicates(items, recent);
 
     // 3. INGEST
     const result = await ingestNewsItems(items, supaUrl, supaKey);
@@ -175,6 +236,8 @@ export async function GET(req: Request) {
       ok: true,
       today,
       gathered: candidates.length,
+      dedupAgainst: recent.length,
+      remapped,
       curated: items.length,
       ...result,
       headlines: (items as { headline?: string; badge?: string; date?: string }[])
