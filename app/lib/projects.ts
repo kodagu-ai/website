@@ -243,13 +243,13 @@ export const projects: Project[] = [
     name: "Manabala",
     localName: "ಮನಬಲ",
     tagline:
-      "Kodagu's community listening network — a trained listener near you, calming skills in Kannada, and help a tap away.",
+      "Kodagu's community listening network — talk to a trained listener near you in Kannada or Kodava thakk, learn calming skills, and reach help fast.",
     taglineKn:
-      "ಕೊಡಗಿನ ಆಲಿಸುವ ಬಳಗ — ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಆಲಿಸುವವರು, ಕನ್ನಡದಲ್ಲಿ ಶಾಂತಗೊಳಿಸುವ ಕೌಶಲಗಳು, ಮತ್ತು ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಸಹಾಯ.",
+      "ಕೊಡಗಿನ ಆಲಿಸುವ ಬಳಗ — ಕನ್ನಡ ಅಥವಾ ಕೊಡವ ತಕ್ಕ್‌ನಲ್ಲಿ ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಆಲಿಸುವವರೊಂದಿಗೆ ಮಾತನಾಡಿ, ಶಾಂತಗೊಳಿಸುವ ಕೌಶಲಗಳನ್ನು ಕಲಿಯಿರಿ, ಮತ್ತು ಬೇಗನೆ ಸಹಾಯ ಪಡೆಯಿರಿ.",
     summary:
-      "Manabala is a community mental-wellbeing network for Kodagu. It connects you to a trained volunteer listener near you for a private, judgement-free conversation, teaches simple calming skills in Kannada, and keeps professional help close. It is peer listening — not medical treatment — conversations are never recorded, and a free 24/7 crisis line is always one tap away.",
+      "Manabala is a community mental-wellbeing network for Kodagu. It connects you to a trained volunteer listener near you for a private, judgement-free conversation in your own language — Kannada or Kodava thakk — teaches simple calming skills, and keeps professional help close. It is peer listening — not medical treatment — conversations are never recorded, and a free 24/7 crisis line is always one tap away.",
     summaryKn:
-      "ಮನಬಲ ಕೊಡಗಿನ ಸಮುದಾಯ ಮಾನಸಿಕ ಯೋಗಕ್ಷೇಮ ಬಳಗ. ಇದು ನಿಮ್ಮನ್ನು ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗೆ ಸೇರಿಸುತ್ತದೆ, ಕನ್ನಡದಲ್ಲಿ ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ ಸರಳ ಕೌಶಲಗಳನ್ನು ಕಲಿಸುತ್ತದೆ, ಮತ್ತು ವೃತ್ತಿಪರ ಸಹಾಯವನ್ನು ಹತ್ತಿರದಲ್ಲಿ ಇರಿಸುತ್ತದೆ. ಇದು ಸಹವರ್ತಿ ಆಲಿಸುವಿಕೆ — ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಅಲ್ಲ — ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ, ಮತ್ತು ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿ ಯಾವಾಗಲೂ ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಇರುತ್ತದೆ.",
+      "ಮನಬಲ ಕೊಡಗಿನ ಸಮುದಾಯ ಮಾನಸಿಕ ಯೋಗಕ್ಷೇಮ ಬಳಗ. ಇದು ನಿಮ್ಮನ್ನು ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ನಿಮ್ಮದೇ ಭಾಷೆಯಲ್ಲಿ — ಕನ್ನಡ ಅಥವಾ ಕೊಡವ ತಕ್ಕ್ — ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗೆ ಸೇರಿಸುತ್ತದೆ, ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ ಸರಳ ಕೌಶಲಗಳನ್ನು ಕಲಿಸುತ್ತದೆ, ಮತ್ತು ವೃತ್ತಿಪರ ಸಹಾಯವನ್ನು ಹತ್ತಿರದಲ್ಲಿ ಇರಿಸುತ್ತದೆ. ಇದು ಸಹವರ್ತಿ ಆಲಿಸುವಿಕೆ — ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಅಲ್ಲ — ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ, ಮತ್ತು ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿ ಯಾವಾಗಲೂ ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಇರುತ್ತದೆ.",
     icon: "🫂",
     logo: "/manabala-logo.png",
     logoMark: "/manabala-emblem.png",
@@ -259,7 +259,7 @@ export const projects: Project[] = [
     featured: true,
     liveUrl: "https://manabala.kodagu.ai",
     highlights: [
-      "Talk to a trained volunteer listener near you — private and judgement-free",
+      "Talk to a trained volunteer listener near you — in Kannada or Kodava thakk, private and judgement-free",
       "Learn 5 simple mind-calming skills, in plain Kannada",
       "Free 24/7 crisis line built in: Tele-MANAS 14416, one tap away",
       "Privacy first — conversations are never recorded; only minimal details are stored",
@@ -267,7 +267,7 @@ export const projects: Project[] = [
       "‘Mana’, a gentle AI companion, for a first conversation any time",
     ],
     highlightsKn: [
-      "ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ಮಾತನಾಡಿ — ಖಾಸಗಿ ಮತ್ತು ತೀರ್ಪಿಲ್ಲದೆ",
+      "ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ಮಾತನಾಡಿ — ಕನ್ನಡ ಅಥವಾ ಕೊಡವ ತಕ್ಕ್‌ನಲ್ಲಿ, ಖಾಸಗಿ ಮತ್ತು ತೀರ್ಪಿಲ್ಲದೆ",
       "ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ 5 ಸರಳ ಕೌಶಲಗಳನ್ನು ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ",
       "ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿ ಒಳಗೊಂಡಿದೆ: ಟೆಲಿ-ಮನಸ್ 14416, ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ",
       "ಗೌಪ್ಯತೆ ಮೊದಲು — ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ; ಕನಿಷ್ಠ ವಿವರ ಮಾತ್ರ ಉಳಿಸುತ್ತೇವೆ",
@@ -285,7 +285,7 @@ export const projects: Project[] = [
       {
         heading: "What Manabala does",
         body: [
-          "Manabala shows you trained volunteer listeners near your town — Madikeri, Virajpet, Somwarpet, Kushalnagar, Gonikoppal and more — for a private, judgement-free conversation in your own language.",
+          "Manabala shows you trained volunteer listeners near your town — Madikeri, Virajpet, Somwarpet, Kushalnagar, Gonikoppal and more — for a private, judgement-free conversation in your own language, whether that's Kannada or Kodava thakk.",
           "Alongside listening, it teaches five simple mind-calming skills in Kannada, offers ‘Mana’ (a gentle AI companion) for a first conversation any time, and keeps the free 24/7 helpline one tap away. Most of it works without any login.",
         ],
       },
@@ -308,7 +308,7 @@ export const projects: Project[] = [
       {
         heading: "ಮನಬಲ ಏನು ಮಾಡುತ್ತದೆ",
         body: [
-          "ಮನಬಲ ನಿಮ್ಮ ಊರಿನ ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರನ್ನು ತೋರಿಸುತ್ತದೆ — ಮಡಿಕೇರಿ, ವಿರಾಜಪೇಟೆ, ಸೋಮವಾರಪೇಟೆ, ಕುಶಾಲನಗರ, ಗೋಣಿಕೊಪ್ಪಲು ಮತ್ತು ಇನ್ನಷ್ಟು — ನಿಮ್ಮದೇ ಭಾಷೆಯಲ್ಲಿ ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗಾಗಿ.",
+          "ಮನಬಲ ನಿಮ್ಮ ಊರಿನ ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರನ್ನು ತೋರಿಸುತ್ತದೆ — ಮಡಿಕೇರಿ, ವಿರಾಜಪೇಟೆ, ಸೋಮವಾರಪೇಟೆ, ಕುಶಾಲನಗರ, ಗೋಣಿಕೊಪ್ಪಲು ಮತ್ತು ಇನ್ನಷ್ಟು — ಕನ್ನಡ ಅಥವಾ ಕೊಡವ ತಕ್ಕ್, ನಿಮ್ಮದೇ ಭಾಷೆಯಲ್ಲಿ ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗಾಗಿ.",
           "ಆಲಿಸುವಿಕೆಯ ಜೊತೆಗೆ, ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ ಐದು ಸರಳ ಕೌಶಲಗಳನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಸುತ್ತದೆ, ಯಾವಾಗ ಬೇಕಾದರೂ ಮೊದಲ ಮಾತುಕತೆಗೆ ‘ಮನ’ (ಸೌಮ್ಯ AI ಸಂಗಾತಿ) ಒದಗಿಸುತ್ತದೆ, ಮತ್ತು ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿಯನ್ನು ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಇರಿಸುತ್ತದೆ. ಬಹುಪಾಲು ಲಾಗಿನ್ ಇಲ್ಲದೆ ಬಳಸಬಹುದು.",
         ],
       },
