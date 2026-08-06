@@ -42,9 +42,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {S.projPage.backAll[locale]}
           </Link>
           <div className="detail-title">
-            {project.logo ? (
+            {project.logoMark || project.logo ? (
+              // Prefer the wordmark-free mark: the header sits on a dark hero
+              // beside the project's name, so a compact emblem reads best and
+              // avoids duplicating the title.
               <img
-                src={project.logo}
+                src={project.logoMark || project.logo}
                 alt={`${project.name} logo`}
                 className="d-logo"
                 style={{ height: 64, width: "auto", display: "block" }}
