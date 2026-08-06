@@ -333,6 +333,99 @@ export const projects: Project[] = [
       "ಡೆವಲಪರ್‌ಗಳು: ಆ್ಯಪ್, ಆಲಿಸುವವರ ಪಟ್ಟಿ ಮತ್ತು ಗೌಪ್ಯತೆ ಸುರಕ್ಷತೆಗಳನ್ನು ಸುಧಾರಿಸಿ",
     ],
   },
+  {
+    slug: "kodava-thakk",
+    name: "Kodava Thakk",
+    localName: "ಕೊಡವ ತಕ್ಕ್",
+    tagline:
+      "A community-owned AI language preservation initiative for Kodava Takk — record the voice, build the corpus, teach the machines our mother tongue.",
+    taglineKn:
+      "ಕೊಡವ ತಕ್ಕ್‌ಗಾಗಿ ಸಮುದಾಯ-ಒಡೆತನದ AI ಭಾಷಾ ಸಂರಕ್ಷಣಾ ಉಪಕ್ರಮ — ಧ್ವನಿಯನ್ನು ದಾಖಲಿಸಿ, ಕಾರ್ಪಸ್ ನಿರ್ಮಿಸಿ, ಯಂತ್ರಗಳಿಗೆ ನಮ್ಮ ಮಾತೃಭಾಷೆ ಕಲಿಸಿ.",
+    summary:
+      "Kodava Takk has no script in daily use — it lives in the voice, and UNESCO lists it as definitely endangered. Kodava Thakk preserves the language as sound: a community recording drive builds a 1,000-hour speech corpus under a Kodava data guardianship licence, open AI models learn to hear and speak Thakk from it, and the results return to the community as a talking dictionary, a listening archive, and Ainmane — an AI companion a learner can actually converse with. Contribute 30 seconds of your voice today; a live dial counts every voice and hour.",
+    summaryKn:
+      "ಕೊಡವ ತಕ್ಕ್‌ಗೆ ದೈನಂದಿನ ಬಳಕೆಯ ಲಿಪಿ ಇಲ್ಲ — ಅದು ಧ್ವನಿಯಲ್ಲಿ ಬದುಕುತ್ತದೆ, ಮತ್ತು UNESCO ಅದನ್ನು ಖಚಿತವಾಗಿ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ ಭಾಷೆ ಎಂದು ಪಟ್ಟಿ ಮಾಡಿದೆ. ಕೊಡವ ತಕ್ಕ್ ಯೋಜನೆ ಭಾಷೆಯನ್ನು ಧ್ವನಿಯಾಗಿಯೇ ಸಂರಕ್ಷಿಸುತ್ತದೆ: ಸಮುದಾಯ ಧ್ವನಿಮುದ್ರಣ ಅಭಿಯಾನವು ಕೊಡವ ದತ್ತಾಂಶ ಪಾಲಕತ್ವ ಪರವಾನಗಿಯಡಿ 1,000 ಗಂಟೆಗಳ ಧ್ವನಿ ಕಾರ್ಪಸ್ ನಿರ್ಮಿಸುತ್ತದೆ; ಮುಕ್ತ AI ಮಾದರಿಗಳು ಅದರಿಂದ ತಕ್ಕ್ ಕೇಳಲು ಮತ್ತು ಮಾತನಾಡಲು ಕಲಿಯುತ್ತವೆ; ಫಲಿತಾಂಶಗಳು ಮಾತನಾಡುವ ಪದಕೋಶ, ಆಲಿಸುವ ಸಂಗ್ರಹಾಲಯ ಮತ್ತು ಕಲಿಯುವವರು ನಿಜವಾಗಿ ಮಾತನಾಡಬಹುದಾದ AI ಸಂಗಾತಿ 'ಐನ್‌ಮನೆ' ಆಗಿ ಸಮುದಾಯಕ್ಕೆ ಹಿಂತಿರುಗುತ್ತವೆ. ಇಂದೇ ನಿಮ್ಮ ಧ್ವನಿಯ 30 ಸೆಕೆಂಡ್ ನೀಡಿ.",
+    icon: "🎙️",
+    logo: "/kodava-thakk-logo.svg",
+    status: "Live",
+    category: "Language & Heritage",
+    categoryKn: "ಭಾಷೆ ಮತ್ತು ಪರಂಪರೆ",
+    featured: true,
+    repoUrl: "https://github.com/kodagu-ai/kodavathakk",
+    liveUrl: "https://kodavathakk.kodagu.ai",
+    highlights: [
+      "Record 30 seconds of Thakk in the browser — no app needed; a live dial counts every voice and hour",
+      "Community-owned corpus under a Kodava data guardianship licence — never sold, consent-tiered, elders first",
+      "Both dialects by design: Mendele and Kiggat, home and diaspora",
+      "AI fine-tuned from open Dravidian models: speech recognition, then speech synthesis, then a speech-to-speech companion",
+      "36-month public roadmap: 100 hours in the pilot to 1,000+ hours and a conversational companion",
+    ],
+    highlightsKn: [
+      "ಬ್ರೌಸರ್‌ನಲ್ಲೇ 30 ಸೆಕೆಂಡ್ ತಕ್ಕ್ ಧ್ವನಿಮುದ್ರಿಸಿ — ಆ್ಯಪ್ ಬೇಕಿಲ್ಲ; ಪ್ರತಿ ಧ್ವನಿ ಮತ್ತು ಗಂಟೆಯನ್ನು ನೇರ ಡಯಲ್ ಎಣಿಸುತ್ತದೆ",
+      "ಕೊಡವ ದತ್ತಾಂಶ ಪಾಲಕತ್ವ ಪರವಾನಗಿಯಡಿ ಸಮುದಾಯ-ಒಡೆತನದ ಕಾರ್ಪಸ್ — ಎಂದಿಗೂ ಮಾರಾಟವಿಲ್ಲ, ಸಮ್ಮತಿ-ಹಂತಗಳು, ಹಿರಿಯರಿಗೆ ಮೊದಲ ಆದ್ಯತೆ",
+      "ಎರಡೂ ಉಪಭಾಷೆಗಳು ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿ: ಮೆಂದಲೆ ಮತ್ತು ಕಿಗ್ಗಾಟ್, ಊರು ಮತ್ತು ಹೊರನಾಡು",
+      "ಮುಕ್ತ ದ್ರಾವಿಡ ಮಾದರಿಗಳಿಂದ AI: ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ, ನಂತರ ಧ್ವನಿ ಸಂಶ್ಲೇಷಣೆ, ನಂತರ ಮಾತು-ಮಾತಿನ ಸಂಗಾತಿ",
+      "36 ತಿಂಗಳ ಸಾರ್ವಜನಿಕ ಮಾರ್ಗಸೂಚಿ: ಪ್ರಾಯೋಗಿಕ 100 ಗಂಟೆಗಳಿಂದ 1,000+ ಗಂಟೆ ಮತ್ತು ಸಂವಾದ ಸಂಗಾತಿಯವರೆಗೆ",
+    ],
+    sections: [
+      {
+        heading: "The problem",
+        body: [
+          "Kodava Takk is spoken by roughly 114,000 people and is classified by UNESCO as definitely endangered: children are increasingly not learning it at home. It has no script in daily use — the language lives in conversation, in the Palame folk songs, and in ritual speech, which means every unrecorded elder is an archive lost.",
+          "No large speech corpus or language AI exists for Kodava Takk. That gap is also the opportunity: modern speech models can learn a language from a few hundred hours of well-described recordings.",
+        ],
+      },
+      {
+        heading: "What Kodava Thakk does",
+        body: [
+          "The project preserves the language the way it actually exists — as sound. Level 0 is live now: anyone can record a story, song, proverb, or blessing at kodavathakk.kodagu.ai, straight from the browser. Every clip carries speaker, village, okka, dialect, and tiered consent, and lands in a community-governed tracker. A public dial shows voices contributed and hours recorded, in real time.",
+          "On that corpus the project fine-tunes open models — speech recognition first, then text-to-speech, then translation — following the playbook proven by the Māori (Te Hiku Media), Mozilla Common Voice, AI4Bharat, and Project Vaani. Everything ships back to the community: a listening archive, a talking dictionary, classroom packs, and Ainmane, a speech-to-speech companion that gives learners someone patient to talk to.",
+        ],
+      },
+      {
+        heading: "Owned by the community",
+        body: [
+          "The corpus is held under a Kodava data guardianship licence modelled on Te Hiku Media's Kaitiakitanga licence: contributors keep moral ownership, a community trust is custodian, commercial use requires council approval and benefit-sharing, and the data can never be sold. Elders' voices are never cloned without family and council consent.",
+          "Kodava Thakk is a Nada Kodagu initiative run through the Kodagu.ai community, with the Karnataka Kodava Sahitya Academy, Mangalore University's Kodava MA program, and India's open speech-AI ecosystem as natural partners.",
+        ],
+      },
+    ],
+    sectionsKn: [
+      {
+        heading: "ಸಮಸ್ಯೆ",
+        body: [
+          "ಕೊಡವ ತಕ್ಕ್ ಅನ್ನು ಸುಮಾರು 1,14,000 ಜನ ಮಾತನಾಡುತ್ತಾರೆ ಮತ್ತು UNESCO ಅದನ್ನು ಖಚಿತವಾಗಿ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ ಭಾಷೆ ಎಂದು ವರ್ಗೀಕರಿಸಿದೆ: ಮಕ್ಕಳು ಮನೆಯಲ್ಲಿ ಅದನ್ನು ಕಲಿಯುವುದು ಕಡಿಮೆಯಾಗುತ್ತಿದೆ. ದೈನಂದಿನ ಬಳಕೆಯ ಲಿಪಿ ಇಲ್ಲ — ಭಾಷೆ ಮಾತುಕತೆ, ಪಾಲಮೆ ಜನಪದ ಹಾಡುಗಳು ಮತ್ತು ಆಚರಣಾ ಮಾತಿನಲ್ಲಿ ಬದುಕುತ್ತದೆ; ಅಂದರೆ ದಾಖಲಾಗದ ಪ್ರತಿ ಹಿರಿಯರೂ ಕಳೆದುಹೋದ ಸಂಗ್ರಹಾಲಯ.",
+          "ಕೊಡವ ತಕ್ಕ್‌ಗೆ ದೊಡ್ಡ ಧ್ವನಿ ಕಾರ್ಪಸ್ ಅಥವಾ ಭಾಷಾ AI ಇನ್ನೂ ಇಲ್ಲ. ಆ ಕೊರತೆಯೇ ಅವಕಾಶ: ಆಧುನಿಕ ಧ್ವನಿ ಮಾದರಿಗಳು ಕೆಲವು ನೂರು ಗಂಟೆಗಳ ಉತ್ತಮ ಧ್ವನಿಮುದ್ರಣಗಳಿಂದ ಭಾಷೆ ಕಲಿಯಬಲ್ಲವು.",
+        ],
+      },
+      {
+        heading: "ಕೊಡವ ತಕ್ಕ್ ಏನು ಮಾಡುತ್ತದೆ",
+        body: [
+          "ಯೋಜನೆ ಭಾಷೆಯನ್ನು ಅದು ನಿಜವಾಗಿ ಇರುವ ರೂಪದಲ್ಲೇ — ಧ್ವನಿಯಾಗಿ — ಸಂರಕ್ಷಿಸುತ್ತದೆ. ಹಂತ 0 ಈಗ ನೇರ: ಯಾರಾದರೂ kodavathakk.kodagu.ai ನಲ್ಲಿ ಬ್ರೌಸರ್‌ನಿಂದಲೇ ಕಥೆ, ಹಾಡು, ಗಾದೆ ಅಥವಾ ಆಶೀರ್ವಾದ ಧ್ವನಿಮುದ್ರಿಸಬಹುದು. ಪ್ರತಿ ತುಣುಕು ಮಾತನಾಡುವವರ ಊರು, ಒಕ್ಕ, ಉಪಭಾಷೆ ಮತ್ತು ಹಂತದ ಸಮ್ಮತಿಯೊಂದಿಗೆ ಸಮುದಾಯ-ನಿರ್ವಹಿತ ಟ್ರ್ಯಾಕರ್‌ಗೆ ಸೇರುತ್ತದೆ. ಸಾರ್ವಜನಿಕ ಡಯಲ್ ಧ್ವನಿಗಳು ಮತ್ತು ಗಂಟೆಗಳನ್ನು ನೈಜ ಸಮಯದಲ್ಲಿ ತೋರಿಸುತ್ತದೆ.",
+          "ಆ ಕಾರ್ಪಸ್ ಮೇಲೆ ಯೋಜನೆ ಮುಕ್ತ ಮಾದರಿಗಳನ್ನು ಹೊಂದಿಸುತ್ತದೆ — ಮೊದಲು ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ, ನಂತರ ಧ್ವನಿ ಸಂಶ್ಲೇಷಣೆ, ನಂತರ ಅನುವಾದ — ಮಾವೊರಿ (ಟೆ ಹಿಕು ಮೀಡಿಯಾ), Mozilla Common Voice, AI4Bharat ಮತ್ತು Project Vaani ಸಾಬೀತುಪಡಿಸಿದ ಮಾದರಿಯಂತೆ. ಎಲ್ಲವೂ ಸಮುದಾಯಕ್ಕೆ ಹಿಂತಿರುಗುತ್ತದೆ: ಆಲಿಸುವ ಸಂಗ್ರಹಾಲಯ, ಮಾತನಾಡುವ ಪದಕೋಶ, ತರಗತಿ ಪಾಠಗಳು, ಮತ್ತು ಕಲಿಯುವವರಿಗೆ ತಾಳ್ಮೆಯ ಸಂಗಾತಿ 'ಐನ್‌ಮನೆ'.",
+        ],
+      },
+      {
+        heading: "ಸಮುದಾಯದ ಒಡೆತನ",
+        body: [
+          "ಕಾರ್ಪಸ್ ಟೆ ಹಿಕು ಮೀಡಿಯಾದ ಕೈಟಿಯಾಕಿಟಾಂಗ ಪರವಾನಗಿಯ ಮಾದರಿಯ ಕೊಡವ ದತ್ತಾಂಶ ಪಾಲಕತ್ವ ಪರವಾನಗಿಯಡಿ ಇರುತ್ತದೆ: ಕೊಡುಗೆದಾರರಿಗೆ ನೈತಿಕ ಒಡೆತನ, ಸಮುದಾಯ ಟ್ರಸ್ಟ್ ಪಾಲಕ, ವಾಣಿಜ್ಯ ಬಳಕೆಗೆ ಪರಿಷತ್ತಿನ ಅನುಮೋದನೆ ಮತ್ತು ಲಾಭ-ಹಂಚಿಕೆ ಅಗತ್ಯ, ಮತ್ತು ದತ್ತಾಂಶ ಎಂದಿಗೂ ಮಾರಾಟವಾಗದು. ಕುಟುಂಬ ಮತ್ತು ಪರಿಷತ್ತಿನ ಸಮ್ಮತಿ ಇಲ್ಲದೆ ಹಿರಿಯರ ಧ್ವನಿ ಎಂದಿಗೂ ನಕಲು ಆಗದು.",
+          "ಕೊಡವ ತಕ್ಕ್ ನಾಡ ಕೊಡಗು ಉಪಕ್ರಮ — Kodagu.ai ಸಮುದಾಯದ ಮೂಲಕ ನಡೆಯುತ್ತದೆ; ಕರ್ನಾಟಕ ಕೊಡವ ಸಾಹಿತ್ಯ ಅಕಾಡೆಮಿ, ಮಂಗಳೂರು ವಿಶ್ವವಿದ್ಯಾಲಯದ ಕೊಡವ MA ವಿಭಾಗ ಮತ್ತು ಭಾರತದ ಮುಕ್ತ ಧ್ವನಿ-AI ಪರಿಸರ ಸಹಜ ಪಾಲುದಾರರು.",
+        ],
+      },
+    ],
+    contribute: [
+      "Every speaker: record 30 seconds of Thakk at kodavathakk.kodagu.ai — then get three relatives to do it",
+      "Facilitators: sit with the elders of your okka and record the long versions — kits and training provided",
+      "Transcribers & validators: paid, work-from-home listening and Kannada-script transcription",
+      "Developers & ML engineers: the whole stack is open source, from this site to the coming speech models",
+    ],
+    contributeKn: [
+      "ಪ್ರತಿ ಮಾತುಗಾರರೂ: kodavathakk.kodagu.ai ನಲ್ಲಿ 30 ಸೆಕೆಂಡ್ ತಕ್ಕ್ ಧ್ವನಿಮುದ್ರಿಸಿ — ನಂತರ ಮೂವರು ಬಂಧುಗಳಿಂದಲೂ ಮಾಡಿಸಿ",
+      "ಸಂಯೋಜಕರು: ನಿಮ್ಮ ಒಕ್ಕದ ಹಿರಿಯರೊಂದಿಗೆ ಕುಳಿತು ದೀರ್ಘ ಆವೃತ್ತಿಗಳನ್ನು ದಾಖಲಿಸಿ — ಕಿಟ್ ಮತ್ತು ತರಬೇತಿ ಒದಗಿಸಲಾಗುತ್ತದೆ",
+      "ಲಿಪ್ಯಂತರಕಾರರು ಮತ್ತು ಪರಿಶೀಲಕರು: ಮನೆಯಿಂದಲೇ ಸಂಭಾವನೆ ಸಹಿತ ಆಲಿಸುವಿಕೆ ಮತ್ತು ಕನ್ನಡ ಲಿಪಿ ಬರವಣಿಗೆ",
+      "ಡೆವಲಪರ್‌ಗಳು ಮತ್ತು ML ಇಂಜಿನಿಯರ್‌ಗಳು: ಈ ಸೈಟ್‌ನಿಂದ ಬರಲಿರುವ ಧ್ವನಿ ಮಾದರಿಗಳವರೆಗೆ ಇಡೀ ವ್ಯವಸ್ಥೆ ಮುಕ್ತ-ಮೂಲ",
+    ],
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
