@@ -238,6 +238,99 @@ export const projects: Project[] = [
       "ಕ್ಷೇತ್ರ ಪರಿಣತರು: ಮಾದರಿಯನ್ನು ಪರಿಷ್ಕರಿಸಲು ಭೂವಿಜ್ಞಾನಿಗಳು, ಜಲವಿಜ್ಞಾನಿಗಳು ಮತ್ತು ವಿಪತ್ತು-ನಿರ್ವಹಣೆ / ಅರಣ್ಯ ಇಲಾಖೆ ಪಾಲುದಾರರು",
     ],
   },
+  {
+    slug: "manabala",
+    name: "Manabala",
+    localName: "ಮನಬಲ",
+    tagline:
+      "Kodagu's community listening network — a trained listener near you, calming skills in Kannada, and help a tap away.",
+    taglineKn:
+      "ಕೊಡಗಿನ ಆಲಿಸುವ ಬಳಗ — ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಆಲಿಸುವವರು, ಕನ್ನಡದಲ್ಲಿ ಶಾಂತಗೊಳಿಸುವ ಕೌಶಲಗಳು, ಮತ್ತು ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಸಹಾಯ.",
+    summary:
+      "Manabala is a community mental-wellbeing network for Kodagu. It connects you to a trained volunteer listener near you for a private, judgement-free conversation, teaches simple calming skills in Kannada, and keeps professional help close. It is peer listening — not medical treatment — conversations are never recorded, and a free 24/7 crisis line is always one tap away.",
+    summaryKn:
+      "ಮನಬಲ ಕೊಡಗಿನ ಸಮುದಾಯ ಮಾನಸಿಕ ಯೋಗಕ್ಷೇಮ ಬಳಗ. ಇದು ನಿಮ್ಮನ್ನು ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗೆ ಸೇರಿಸುತ್ತದೆ, ಕನ್ನಡದಲ್ಲಿ ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ ಸರಳ ಕೌಶಲಗಳನ್ನು ಕಲಿಸುತ್ತದೆ, ಮತ್ತು ವೃತ್ತಿಪರ ಸಹಾಯವನ್ನು ಹತ್ತಿರದಲ್ಲಿ ಇರಿಸುತ್ತದೆ. ಇದು ಸಹವರ್ತಿ ಆಲಿಸುವಿಕೆ — ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಅಲ್ಲ — ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ, ಮತ್ತು ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿ ಯಾವಾಗಲೂ ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಇರುತ್ತದೆ.",
+    icon: "🫂",
+    status: "Beta",
+    category: "Mental Health & Wellbeing",
+    categoryKn: "ಮಾನಸಿಕ ಆರೋಗ್ಯ ಮತ್ತು ಯೋಗಕ್ಷೇಮ",
+    featured: true,
+    liveUrl: "https://manabala.kodagu.ai",
+    highlights: [
+      "Talk to a trained volunteer listener near you — private and judgement-free",
+      "Learn 5 simple mind-calming skills, in plain Kannada",
+      "Free 24/7 crisis line built in: Tele-MANAS 14416, one tap away",
+      "Privacy first — conversations are never recorded; only minimal details are stored",
+      "Works without login; sign-in is only needed to call a listener",
+      "‘Mana’, a gentle AI companion, for a first conversation any time",
+    ],
+    highlightsKn: [
+      "ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರೊಂದಿಗೆ ಮಾತನಾಡಿ — ಖಾಸಗಿ ಮತ್ತು ತೀರ್ಪಿಲ್ಲದೆ",
+      "ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ 5 ಸರಳ ಕೌಶಲಗಳನ್ನು ಸರಳ ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ",
+      "ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿ ಒಳಗೊಂಡಿದೆ: ಟೆಲಿ-ಮನಸ್ 14416, ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ",
+      "ಗೌಪ್ಯತೆ ಮೊದಲು — ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ; ಕನಿಷ್ಠ ವಿವರ ಮಾತ್ರ ಉಳಿಸುತ್ತೇವೆ",
+      "ಲಾಗಿನ್ ಇಲ್ಲದೆ ಬಳಸಬಹುದು; ಆಲಿಸುವವರಿಗೆ ಕರೆ ಮಾಡಲು ಮಾತ್ರ ಲಾಗಿನ್ ಬೇಕು",
+      "‘ಮನ’, ಒಂದು ಸೌಮ್ಯ AI ಸಂಗಾತಿ — ಯಾವಾಗ ಬೇಕಾದರೂ ಮೊದಲ ಮಾತುಕತೆಗೆ",
+    ],
+    sections: [
+      {
+        heading: "The problem",
+        body: [
+          "In Kodagu, reaching out when your mind is heavy is hard — help is far, it often isn't in Kannada, and stigma keeps people silent. Many just want someone close by who will listen, without judgement.",
+          "The distance is real: professional care is concentrated in a few towns, waits are long, and for young people, farmers, and estate workers a quiet conversation often never happens.",
+        ],
+      },
+      {
+        heading: "What Manabala does",
+        body: [
+          "Manabala shows you trained volunteer listeners near your town — Madikeri, Virajpet, Somwarpet, Kushalnagar, Gonikoppal and more — for a private, judgement-free conversation in your own language.",
+          "Alongside listening, it teaches five simple mind-calming skills in Kannada, offers ‘Mana’ (a gentle AI companion) for a first conversation any time, and keeps the free 24/7 helpline one tap away. Most of it works without any login.",
+        ],
+      },
+      {
+        heading: "Care, privacy and safety",
+        body: [
+          "Listeners are trained community volunteers, not clinicians — they listen; they do not diagnose or prescribe. Every listener follows a code of conduct: keep conversations private, give no medical advice, and connect anyone in crisis — thoughts of self-harm or suicide — to Tele-MANAS 14416 straight away.",
+          "Privacy is built in: conversations are never recorded and only minimal details are stored. Manabala complements professional mental-health care; it does not replace it. If you or someone you know is in danger, call 14416 (free, 24/7) or your local emergency services now.",
+        ],
+      },
+    ],
+    sectionsKn: [
+      {
+        heading: "ಸಮಸ್ಯೆ",
+        body: [
+          "ಕೊಡಗಿನಲ್ಲಿ ಮನಸ್ಸು ಭಾರವಾದಾಗ ಸಹಾಯ ಕೇಳುವುದು ಕಷ್ಟ — ಸಹಾಯ ದೂರ, ಹೆಚ್ಚಾಗಿ ಕನ್ನಡದಲ್ಲಿ ಇಲ್ಲ, ಮತ್ತು ಕಳಂಕ ಜನರನ್ನು ಮೌನವಾಗಿಸುತ್ತದೆ. ಹಲವರಿಗೆ ಬೇಕಾಗಿರುವುದು ಹತ್ತಿರದಲ್ಲೇ, ತೀರ್ಪಿಲ್ಲದೆ ಆಲಿಸುವ ಒಬ್ಬರು.",
+          "ದೂರ ನಿಜ: ವೃತ್ತಿಪರ ಸೇವೆ ಕೆಲವೇ ಊರುಗಳಲ್ಲಿ ಕೇಂದ್ರೀಕೃತ, ಕಾಯುವಿಕೆ ಉದ್ದ, ಮತ್ತು ಯುವಜನ, ರೈತರು, ಎಸ್ಟೇಟ್ ಕಾರ್ಮಿಕರಿಗೆ ಒಂದು ಶಾಂತ ಮಾತುಕತೆ ಹೆಚ್ಚಾಗಿ ನಡೆಯುವುದೇ ಇಲ್ಲ.",
+        ],
+      },
+      {
+        heading: "ಮನಬಲ ಏನು ಮಾಡುತ್ತದೆ",
+        body: [
+          "ಮನಬಲ ನಿಮ್ಮ ಊರಿನ ಹತ್ತಿರದ ತರಬೇತಿ ಪಡೆದ ಸ್ವಯಂಸೇವಕ ಆಲಿಸುವವರನ್ನು ತೋರಿಸುತ್ತದೆ — ಮಡಿಕೇರಿ, ವಿರಾಜಪೇಟೆ, ಸೋಮವಾರಪೇಟೆ, ಕುಶಾಲನಗರ, ಗೋಣಿಕೊಪ್ಪಲು ಮತ್ತು ಇನ್ನಷ್ಟು — ನಿಮ್ಮದೇ ಭಾಷೆಯಲ್ಲಿ ಖಾಸಗಿ, ತೀರ್ಪಿಲ್ಲದ ಮಾತುಕತೆಗಾಗಿ.",
+          "ಆಲಿಸುವಿಕೆಯ ಜೊತೆಗೆ, ಮನಸ್ಸು ಶಾಂತಗೊಳಿಸುವ ಐದು ಸರಳ ಕೌಶಲಗಳನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಸುತ್ತದೆ, ಯಾವಾಗ ಬೇಕಾದರೂ ಮೊದಲ ಮಾತುಕತೆಗೆ ‘ಮನ’ (ಸೌಮ್ಯ AI ಸಂಗಾತಿ) ಒದಗಿಸುತ್ತದೆ, ಮತ್ತು ಉಚಿತ 24/7 ಸಹಾಯವಾಣಿಯನ್ನು ಒಂದೇ ಒತ್ತಿನಲ್ಲಿ ಇರಿಸುತ್ತದೆ. ಬಹುಪಾಲು ಲಾಗಿನ್ ಇಲ್ಲದೆ ಬಳಸಬಹುದು.",
+        ],
+      },
+      {
+        heading: "ಆರೈಕೆ, ಗೌಪ್ಯತೆ ಮತ್ತು ಸುರಕ್ಷತೆ",
+        body: [
+          "ಆಲಿಸುವವರು ತರಬೇತಿ ಪಡೆದ ಸಮುದಾಯ ಸ್ವಯಂಸೇವಕರು, ವೈದ್ಯರಲ್ಲ — ಅವರು ಆಲಿಸುತ್ತಾರೆ; ರೋಗನಿರ್ಣಯ ಅಥವಾ ಔಷಧ ಸೂಚಿಸುವುದಿಲ್ಲ. ಪ್ರತಿ ಆಲಿಸುವವರೂ ನೀತಿ ಸಂಹಿತೆ ಪಾಲಿಸುತ್ತಾರೆ: ಮಾತುಕತೆ ಖಾಸಗಿಯಾಗಿ ಇಡುವುದು, ವೈದ್ಯಕೀಯ ಸಲಹೆ ನೀಡದಿರುವುದು, ಮತ್ತು ಗಂಭೀರ ಸಂದರ್ಭದಲ್ಲಿ — ಆತ್ಮಹತ್ಯೆ ಅಥವಾ ಹಾನಿಯ ಆಲೋಚನೆ — ಇರುವವರನ್ನು ತಕ್ಷಣ ಟೆಲಿ-ಮನಸ್ 14416 ಗೆ ಸೇರಿಸುವುದು.",
+          "ಗೌಪ್ಯತೆ ಒಳಗೊಂಡಿದೆ: ಮಾತುಕತೆ ಎಂದಿಗೂ ರೆಕಾರ್ಡ್ ಆಗುವುದಿಲ್ಲ ಮತ್ತು ಕನಿಷ್ಠ ವಿವರ ಮಾತ್ರ ಉಳಿಸಲಾಗುತ್ತದೆ. ಮನಬಲ ವೃತ್ತಿಪರ ಮಾನಸಿಕ ಆರೋಗ್ಯ ಸೇವೆಗೆ ಪೂರಕ; ಅದಕ್ಕೆ ಬದಲಿ ಅಲ್ಲ. ನೀವು ಅಥವಾ ನಿಮಗೆ ಗೊತ್ತಿರುವವರು ಅಪಾಯದಲ್ಲಿದ್ದರೆ, ಈಗಲೇ 14416 (ಉಚಿತ, 24/7) ಅಥವಾ ಸ್ಥಳೀಯ ತುರ್ತು ಸೇವೆಗೆ ಕರೆ ಮಾಡಿ.",
+        ],
+      },
+    ],
+    contribute: [
+      "Become a listener: train as a volunteer and hold space for people near you",
+      "Clinicians & counsellors: help shape the code of conduct, training, and escalation paths",
+      "Translators & designers: keep the calming skills and guidance clear in Kannada and Kodava thakk",
+      "Developers: improve the app, the listener directory, and the privacy safeguards",
+    ],
+    contributeKn: [
+      "ಆಲಿಸುವವರಾಗಿ: ಸ್ವಯಂಸೇವಕರಾಗಿ ತರಬೇತಿ ಪಡೆದು ನಿಮ್ಮ ಹತ್ತಿರದವರಿಗೆ ಸ್ಥಳ ಕೊಡಿ",
+      "ವೈದ್ಯರು ಮತ್ತು ಆಪ್ತಸಮಾಲೋಚಕರು: ನೀತಿ ಸಂಹಿತೆ, ತರಬೇತಿ ಮತ್ತು ಸಂಪರ್ಕ ಮಾರ್ಗಗಳನ್ನು ರೂಪಿಸಲು ಸಹಾಯ ಮಾಡಿ",
+      "ಅನುವಾದಕರು ಮತ್ತು ಡಿಸೈನರ್‌ಗಳು: ಶಾಂತಗೊಳಿಸುವ ಕೌಶಲ ಮತ್ತು ಮಾರ್ಗದರ್ಶನವನ್ನು ಕನ್ನಡ ಮತ್ತು ಕೊಡವ ತಕ್ಕ್‌ನಲ್ಲಿ ಸ್ಪಷ್ಟವಾಗಿ ಇರಿಸಿ",
+      "ಡೆವಲಪರ್‌ಗಳು: ಆ್ಯಪ್, ಆಲಿಸುವವರ ಪಟ್ಟಿ ಮತ್ತು ಗೌಪ್ಯತೆ ಸುರಕ್ಷತೆಗಳನ್ನು ಸುಧಾರಿಸಿ",
+    ],
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
