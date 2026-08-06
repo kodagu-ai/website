@@ -60,7 +60,17 @@ export async function GET(req: Request) {
     const newestItemDate = byNewest[0]?.item_date ?? null;
 
     const ingestAgeHours = ageHours(newestPublishedAt);
-    const stale = ingestAgeHours === null ? true : ingestAgeHours > STALE_HOURS;
+    let stale = ingestAgeHours === null ? true : ingestAgeHours > STALE_HOURS;
+
+    // TEMPORARY self-test — auto-expires 2026-08-06T17:44:00Z. Forces `stale`
+    // so an uptime monitor can be verified end-to-end (goes Down + alerts, then
+    // recovers on its own after the window). Remove this block after the test.
+    let selfTest = false;
+    if (Date.now() < Date.parse("2026-08-06T17:44:00Z")) {
+      stale = true;
+      selfTest = true;
+    }
+
     const healthy = !stale;
 
     const body = {
@@ -72,6 +82,7 @@ export async function GET(req: Request) {
       newestPublishedAt,
       ingestAgeHours,
       publishedCount: published.length,
+      selfTest,
       checkedAt: new Date().toISOString(),
     };
 
