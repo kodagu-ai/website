@@ -25,6 +25,54 @@ const AREA_LABELS: Record<string, string> = {
   health: "Rural health",
 };
 
+// Notify the founder when a new entry arrives, via Resend (set RESEND_API_KEY).
+// No-op and never throws when unconfigured or on error — a mail hiccup must
+// never fail the applicant's submission. Sender defaults to Resend's shared
+// onboarding address (works with no domain setup, but only delivers to your
+// own Resend account email); set RESEND_FROM once a domain is verified.
+async function notifyNewEntry(
+  row: Record<string, string | null>,
+  joinedDirectory: boolean
+): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+  const to = process.env.SANKALPA_NOTIFY_EMAIL || "poonacha@cyberhuman.ai";
+  const from = process.env.RESEND_FROM || "Kodagu Sankalpa <onboarding@resend.dev>";
+  const line = (k: string, v: string | null) => (v ? `${k}: ${v}\n` : "");
+  const text =
+    "New Kodagu Sankalpa entry\n\n" +
+    line("Name", row.name) +
+    line("Place", row.place) +
+    line("Phone", row.phone) +
+    line("Email", row.email) +
+    line("Entering as", row.entrant_type) +
+    line("Team", row.team_name) +
+    line("Area", row.area) +
+    `\nProblem:\n${row.problem || "—"}\n\nSolution:\n${row.solution || "—"}\n` +
+    line("\nImpact", row.impact) +
+    line("Prior work", row.prior) +
+    line("Link", row.link) +
+    `\nJoined community directory: ${joinedDirectory ? "yes" : "no"}\n` +
+    "\nReview all entries: https://www.kodagu.ai/admin/sankalpa";
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject: `New Sankalpa entry: ${row.name || "(no name)"}`,
+        text,
+        reply_to: row.email || undefined,
+      }),
+    });
+    if (!res.ok)
+      console.error("sankalpa notify email failed:", res.status, (await res.text()).slice(0, 200));
+  } catch (e) {
+    console.error("sankalpa notify email threw:", e);
+  }
+}
+
 export async function POST(req: Request) {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -90,6 +138,10 @@ export async function POST(req: Request) {
         console.error("sankalpa→directory insert threw:", e);
       }
     }
+
+    // Email the founder about the new entry (non-fatal; awaited so the
+    // serverless function doesn't exit before the mail is sent).
+    await notifyNewEntry(row, body.joinDirectory === true);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
