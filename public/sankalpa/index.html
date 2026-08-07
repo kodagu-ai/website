@@ -28,6 +28,19 @@
   a{color:var(--gold-d);text-decoration:none}
   img{max-width:100%}
   .eyebrow{font-family:'Oswald';text-transform:uppercase;letter-spacing:.2em;font-size:13px;font-weight:600;color:var(--gold-d)}
+  /* Entrant ticker */
+  .ticker{background:#fffdf8;border-bottom:1px solid var(--sand);overflow:hidden}
+  .ticker-wrap{display:flex;align-items:center;gap:16px;height:48px}
+  .ticker-label{font-family:'Oswald';text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:600;color:var(--gold-d);white-space:nowrap;flex:0 0 auto}
+  .ticker-viewport{position:relative;flex:1 1 auto;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .ticker-track{display:inline-flex;gap:10px;white-space:nowrap;will-change:transform;animation:tickerScroll 40s linear infinite}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  .ticker-chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--sand);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink);white-space:nowrap}
+  .ticker-chip b{font-weight:700}
+  .ticker-chip .sep{color:var(--gold);font-weight:700}
+  @keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+  @media(max-width:520px){.ticker-label{display:none}}
   .btn{display:inline-block;background:var(--gold);color:#2a1e06;font-weight:700;font-family:'Oswald';text-transform:uppercase;letter-spacing:.04em;padding:14px 28px;border-radius:8px;font-size:15px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(169,124,36,.3)}
   .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(169,124,36,.42)}
   .btn.dark{background:var(--black);color:var(--cream);box-shadow:none}
@@ -235,6 +248,14 @@
   </div>
 </div></header>
 
+<!-- ENTRANT TICKER (privacy-limited: first name + town only) -->
+<div class="ticker" id="entrantTicker" hidden aria-label="Recent Sankalpa entrants">
+  <div class="wrap ticker-wrap">
+    <span class="ticker-label">Ideas coming in</span>
+    <div class="ticker-viewport"><div class="ticker-track" id="tickerTrack"></div></div>
+  </div>
+</div>
+
 <!-- TIMELINE -->
 <section class="band"><div class="wrap">
   <span class="eyebrow">The inaugural challenge · 2026</span>
@@ -374,7 +395,7 @@
       <div class="fg"><label>Who it helps &amp; how you'd know it worked</label><textarea id="impact" maxlength="3000"></textarea></div>
       <div class="fg"><label>Anything you've already tried or built?</label><textarea id="prior" maxlength="3000"></textarea></div>
       <div class="fg"><label>Link to a photo, video or document</label><div class="hint">Optional — a Google Drive / YouTube / photo link showing the problem or your prototype.</div><input id="link" maxlength="500" placeholder="https://"></div>
-      <label class="consent"><input type="checkbox" id="consent"> <span>I confirm this is my own idea and I'm happy to be contacted about my entry.</span></label>
+      <label class="consent"><input type="checkbox" id="consent"> <span>I confirm this is my own idea and I'm happy to be contacted about my entry. I grant Kodagu Sankalpa / Kodagu.ai the right to use, showcase and promote my entry and its content — in any media, at their discretion — to run and publicise the challenge.</span></label>
       <label class="consent" style="margin-top:10px"><input type="checkbox" id="joinDir" checked> <span>Also add me to the <a href="/community">Kodagu.ai community directory</a> — just my name, place and a short line about my idea (contact details stay private). Shown after review.</span></label>
       <div class="err" id="entryerr" style="display:none"></div>
       <div class="formactions">
@@ -571,6 +592,31 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') set(false); });
   var mq = window.matchMedia('(min-width:821px)');
   mq.addEventListener('change', function(){ if(mq.matches) set(false); });
+})();
+</script>
+<script>
+/* Entrant ticker — privacy-limited (first name + town only). Hidden until data. */
+(function(){
+  var ticker = document.getElementById('entrantTicker');
+  var track = document.getElementById('tickerTrack');
+  if(!ticker || !track) return;
+  fetch('/api/sankalpa/entrants').then(function(r){ return r.ok ? r.json() : Promise.reject(); }).then(function(d){
+    var list = (d && d.entrants) || [];
+    if(!list.length) return; // no entries yet → stay hidden
+    function chip(e){
+      var s = document.createElement('span'); s.className = 'ticker-chip';
+      var b = document.createElement('b'); b.textContent = e.firstName || 'Someone'; s.appendChild(b);
+      if(e.place){
+        var sep = document.createElement('span'); sep.className = 'sep'; sep.textContent = '·'; s.appendChild(sep);
+        var p = document.createElement('span'); p.textContent = e.place; s.appendChild(p);
+      }
+      return s;
+    }
+    // Two passes so the marquee (translateX -50%) loops seamlessly.
+    for(var pass=0; pass<2; pass++){ list.forEach(function(e){ track.appendChild(chip(e)); }); }
+    track.style.animationDuration = Math.max(24, list.length * 3.2) + 's';
+    ticker.hidden = false;
+  }).catch(function(){});
 })();
 </script>
 </body>
