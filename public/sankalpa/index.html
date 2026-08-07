@@ -191,6 +191,11 @@
   .success .tick{width:64px;height:64px;border-radius:50%;background:var(--gold-t);color:var(--coffee);font-size:34px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
   .success h3{font-size:24px;color:var(--black);margin-bottom:8px}
   .success p{color:var(--muted);max-width:46ch;margin:0 auto}
+  .share{margin-top:26px;padding-top:22px;border-top:1px solid var(--sand)}
+  .share-lead{font-size:14px;color:var(--muted);margin:0 0 12px}
+  .share-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .share-btn{display:inline-flex;align-items:center;font-family:'Oswald';text-transform:uppercase;letter-spacing:.04em;font-size:12px;font-weight:600;color:var(--gold-d);background:#fff;border:1.5px solid var(--sand);border-radius:999px;padding:8px 15px;cursor:pointer;transition:border-color .15s,color .15s}
+  .share-btn:hover{border-color:var(--gold);color:var(--coffee)}
   .note{font-size:12px;color:var(--muted);margin-top:14px}
 
   .final{background:var(--gold);color:#2a1e06;text-align:center;padding:66px 0}
@@ -414,6 +419,15 @@
       <div class="tick">✓</div>
       <h3>Entry received — thank you!</h3>
       <p>Your idea is in for the inaugural Kodagu Sankalpa. We'll be in touch during the shortlisting in November. ಸಂಕಲ್ಪ.</p>
+      <div class="share">
+        <p class="share-lead">Tell people you entered — and nudge someone else to:</p>
+        <div class="share-btns">
+          <a class="share-btn" id="shareX" target="_blank" rel="noreferrer">Share on X</a>
+          <a class="share-btn" id="shareWa" target="_blank" rel="noreferrer">WhatsApp</a>
+          <a class="share-btn" id="shareLi" target="_blank" rel="noreferrer">LinkedIn</a>
+          <button type="button" class="share-btn" id="shareCopy">Copy message</button>
+        </div>
+      </div>
     </div>
   </div>
 </div></section>
@@ -625,6 +639,25 @@
     track.style.animationDuration = Math.max(24, list.length * 3.2) + 's';
     ticker.hidden = false;
   }).catch(function(){});
+})();
+</script>
+<script>
+/* Entrant self-share buttons on the success screen — they post to THEIR OWN
+   accounts. Instagram has no web share URL, so "Copy message" covers it. */
+(function(){
+  var url = 'https://www.kodagu.ai/sankalpa';
+  var msg = 'I just entered Kodagu Sankalpa — the ₹1 lakh innovation challenge for Kodagu. Back local ideas that get built 👇';
+  var x = document.getElementById('shareX'), wa = document.getElementById('shareWa'),
+      li = document.getElementById('shareLi'), cp = document.getElementById('shareCopy');
+  if(x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(msg) + '&url=' + encodeURIComponent(url);
+  if(wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(msg + ' ' + url);
+  if(li) li.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+  if(cp) cp.addEventListener('click', function(){
+    var text = msg + ' ' + url;
+    function done(){ cp.textContent = 'Copied ✓'; setTimeout(function(){ cp.textContent = 'Copy message'; }, 2000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){}); }
+    else { var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(t); }
+  });
 })();
 </script>
 </body>
