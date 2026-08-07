@@ -52,6 +52,9 @@ async function notifyNewEntry(
     line("\nImpact", row.impact) +
     line("Prior work", row.prior) +
     line("Link", row.link) +
+    line("X", row.x_handle) +
+    line("Instagram", row.instagram) +
+    line("LinkedIn", row.linkedin) +
     `\nJoined community directory: ${joinedDirectory ? "yes" : "no"}\n` +
     "\nReview all entries: https://www.kodagu.ai/admin/sankalpa";
   try {
@@ -106,13 +109,22 @@ export async function POST(req: Request) {
     impact: str(body.impact, 3000),
     prior: str(body.prior, 3000),
     link: str(body.link, 500),
+    x_handle: str(body.x, 80),
+    instagram: str(body.instagram, 80),
+    linkedin: str(body.linkedin, 200),
   };
 
   try {
     const supabase = createClient(url, key, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
-    const { error } = await supabase.from("sankalpa_entries").insert(row);
+    let { error } = await supabase.from("sankalpa_entries").insert(row);
+    if (error) {
+      // The social columns may not exist yet (migration 0008 not run) — retry
+      // without them so the entry still saves.
+      const { x_handle, instagram, linkedin, ...base } = row;
+      ({ error } = await supabase.from("sankalpa_entries").insert(base));
+    }
     if (error) throw error;
 
     // If the entrant opted in, also file them into the Kodagu.ai community

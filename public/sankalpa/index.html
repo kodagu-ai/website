@@ -395,6 +395,12 @@
       <div class="fg"><label>Who it helps &amp; how you'd know it worked</label><textarea id="impact" maxlength="3000"></textarea></div>
       <div class="fg"><label>Anything you've already tried or built?</label><textarea id="prior" maxlength="3000"></textarea></div>
       <div class="fg"><label>Link to a photo, video or document</label><div class="hint">Optional — a Google Drive / YouTube / photo link showing the problem or your prototype.</div><input id="link" maxlength="500" placeholder="https://"></div>
+      <div class="fg" style="margin-bottom:4px"><label>Social handles <span style="font-weight:400;color:var(--muted)">— optional</span></label><div class="hint">So we can tag you when we share your entry. Your username is enough.</div></div>
+      <div class="row2">
+        <div class="fg"><label>X (Twitter)</label><input id="xhandle" maxlength="80" placeholder="@yourhandle"></div>
+        <div class="fg"><label>Instagram</label><input id="instagram" maxlength="80" placeholder="@yourhandle"></div>
+      </div>
+      <div class="fg"><label>LinkedIn</label><input id="linkedin" maxlength="200" placeholder="linkedin.com/in/yourname"></div>
       <label class="consent"><input type="checkbox" id="consent"> <span>I confirm this is my own idea and I'm happy to be contacted about my entry. I grant Kodagu Sankalpa / Kodagu.ai the right to use, showcase and promote my entry and its content — in any media, at their discretion — to run and publicise the challenge.</span></label>
       <label class="consent" style="margin-top:10px"><input type="checkbox" id="joinDir" checked> <span>Also add me to the <a href="/community">Kodagu.ai community directory</a> — just my name, place and a short line about my idea (contact details stay private). Shown after review.</span></label>
       <div class="err" id="entryerr" style="display:none"></div>
@@ -542,6 +548,7 @@
     name:val('name'), place:val('place'), phone:val('phone'), email:val('email'),
     entrantType:etype(), teamName:val('teamName'), area:document.getElementById('area').value,
     problem:val('problem'), solution:val('solution'), impact:val('impact'), prior:val('prior'), link:val('link'),
+    x:val('xhandle'), instagram:val('instagram'), linkedin:val('linkedin'),
     joinDirectory: document.getElementById('joinDir').checked
   }; }
 
@@ -550,7 +557,8 @@
     var lines = ['Kodagu Sankalpa entry','', 'Name: '+p.name, 'Place: '+p.place, 'Phone: '+p.phone, 'Email: '+p.email,
       'Entering as: '+p.entrantType + (p.teamName?(' ('+p.teamName+')'):''), 'Area: '+p.area, '',
       'Problem:', p.problem, '', 'Solution:', p.solution, '', 'Who it helps:', p.impact, '',
-      'Already tried:', p.prior, '', 'Link: '+p.link];
+      'Already tried:', p.prior, '', 'Link: '+p.link, '',
+      'X: '+p.x, 'Instagram: '+p.instagram, 'LinkedIn: '+p.linkedin];
     return 'mailto:'+EMAIL+'?subject='+encodeURIComponent('Kodagu Sankalpa entry: '+(p.name||''))+'&body='+encodeURIComponent(lines.join('\n'));
   }
   document.getElementById('entrymail').addEventListener('click', function(e){ e.preventDefault(); window.location.href = buildMail(); });
