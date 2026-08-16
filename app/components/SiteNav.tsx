@@ -7,18 +7,24 @@ import LangToggle from "./LangToggle";
 import { site } from "../lib/site";
 import { S, type Locale } from "../lib/i18n";
 
-// Primary site navigation. On desktop it's the inline row; at ≤1000px it
+// Primary site navigation. On desktop it's the inline row; at ≤1050px it
 // collapses to a hamburger that opens a full-screen panel containing EVERY
 // link (previously some links were hidden with `.hide-sm` and unreachable on
 // mobile — notably Insights). One source of links, rendered in both places.
-export default function SiteNav({ locale }: { locale: Locale }) {
+export default function SiteNav({
+  locale,
+  signedIn,
+}: {
+  locale: Locale;
+  signedIn: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   // Close on Escape, and whenever the viewport grows back to desktop.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const mq = window.matchMedia("(min-width: 1001px)");
+    const mq = window.matchMedia("(min-width: 1051px)");
     const onChange = () => mq.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     mq.addEventListener("change", onChange);
@@ -46,6 +52,9 @@ export default function SiteNav({ locale }: { locale: Locale }) {
       <a href="/sankalpa">{S.nav.sankalpa[locale]}</a>
       <Link href="/about" onClick={close}>{S.nav.about[locale]}</Link>
       <Link href="/join" onClick={close}>{S.nav.join[locale]}</Link>
+      <Link href={signedIn ? "/account" : "/login"} onClick={close}>
+        {signedIn ? S.nav.account[locale] : S.nav.login[locale]}
+      </Link>
     </>
   );
 

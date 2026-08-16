@@ -19,7 +19,32 @@ export const S = {
     about: { en: "About", kn: "ನಮ್ಮ ಬಗ್ಗೆ" },
     join: { en: "Get Involved", kn: "ಭಾಗಿಯಾಗಿ" },
     sankalpa: { en: "Sankalpa", kn: "ಸಂಕಲ್ಪ" },
+    login: { en: "Login", kn: "ಲಾಗಿನ್" },
+    account: { en: "Account", kn: "ಖಾತೆ" },
     github: { en: "GitHub", kn: "GitHub" },
+  },
+  auth: {
+    loginTitle: { en: "Your Kodagu.ai account", kn: "ನಿಮ್ಮ Kodagu.ai ಖಾತೆ" },
+    loginLead: {
+      en: "Enter your email and we will send you a secure one-time sign-in link. No password needed.",
+      kn: "ನಿಮ್ಮ ಇಮೇಲ್ ನಮೂದಿಸಿ. ಸುರಕ್ಷಿತವಾದ ಒಂದು-ಬಾರಿಯ ಸೈನ್-ಇನ್ ಲಿಂಕ್ ಅನ್ನು ನಾವು ಕಳುಹಿಸುತ್ತೇವೆ. ಪಾಸ್‌ವರ್ಡ್ ಅಗತ್ಯವಿಲ್ಲ.",
+    },
+    email: { en: "Email address", kn: "ಇಮೇಲ್ ವಿಳಾಸ" },
+    sendLink: { en: "Send sign-in link", kn: "ಸೈನ್-ಇನ್ ಲಿಂಕ್ ಕಳುಹಿಸಿ" },
+    sending: { en: "Sending…", kn: "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…" },
+    checkEmail: { en: "Check your email", kn: "ನಿಮ್ಮ ಇಮೇಲ್ ಪರಿಶೀಲಿಸಿ" },
+    sentBody: {
+      en: "We sent a secure sign-in link to",
+      kn: "ನಾವು ಸುರಕ್ಷಿತ ಸೈನ್-ಇನ್ ಲಿಂಕ್ ಕಳುಹಿಸಿದ್ದೇವೆ:",
+    },
+    accountTitle: { en: "Your account", kn: "ನಿಮ್ಮ ಖಾತೆ" },
+    signedInAs: { en: "Signed in as", kn: "ಸೈನ್ ಇನ್ ಆಗಿರುವುದು" },
+    accountLead: {
+      en: "This account will let you manage your Kodagu.ai activity as new community apps are added.",
+      kn: "ಹೊಸ ಸಮುದಾಯ ಆ್ಯಪ್‌ಗಳನ್ನು ಸೇರಿಸಿದಂತೆ ನಿಮ್ಮ Kodagu.ai ಚಟುವಟಿಕೆಯನ್ನು ನಿರ್ವಹಿಸಲು ಈ ಖಾತೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
+    },
+    signOut: { en: "Sign out", kn: "ಸೈನ್ ಔಟ್" },
+    signingOut: { en: "Signing out…", kn: "ಸೈನ್ ಔಟ್ ಆಗುತ್ತಿದೆ…" },
   },
   tagline: {
     en: "Rooted in Heritage. Driven by Purpose.",

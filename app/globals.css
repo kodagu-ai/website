@@ -170,7 +170,7 @@ img { max-width: 100%; display: block; }
 .nav-toggle { display: none; }
 .mobile-nav { display: none; }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   /* Swap the inline nav for the hamburger. */
   .nav-desktop { display: none; }
 

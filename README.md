@@ -140,10 +140,40 @@ Set these in **Vercel → Settings → Environment Variables** (Production):
 | Var | Used for |
 | --- | --- |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | server-side DB reads/writes (bypasses RLS) |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | browser and server-session access to Supabase Auth |
 | `FIRECRAWL_API_KEY` | news gather + price scraping |
 | `ANTHROPIC_API_KEY` | news curation (Claude) |
 | `CRON_SECRET` | authorises Vercel Cron calls to `/api/cron/*` |
 | `NEWS_INGEST_SECRET` | authorises `/api/news/ingest` + manual cron trigger |
+
+### Public accounts
+
+Kodagu.ai uses Supabase Auth email magic links. The first successful sign-in
+creates an account automatically; later sign-ins use another one-time link.
+Passwords can be added later without changing user IDs or user-owned data.
+
+Before enabling public accounts in production, the Supabase/Vercel admin must:
+
+1. Apply `supabase/migrations/0008_profiles.sql` in the Supabase SQL Editor (or
+  through the Supabase CLI). It creates a minimal profile for each Auth user
+  and enables Row Level Security so users can access only their own profile.
+2. Add `https://kodagu.ai/auth/callback` to **Supabase → Authentication → URL
+  Configuration → Redirect URLs**. Keep the existing admin callback enabled.
+3. Confirm `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set
+  in **Vercel → Settings → Environment Variables** for Production. Add them to
+  Preview too if authentication should work in preview deployments.
+4. Deploy and verify `/login` → email link → `/account` → sign out, then confirm
+  a regular public user still cannot access `/admin`.
+
+For local testing, copy the public Supabase URL and anon key into `.env.local`
+and allow this redirect URL in Supabase:
+
+```text
+http://localhost:3000/auth/callback
+```
+
+The public anon key is designed for browser use. Never expose
+`SUPABASE_SERVICE_ROLE_KEY`, database passwords, or Supabase access tokens.
 
 ---
 
