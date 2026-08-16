@@ -1,10 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-// Gates the /admin area. Refreshes the Supabase auth cookie on every request
-// (so sessions stay alive) and redirects anyone who isn't the signed-in admin
-// to /admin/login. This is the first line of defence; the panel layout and
-// every admin API route re-verify server-side.
+// Refreshes Supabase auth cookies for public accounts across the site and also
+// gates /admin. Admin pages retain their separate email allow-list; signing in
+// as a public user never grants admin access.
 const ADMIN_EMAIL = "poonacha@cyberhuman.ai";
 
 export async function middleware(request: NextRequest) {
@@ -19,11 +18,13 @@ export async function middleware(request: NextRequest) {
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  // If auth env isn't configured yet, don't hard-fail the whole site — just
-  // send admin traffic to the login page (which explains the setup).
+  // If auth isn't configured, keep the public site available. Admin traffic
+  // still goes to its setup-aware login page.
   if (!url || !anon) {
-    if (isPublicAdminPath) return response;
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+    if (pathname.startsWith("/admin") && !isPublicAdminPath) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+    return response;
   }
 
   const supabase = createServerClient(url, anon, {
@@ -48,6 +49,8 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
   const isAdmin = !!user && (user.email || "").toLowerCase() === ADMIN_EMAIL;
 
+  if (!pathname.startsWith("/admin")) return response;
+
   if (isPublicAdminPath) {
     // Already signed in as admin? Skip the login page, go to the dashboard.
     if (isAdmin && pathname === "/admin/login") {
@@ -64,5 +67,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };
