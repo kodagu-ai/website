@@ -43,7 +43,7 @@ export const MARKET: MarketItem[] = [
   // Pepper
   { crop: "Pepper", grade: "Black pepper", price: "₹697", unit: "/ kg", ...CPA },
   // Cardamom
-  { crop: "Cardamom", grade: "", price: "₹3,352", unit: "/ 50 kg", ...CPA },
+  { crop: "Cardamom", grade: "", price: "₹3,352", unit: "/ kg", ...CPA },
   // Tea (CPA has no tea board; South India auction serving Kodagu is Coonoor)
   {
     crop: "Tea",
