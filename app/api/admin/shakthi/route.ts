@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAdminUser, serviceClient } from "../../../lib/adminAuth";
 
-// Admin-only: change a Shakti registration's status (confirmed / cancelled /
+// Admin-only: change a Shakthi registration's status (confirmed / cancelled /
 // waitlist). Cancelling frees a place against the 108 cap. Auth-gated to the
 // single admin; the write uses the service-role client only after the check.
 export const runtime = "nodejs";
@@ -27,13 +27,13 @@ export async function POST(req: Request) {
 
   try {
     const { error } = await serviceClient()
-      .from("shakti_registrations")
+      .from("shakthi_registrations")
       .update({ status })
       .eq("id", id);
     if (error) throw error;
     return NextResponse.json({ ok: true, status });
   } catch (err) {
-    console.error("admin shakti update failed:", err);
+    console.error("admin shakthi update failed:", err);
     return NextResponse.json({ error: "Update failed." }, { status: 500 });
   }
 }

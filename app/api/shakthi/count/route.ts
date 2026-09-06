@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-// Public, read-only live count for the Shakti Nadappu registration counter.
+// Public, read-only live count for the Shakthi Nadappu registration counter.
 // Exposes only aggregate numbers (never any registrant detail). Cap is 108.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,7 +20,7 @@ export async function GET() {
       global: { fetch: (u, i) => fetch(u, { ...i, cache: "no-store" }) },
     });
     const { data, error } = await supabase
-      .from("shakti_registrations")
+      .from("shakthi_registrations")
       .select("status")
       .limit(2000);
     if (error) throw error;
@@ -31,7 +31,7 @@ export async function GET() {
     const remaining = Math.max(0, CAP - registered);
     return NextResponse.json({ registered, cap: CAP, remaining, full: remaining <= 0 });
   } catch (err) {
-    console.error("shakti count failed:", err);
+    console.error("shakthi count failed:", err);
     return NextResponse.json({ registered: 0, cap: CAP, remaining: CAP, full: false });
   }
 }

@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 // Kodagu Shakthi Nadappu — walk registration. Free, but required and capped at
 // 108 confirmed walkers. Public (no bearer, like the Sankalpa entry form);
-// writes to shakti_registrations via service_role (RLS on, no policies).
+// writes to shakthi_registrations via service_role (RLS on, no policies).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ const str = (v: unknown, max = 200): string | null =>
 async function notifyOrganiser(row: Record<string, unknown>, remaining: number) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return;
-  const to = process.env.SHAKTI_NOTIFY_EMAIL || "machaiah@poonacha.com";
+  const to = process.env.SHAKTHI_NOTIFY_EMAIL || "machaiah@poonacha.com";
   const from = process.env.RESEND_FROM || "Kodagu Shakthi Nadappu <onboarding@resend.dev>";
   const s = (v: unknown) => (typeof v === "string" ? v : "");
   const line = (k: string, v: unknown) => (s(v) ? `${k}: ${s(v)}\n` : "");
@@ -28,7 +28,7 @@ async function notifyOrganiser(row: Record<string, unknown>, remaining: number) 
     line("Walking", row.distance) +
     line("Emergency", `${s(row.emergency_name)} ${s(row.emergency_phone)}`.trim() || null) +
     `\n${remaining} of ${CAP} places remaining.\n` +
-    "\nReview registrations: https://www.kodagu.ai/admin/shakti";
+    "\nReview registrations: https://www.kodagu.ai/admin/shakthi";
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -42,9 +42,9 @@ async function notifyOrganiser(row: Record<string, unknown>, remaining: number) 
       }),
     });
     if (!res.ok)
-      console.error("shakti notify failed:", res.status, (await res.text()).slice(0, 200));
+      console.error("shakthi notify failed:", res.status, (await res.text()).slice(0, 200));
   } catch (e) {
-    console.error("shakti notify threw:", e);
+    console.error("shakthi notify threw:", e);
   }
 }
 
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
 
     // Enforce the cap: count confirmed rows (filter in JS), reject at 108.
     const { data: existing, error: cErr } = await supabase
-      .from("shakti_registrations")
+      .from("shakthi_registrations")
       .select("status")
       .limit(2000);
     if (cErr) throw cErr;
@@ -101,14 +101,14 @@ export async function POST(req: Request) {
       waiver: true,
       status: "confirmed",
     };
-    const { error } = await supabase.from("shakti_registrations").insert(row);
+    const { error } = await supabase.from("shakthi_registrations").insert(row);
     if (error) throw error;
 
     const remaining = Math.max(0, CAP - (registered + 1));
     await notifyOrganiser(row, remaining);
     return NextResponse.json({ ok: true, remaining });
   } catch (err) {
-    console.error("shakti register failed:", err);
+    console.error("shakthi register failed:", err);
     return NextResponse.json({ error: "Could not save your registration." }, { status: 500 });
   }
 }

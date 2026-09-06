@@ -2,11 +2,11 @@
 --  Kodagu Shakthi Nadappu — the annual walk. Free registrations, capped at 108.
 --
 --  RLS is ON with NO policies — all reads/writes go through the service-role API
---  routes (app/api/shakti/*), the same model as sankalpa_entries. The cap is
+--  routes (app/api/shakthi/*), the same model as sankalpa_entries. The cap is
 --  enforced in the register route (count confirmed rows, reject at 108).
 -- ─────────────────────────────────────────────────────────────────────────────
 
-create table if not exists public.shakti_registrations (
+create table if not exists public.shakthi_registrations (
   id               uuid primary key default gen_random_uuid(),
   created_at       timestamptz not null default now(),
   name             text not null,
@@ -21,7 +21,7 @@ create table if not exists public.shakti_registrations (
                      check (status in ('confirmed', 'cancelled', 'waitlist')),
   notes            text                 -- organiser notes (admin only)
 );
-alter table public.shakti_registrations enable row level security;
+alter table public.shakthi_registrations enable row level security;
 
-create index if not exists shakti_registrations_status_idx
-  on public.shakti_registrations (status, created_at desc);
+create index if not exists shakthi_registrations_status_idx
+  on public.shakthi_registrations (status, created_at desc);

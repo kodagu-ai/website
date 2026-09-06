@@ -25,11 +25,11 @@ function fmtDate(iso: string) {
   return iso ? iso.slice(0, 10) : "";
 }
 
-export default async function AdminShakti() {
+export default async function AdminShakthi() {
   const supabase = serviceClient();
   // select * so the page works before/after migration 0008.
   const { data, error } = await supabase
-    .from("shakti_registrations")
+    .from("shakthi_registrations")
     .select("*")
     .order("created_at", { ascending: false })
     .limit(2000);
@@ -127,7 +127,7 @@ export default async function AdminShakti() {
               {r.waiver ? " · ✓ waiver" : " · ⚠ no waiver"}
             </p>
             <AdminActions
-              endpoint="shakti"
+              endpoint="shakthi"
               id={r.id}
               current={r.status}
               actions={[

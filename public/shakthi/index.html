@@ -7,9 +7,9 @@
 <meta property="og:title" content="Kodagu Shakthi Nadappu">
 <meta property="og:description" content="The annual walk of gratitude across Kodagu — Talakaveri to Padi Igguthappa, 26 Sep 2026. Register free.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.kodagu.ai/shakti">
+<meta property="og:url" content="https://www.kodagu.ai/shakthi">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/shakti/logo.png">
+<link rel="icon" href="/shakthi/logo.png">
 <title>Kodagu Shakthi Nadappu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -204,7 +204,7 @@
     body{font-size:16px}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.emblem-wrap{width:min(340px,74vw);margin:0 auto 26px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 47%,#f8f4ea 0%,#f4eedf 72%,#efe7d4 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 46px rgba(0,0,0,.34)}.emblem-img{width:90%;height:90%}.logo-bg{background:url("/shakti/logo.png") center/contain no-repeat}.reg-state{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;text-align:center}.reg-state h3{font-family:var(--font-display);font-weight:500;font-size:1.5rem;color:var(--forest);margin:8px 0 8px}.reg-state p{color:var(--ink-soft);font-size:.98rem;max-width:46ch;margin:0 auto}.tickc{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#20170a;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto}</style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.emblem-wrap{width:min(340px,74vw);margin:0 auto 26px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 47%,#f8f4ea 0%,#f4eedf 72%,#efe7d4 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 46px rgba(0,0,0,.34)}.emblem-img{width:90%;height:90%}.logo-bg{background:url("/shakthi/logo.png") center/contain no-repeat}.reg-state{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;text-align:center}.reg-state h3{font-family:var(--font-display);font-weight:500;font-size:1.5rem;color:var(--forest);margin:8px 0 8px}.reg-state p{color:var(--ink-soft);font-size:.98rem;max-width:46ch;margin:0 auto}.tickc{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#20170a;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto}</style>
 </head>
 <body>
 <!-- ================= NAV ================= -->
@@ -500,7 +500,7 @@
     var rl=document.getElementById('regRem'); if(rl) rl.textContent=reg+' walkers registered \u00b7 '+rem+' places open';
     if(d.full){ var ff=document.getElementById('regFull'), fw=document.getElementById('regFormWrap'); if(ff)ff.style.display='block'; if(fw)fw.style.display='none'; }
   }
-  fetch('/api/shakti/count').then(function(r){return r.json();}).then(paintCount).catch(function(){});
+  fetch('/api/shakthi/count').then(function(r){return r.json();}).then(paintCount).catch(function(){});
   function val(id){ var el=document.getElementById(id); return el?(el.value||'').trim():''; }
   function submitReg(e){
     e.preventDefault();
@@ -509,10 +509,10 @@
     var p={ name:val('r_name'), phone:val('r_phone'), email:val('r_email'), place:val('r_place'), distance:val('r_distance'), emergencyName:val('r_en'), emergencyPhone:val('r_ep'), waiver:document.getElementById('r_waiver').checked };
     if(!p.name||!p.phone||!p.distance||!p.emergencyName||!p.emergencyPhone||!p.waiver||!document.getElementById('r_consent').checked){ err.textContent='Please complete all required fields and tick both confirmations.'; err.style.display='block'; return false; }
     btn.disabled=true; btn.textContent='Reserving\u2026';
-    fetch('/api/shakti/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
+    fetch('/api/shakthi/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
       .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,status:r.status,d:d}; },function(){ return {ok:r.ok,status:r.status,d:{}}; }); })
       .then(function(res){
-        if(res.ok){ document.getElementById('regFormWrap').style.display='none'; var done=document.getElementById('regDone'); done.style.display='block'; done.scrollIntoView({block:'center',behavior:'smooth'}); fetch('/api/shakti/count').then(function(r){return r.json();}).then(paintCount).catch(function(){}); }
+        if(res.ok){ document.getElementById('regFormWrap').style.display='none'; var done=document.getElementById('regDone'); done.style.display='block'; done.scrollIntoView({block:'center',behavior:'smooth'}); fetch('/api/shakthi/count').then(function(r){return r.json();}).then(paintCount).catch(function(){}); }
         else if(res.status===409||(res.d&&res.d.full)){ document.getElementById('regFormWrap').style.display='none'; document.getElementById('regFull').style.display='block'; }
         else { err.textContent=(res.d&&res.d.error)||'Could not register \u2014 please try again.'; err.style.display='block'; btn.disabled=false; btn.textContent='Reserve my place'; }
       })
