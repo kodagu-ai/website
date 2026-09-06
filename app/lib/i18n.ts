@@ -19,6 +19,7 @@ export const S = {
     about: { en: "About", kn: "ನಮ್ಮ ಬಗ್ಗೆ" },
     join: { en: "Get Involved", kn: "ಭಾಗಿಯಾಗಿ" },
     sankalpa: { en: "Sankalpa", kn: "ಸಂಕಲ್ಪ" },
+    shakthi: { en: "Shakthi", kn: "ಶಕ್ತಿ" },
     github: { en: "GitHub", kn: "GitHub" },
   },
   tagline: {

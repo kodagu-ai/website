@@ -44,6 +44,7 @@ export default function SiteNav({ locale }: { locale: Locale }) {
       <Link href="/news" onClick={close}>{S.nav.news[locale]}</Link>
       {/* Standalone sub-brand page → plain <a> for a full-document load. */}
       <a href="/sankalpa">{S.nav.sankalpa[locale]}</a>
+      <a href="/shakthi">{S.nav.shakthi[locale]}</a>
       <Link href="/about" onClick={close}>{S.nav.about[locale]}</Link>
       <Link href="/join" onClick={close}>{S.nav.join[locale]}</Link>
     </>
