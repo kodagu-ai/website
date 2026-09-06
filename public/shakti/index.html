@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kodagu Shakthi Nadappu — the annual walk of gratitude across Kodagu, Talakaveri to Padi Igguthappa, 26 September 2026. ~35 km on foot. Free registration, limited to 108 walkers.">
+<meta property="og:title" content="Kodagu Shakthi Nadappu">
+<meta property="og:description" content="The annual walk of gratitude across Kodagu — Talakaveri to Padi Igguthappa, 26 Sep 2026. Register free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.kodagu.ai/shakti">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/shakti/logo.png">
+<title>Kodagu Shakthi Nadappu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:wght@300;400;500;600&family=Noto+Serif+Kannada:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --forest-deep:#16281a; --forest:#213a24; --canopy:#3a5836; --moss:#7d9668;
+    --paper:#f4f0e6; --paper-2:#ece4d3; --card:#fbf8f0;
+    --coffee:#5a4228; --gold:#a67c31; --gold-bright:#c9a14a; --berry:#8a2f24;
+    --ink:#241f17; --ink-soft:#5f5443; --on-dark:#eee7d6; --on-dark-soft:#b9c3ac;
+    --line:#ddd2bc; --line-dark:#3a4c36;
+    --font-display:"Fraunces","Noto Serif Kannada",Georgia,serif;
+    --font-body:"Spectral","Noto Serif Kannada",Georgia,serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.72;font-size:17px;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;line-height:1.12;text-wrap:balance;margin:0}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1080px,92vw);margin:0 auto}
+  .narrow{width:min(720px,92vw);margin:0 auto}
+  .eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:inline-block}
+  section .eyebrow{margin-bottom:14px}
+  .kn{font-family:"Noto Serif Kannada",var(--font-body)}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+  /* ---- nav ---- */
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(22,40,26,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--on-dark)}
+  .brand .em{width:30px;height:30px;flex:0 0 auto}
+  .brand b{font-family:var(--font-display);font-weight:500;font-size:1.02rem;letter-spacing:.01em}
+  .nav nav{display:flex;align-items:center;gap:26px}
+  .nav nav a{color:var(--on-dark-soft);font-size:.9rem;letter-spacing:.02em;transition:color .16s}
+  .nav nav a:hover{color:var(--on-dark)}
+  .langtog{display:flex;border:1px solid var(--line-dark);border-radius:999px;overflow:hidden}
+  .langtog button{font-family:var(--font-body);background:transparent;border:0;color:var(--on-dark-soft);padding:5px 11px;font-size:.8rem;cursor:pointer}
+  .langtog button[aria-pressed="true"]{background:var(--gold);color:#20170a}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-weight:500;font-size:.92rem;letter-spacing:.02em;padding:11px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .16s,background .16s,border-color .16s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-gold{background:var(--gold);color:#20170a}
+  .btn-gold:hover{background:var(--gold-bright)}
+  .btn-ghost{background:transparent;border-color:var(--line-dark);color:var(--on-dark)}
+  .btn-line{background:transparent;border-color:var(--gold);color:var(--coffee)}
+  .nav .btn{padding:8px 18px}
+  .hide-sm{display:inline-flex}
+
+  /* ---- hero ---- */
+  .hero{position:relative;background:
+      radial-gradient(120% 90% at 50% -10%, #24422a 0%, var(--forest-deep) 55%, #101d14 100%);
+      color:var(--on-dark);overflow:hidden;text-align:center;padding:72px 0 84px}
+  .hero::before{content:"";position:absolute;inset:0;background:
+      radial-gradient(60% 40% at 50% 8%, rgba(201,161,74,.14), transparent 70%);
+      pointer-events:none}
+  .hero .wrap{position:relative}
+  .emblem{width:150px;height:150px;margin:0 auto 26px;display:block}
+  .hero .name{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:500;letter-spacing:.005em;margin:0}
+  .hero .name .kn{display:block;font-size:.62em;color:var(--gold-bright);margin-bottom:.12em;font-weight:500}
+  .hero .tagline{font-family:var(--font-body);font-size:clamp(1.05rem,2.3vw,1.32rem);font-weight:300;color:var(--on-dark-soft);max-width:30ch;margin:20px auto 0;font-style:italic}
+  .hero .route-line{margin-top:30px;font-family:var(--font-display);font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.03em}
+  .hero .route-line span{color:var(--gold-bright)}
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:28px auto 0;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);max-width:640px}
+  .stats div{flex:1 1 160px;padding:16px 10px}
+  .stats div+div{border-left:1px solid var(--line-dark)}
+  .stats .n{font-family:var(--font-display);font-size:1.5rem;color:var(--on-dark)}
+  .stats .l{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark-soft);margin-top:3px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .hero .cap{margin-top:20px;font-size:.9rem;color:var(--gold-bright);letter-spacing:.04em}
+  .hero .cap b{color:var(--on-dark);font-weight:500}
+
+  /* ---- generic section ---- */
+  section{padding:88px 0}
+  .band-dark{background:var(--forest-deep);color:var(--on-dark)}
+  .band-2{background:var(--paper-2)}
+  h2.big{font-size:clamp(1.9rem,4vw,3rem)}
+  .lede{font-size:1.18rem;color:var(--ink-soft);max-width:60ch}
+  .band-dark .lede{color:var(--on-dark-soft)}
+
+  /* nadappu negatives */
+  .negs{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0}
+  .negs span{font-family:var(--font-display);font-size:1.05rem;color:var(--coffee);border:1px solid var(--line);border-radius:999px;padding:8px 20px;background:var(--card)}
+  .negs span s{color:var(--berry);text-decoration-thickness:1px}
+  .pull{margin:52px auto 0;text-align:center;max-width:22ch}
+  .pull p{font-family:var(--font-display);font-size:clamp(1.5rem,3.6vw,2.35rem);font-weight:400;font-style:italic;line-height:1.28;color:var(--forest)}
+  .pull .mark{color:var(--gold);font-size:2em;line-height:0;display:block;margin-bottom:.1em}
+
+  /* ---- route ---- */
+  .phase-head{display:flex;align-items:baseline;gap:16px;margin:0 0 4px}
+  .phase-head .num{font-family:var(--font-display);font-size:.9rem;color:var(--gold-bright);letter-spacing:.2em}
+  .phase-head h3{font-size:1.6rem;color:var(--on-dark)}
+  .waterland{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;font-family:var(--font-display);font-size:clamp(1.2rem,3vw,1.9rem);color:var(--on-dark);margin-top:22px}
+  .waterland b{color:var(--gold-bright);font-weight:500}
+  .waterland i{color:var(--moss);font-style:normal}
+  .route{margin:52px auto 0;max-width:760px;position:relative;padding-left:38px}
+  .route::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold-bright),var(--canopy))}
+  .stop{position:relative;padding:0 0 40px 22px}
+  .stop:last-child{padding-bottom:0}
+  .stop::before{content:"";position:absolute;left:-34px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--forest-deep);border:2px solid var(--gold-bright)}
+  .stop.major::before{background:var(--gold-bright);width:18px;height:18px;left:-36px;box-shadow:0 0 0 4px rgba(201,161,74,.18)}
+  .stop .t{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);font-variant-numeric:tabular-nums}
+  .stop h4{font-family:var(--font-display);font-size:1.5rem;color:var(--on-dark);margin:2px 0 3px}
+  .stop p{color:var(--on-dark-soft);font-size:.98rem;max-width:52ch}
+  .phase-group{margin-bottom:14px}
+
+  /* ---- gejje ---- */
+  .gejje{display:grid;grid-template-columns:150px 1fr;gap:44px;align-items:center}
+  .gejje .staff{justify-self:center}
+  .gejje h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:14px}
+
+  /* ---- distances ---- */
+  .dist{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:36px}
+  .dist .d{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center}
+  .dist .d .km{font-family:var(--font-display);font-size:1.9rem;color:var(--forest)}
+  .dist .d .lab{font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+  .dist .d.final{grid-column:1/-1;background:var(--forest);color:var(--on-dark);border-color:var(--forest)}
+  .dist .d.final .km{color:var(--gold-bright);font-size:1.5rem}
+  .dist .d.final .lab{color:var(--on-dark-soft);font-size:.98rem;max-width:48ch;margin:6px auto 0}
+
+  /* ---- bring/safety ---- */
+  .bring{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+  ul.pack{list-style:none;margin:22px 0 0;padding:0;columns:2;column-gap:28px}
+  ul.pack li{break-inside:avoid;padding:7px 0 7px 22px;position:relative;font-size:.98rem}
+  ul.pack li::before{content:"";position:absolute;left:0;top:15px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .safe-note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px}
+  .safe-note h4{font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px;color:var(--coffee)}
+  .safe-note p{font-size:.96rem;color:var(--ink-soft)}
+
+  /* ---- register ---- */
+  #register{background:
+     linear-gradient(var(--paper),var(--paper))}
+  .reg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .reg-meta .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+  .reg-meta .pill{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--coffee)}
+  .counter{background:var(--forest-deep);color:var(--on-dark);border-radius:16px;padding:24px}
+  .counter .big{font-family:var(--font-display);font-size:2.4rem;color:var(--gold-bright);line-height:1}
+  .counter .sub{color:var(--on-dark-soft);font-size:.92rem;margin-top:6px}
+  .bar{height:8px;border-radius:999px;background:#2d4230;margin-top:16px;overflow:hidden}
+  .bar span{display:block;height:100%;width:19%;background:linear-gradient(90deg,var(--gold),var(--gold-bright))}
+  .counter .rem{font-size:.82rem;color:var(--on-dark-soft);margin-top:8px;font-variant-numeric:tabular-nums}
+  form.reg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .fg{margin-bottom:16px}
+  .fg label{display:block;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .fg .req{color:var(--berry)}
+  .fg input,.fg select{width:100%;font-family:var(--font-body);font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;transition:border-color .15s}
+  .fg input:focus,.fg select:focus{outline:none;border-color:var(--gold)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .consent{display:flex;gap:11px;align-items:flex-start;font-size:.9rem;color:var(--ink-soft);margin-top:6px}
+  .consent input{margin-top:4px;width:16px;height:16px;flex:0 0 auto;accent-color:var(--gold)}
+  .reg .btn-gold{width:100%;justify-content:center;margin-top:8px;padding:14px}
+  .reg .note{font-size:.82rem;color:var(--ink-soft);text-align:center;margin-top:12px}
+  .reg-ok{display:none;background:#eef3e6;border:1px solid #c9d8b6;border-radius:12px;padding:14px 16px;color:var(--forest);font-size:.92rem;margin-bottom:16px}
+
+  /* ---- volunteer band ---- */
+  .band-dark .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:30px 0 28px}
+  .roles .r{border:1px solid var(--line-dark);border-radius:12px;padding:16px;background:rgba(255,255,255,.02)}
+  .roles .r h4{font-family:var(--font-display);color:var(--on-dark);font-size:1.08rem;margin-bottom:3px}
+  .roles .r p{color:var(--on-dark-soft);font-size:.86rem}
+
+  /* ---- partners ---- */
+  .partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:30px}
+  .partners .pl{border:1px dashed var(--line);border-radius:12px;height:96px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);font-size:.82rem;background:var(--card)}
+
+  /* ---- faq ---- */
+  details.faq{border-bottom:1px solid var(--line);padding:6px 0}
+  details.faq summary{list-style:none;cursor:pointer;padding:16px 0;font-family:var(--font-display);font-size:1.18rem;color:var(--forest);display:flex;justify-content:space-between;gap:16px;align-items:center}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";color:var(--gold);font-size:1.4rem;transition:transform .2s}
+  details.faq[open] summary::after{transform:rotate(45deg)}
+  details.faq p{padding:0 0 18px;color:var(--ink-soft);max-width:66ch}
+
+  /* ---- footer ---- */
+  footer{background:var(--forest-deep);color:var(--on-dark-soft);padding:64px 0 40px;text-align:center}
+  footer .fname{font-family:var(--font-display);font-size:1.5rem;color:var(--on-dark)}
+  footer .fk{color:var(--gold-bright);font-size:1.1rem;margin-bottom:6px}
+  footer .quote{font-style:italic;max-width:34ch;margin:16px auto;color:var(--on-dark-soft)}
+  footer .flink{color:var(--gold-bright)}
+  footer .fbottom{margin-top:26px;border-top:1px solid var(--line-dark);padding-top:20px;font-size:.82rem;letter-spacing:.04em}
+
+  .mock-tag{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--coffee);color:#fff;font-family:var(--font-body);font-size:.72rem;letter-spacing:.06em;padding:6px 12px;border-radius:999px;opacity:.9}
+
+  @media(max-width:860px){
+    .nav nav{display:none}
+    .reg-grid,.bring,.gejje{grid-template-columns:1fr;gap:30px}
+    .gejje .staff{order:-1}
+    section{padding:64px 0}
+    ul.pack{columns:1}
+  }
+  @media(max-width:520px){
+    .hide-sm{display:none}
+    .row2{grid-template-columns:1fr}
+    body{font-size:16px}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.emblem-wrap{width:min(340px,74vw);margin:0 auto 26px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 47%,#f8f4ea 0%,#f4eedf 72%,#efe7d4 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 46px rgba(0,0,0,.34)}.emblem-img{width:90%;height:90%}.logo-bg{background:url("/shakti/logo.png") center/contain no-repeat}.reg-state{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;text-align:center}.reg-state h3{font-family:var(--font-display);font-weight:500;font-size:1.5rem;color:var(--forest);margin:8px 0 8px}.reg-state p{color:var(--ink-soft);font-size:.98rem;max-width:46ch;margin:0 auto}.tickc{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#20170a;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto}</style>
+</head>
+<body>
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="em" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#c9a14a" stroke-width="2.5"/><rect x="47" y="22" width="6" height="56" rx="2" fill="#e9e0cd"/><rect x="47.5" y="30" width="5" height="3" fill="#16281a"/><rect x="47.5" y="46" width="5" height="3" fill="#16281a"/><rect x="47.5" y="62" width="5" height="3" fill="#16281a"/></svg>
+      <b>Shakthi Nadappu</b>
+    </a>
+    <nav>
+      <a href="#nadappu" data-en="The Walk" data-kn="ನಡಪ್ಪು">The Walk</a>
+      <a href="#route" data-en="Route" data-kn="ಮಾರ್ಗ">Route</a>
+      <a href="#join" data-en="Walk with us" data-kn="ಸೇರಿ">Walk with us</a>
+      <a href="#faq" data-en="FAQ" data-kn="ಪ್ರಶ್ನೆ">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="langtog" role="group" aria-label="Language">
+        <button id="lang-en" aria-pressed="true" onclick="setLang('en')">EN</button>
+        <button id="lang-kn" aria-pressed="false" onclick="setLang('kn')">ಕನ್ನಡ</button>
+      </div>
+      <a href="#register" class="btn btn-gold hide-sm" data-en="Register" data-kn="ನೋಂದಣಿ">Register</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div id="top"></div>
+<section class="hero">
+  <div class="wrap">
+    <div class="emblem-wrap"><div class="emblem-img logo-bg" role="img" aria-label="Kodagu Shakthi Nadappu logo"></div></div>
+
+    <span class="eyebrow" data-en="The Annual Walk · Est 2026" data-kn="ವಾರ್ಷಿಕ ನಡಪ್ಪು · 2026">The Annual Walk · Est 2026</span>
+    <h1 class="sr-only">Kodagu Shakthi Nadappu — ಕೊಡಗು ಶಕ್ತಿ ನಡಪ್ಪು</h1>
+    <p class="tagline" data-en="A walk of gratitude, remembrance and responsibility — across the land that sustains us." data-kn="ಕೃತಜ್ಞತೆ, ನೆನಪು ಮತ್ತು ಜವಾಬ್ದಾರಿಯ ನಡಪ್ಪು — ನಮ್ಮನ್ನು ಪೊರೆಯುವ ನೆಲದ ಉದ್ದಕ್ಕೂ.">A walk of gratitude, remembrance and responsibility — across the land that sustains us.</p>
+
+    <p class="route-line">Talakaveri <span>→</span> Padi Igguthappa</p>
+
+    <div class="stats">
+      <div><div class="n">26 Sep</div><div class="l" data-en="Saturday · 2026" data-kn="ಶನಿವಾರ · 2026">Saturday · 2026</div></div>
+      <div><div class="n">~35 km</div><div class="l" data-en="On foot" data-kn="ಕಾಲ್ನಡಿಗೆ">On foot</div></div>
+      <div><div class="n">8 → 6</div><div class="l" data-en="AM to PM · ~10 hrs" data-kn="ಬೆಳಗ್ಗೆ–ಸಂಜೆ">AM to PM · ~10 hrs</div></div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#register" class="btn btn-gold" data-en="Register — it's free" data-kn="ನೋಂದಣಿ — ಉಚಿತ">Register — it's free</a>
+      <a href="#route" class="btn btn-ghost" data-en="See the route" data-kn="ಮಾರ್ಗ ನೋಡಿ">See the route</a>
+    </div>
+    <p class="cap" data-en="Only 108 walkers this year · Registration required" data-kn="ಈ ವರ್ಷ ಕೇವಲ 108 ನಡಿಗೆದಾರರು · ನೋಂದಣಿ ಕಡ್ಡಾಯ">Only <b>108</b> walkers this year · Registration required</p>
+  </div>
+</section>
+
+<!-- ================= THE NADAPPU ================= -->
+<section id="nadappu">
+  <div class="narrow">
+    <span class="eyebrow" data-en="This is a Nadappu" data-kn="ಇದು ಒಂದು ನಡಪ್ಪು">This is a Nadappu</span>
+    <h2 class="big" data-en="A quiet, deeply personal journey across Kodagu." data-kn="ಕೊಡಗಿನ ಉದ್ದಕ್ಕೂ ಒಂದು ಶಾಂತ, ಆಳವಾದ ವೈಯಕ್ತಿಕ ಪಯಣ.">A quiet, deeply personal journey across Kodagu.</h2>
+    <p class="lede" style="margin-top:22px">On the 26th of September we set out on foot — about 35 kilometres, some ten hours — from Talakaveri, the sacred birthplace of Mother Kaveri. We walk through Bhagamandala, Aiyangeri, Nelji and Kakkabe, and complete the journey at Padi Igguthappa, sacred to our land, our rain, our harvest and our sustenance.</p>
+
+    <div class="negs">
+      <span data-en="Not a race" data-kn="ಓಟ ಅಲ್ಲ"><s>Not</s> a race</span>
+      <span data-en="Not a tourism event" data-kn="ಪ್ರವಾಸೋದ್ಯಮ ಅಲ್ಲ"><s>Not</s> a tourism event</span>
+      <span data-en="Not a spectacle" data-kn="ಪ್ರದರ್ಶನ ಅಲ್ಲ"><s>Not</s> a spectacle</span>
+    </div>
+
+    <p style="color:var(--ink-soft)">It is a walk of gratitude, remembrance and responsibility — a way to reconnect with the land that sustains us, to listen to our elders, to honour what we have inherited, and to ask what we will leave behind.</p>
+
+    <div class="pull">
+      <p><span class="mark">“</span>We walk not to claim Kodagu. We walk to remember our duty to her.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROUTE ================= -->
+<section id="route" class="band-dark">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-en="The Route" data-kn="ಮಾರ್ಗ">The Route</span>
+    <h2 class="big" style="color:var(--on-dark)" data-en="From the source of the river to the giver of the harvest." data-kn="ನದಿಯ ಮೂಲದಿಂದ ಸುಗ್ಗಿಯ ದೇವರವರೆಗೆ.">From the source of the river to the giver of the harvest.</h2>
+    <div class="waterland"><b data-en="Water" data-kn="ನೀರು">Water</b> <i>→</i> <b data-en="Land" data-kn="ನೆಲ">Land</b> <i>→</i> <b data-en="Sustenance" data-kn="ಜೀವನಾಧಾರ">Sustenance</b></div>
+  </div>
+
+  <div class="route">
+    <div class="phase-group">
+      <div class="phase-head"><span class="num">I</span><h3 data-en="Water" data-kn="ನೀರು">Water</h3></div>
+      <div class="stop major"><div class="t">8:00 AM · Depart</div><h4>Talakaveri</h4><p>The sacred birthplace of Mother Kaveri, high on Brahmagiri. We begin where the water begins.</p></div>
+      <div class="stop"><div class="t">Waypoint</div><h4>Bhagamandala</h4><p>The Triveni Sangama — the meeting of the Kaveri, Kannike and the mythic Sujyoti.</p></div>
+    </div>
+    <div class="phase-group">
+      <div class="phase-head"><span class="num">II</span><h3 data-en="Land" data-kn="ನೆಲ">Land</h3></div>
+      <div class="stop"><div class="t">Waypoint</div><h4>Aiyangeri</h4><p>Through paddy, coffee and cardamom — the working land of Kodagu, and the people who tend it.</p></div>
+      <div class="stop"><div class="t">Waypoint</div><h4>Nelji</h4><p>Village roads and estate paths, walking with our elders and neighbours.</p></div>
+      <div class="stop"><div class="t">Waypoint</div><h4>Kakkabe</h4><p>The last stretch before the climb to the sacred grove.</p></div>
+    </div>
+    <div class="phase-group">
+      <div class="phase-head"><span class="num">III</span><h3 data-en="Sustenance" data-kn="ಜೀವನಾಧಾರ">Sustenance</h3></div>
+      <div class="stop major"><div class="t">6:00 PM · Arrive</div><h4>Padi Igguthappa</h4><p>Sacred to our land, rain, harvest and sustenance. We finish the Nadappu here, together, as one community.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GEJJE THANDE ================= -->
+<section id="gejje" class="band-2">
+  <div class="wrap gejje">
+    <svg class="staff" width="120" height="300" viewBox="0 0 120 300" aria-hidden="true">
+      <circle cx="60" cy="24" r="13" fill="none" stroke="#a67c31" stroke-width="2"/><circle cx="60" cy="24" r="5" fill="#a67c31"/>
+      <rect x="53" y="34" width="14" height="238" rx="6" fill="#241f17"/>
+      <g fill="#f4f0e6"><rect x="53" y="70" width="14" height="5"/><rect x="53" y="110" width="14" height="5"/><rect x="53" y="150" width="14" height="5"/><rect x="53" y="190" width="14" height="5"/><rect x="53" y="230" width="14" height="5"/></g>
+      <path d="M53 272 L60 292 L67 272 Z" fill="#241f17"/>
+    </svg>
+    <div>
+      <span class="eyebrow" data-en="At the head of the walk" data-kn="ನಡಪ್ಪಿನ ಮುಂದೆ">At the head of the walk</span>
+      <h2 data-en="The Gejje Thande leads us." data-kn="ಗೆಜ್ಜೆ ತಂಡೆ ನಮ್ಮನ್ನು ಮುನ್ನಡೆಸುತ್ತದೆ.">The Gejje Thande leads us.</h2>
+      <p class="lede">The ceremonial staff carries the spirit of the journey — a reminder that every step is guided by our traditions, the wisdom of our elders, and a deep respect for the sacred land and places through which we walk. It goes at the head of the Nadappu. We follow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WALK WITH US ================= -->
+<section id="join">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-en="Walk with us" data-kn="ನಮ್ಮೊಂದಿಗೆ ನಡೆಯಿರಿ">Walk with us</span>
+    <h2 class="big" data-en="For 1 kilometre, or all thirty-five." data-kn="ಒಂದು ಕಿ.ಮೀ, ಅಥವಾ ಇಡೀ ಮೂವತ್ತೈದು.">For 1 kilometre, or all thirty-five.</h2>
+    <p class="lede" style="margin:16px auto 0">Walk in whatever capacity you can. Every step is part of the Nadappu.</p>
+    <div class="dist">
+      <div class="d"><div class="km">1 km</div><div class="lab" data-en="A gesture of gratitude" data-kn="ಕೃತಜ್ಞತೆಯ ಹೆಜ್ಜೆ">A gesture of gratitude</div></div>
+      <div class="d"><div class="km">5 km</div><div class="lab" data-en="A morning together" data-kn="ಒಂದು ಬೆಳಗ್ಗೆ ಜೊತೆಗೆ">A morning together</div></div>
+      <div class="d"><div class="km">10 km</div><div class="lab" data-en="A good stretch of the land" data-kn="ನೆಲದ ಒಂದು ಒಳ್ಳೆಯ ಭಾಗ">A good stretch of the land</div></div>
+      <div class="d"><div class="km">~35 km</div><div class="lab" data-en="The whole Nadappu" data-kn="ಇಡೀ ನಡಪ್ಪು">The whole Nadappu</div></div>
+      <div class="d final"><div class="km" data-en="Join the completion · ~6:00 PM" data-kn="ಸಮಾಪ್ತಿಗೆ ಸೇರಿ · ~6:00 PM">Join the completion · ~6:00 PM</div><div class="lab">Most of all, come together for the final steps into Padi Igguthappa around 6:00 PM — so we finish this Nadappu as one community.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRING & SAFETY ================= -->
+<section id="prepare" class="band-2">
+  <div class="wrap bring">
+    <div>
+      <span class="eyebrow" data-en="Before you walk" data-kn="ನಡೆಯುವ ಮೊದಲು">Before you walk</span>
+      <h2 class="big" data-en="Come prepared. Walk at your own pace." data-kn="ಸಿದ್ಧರಾಗಿ ಬನ್ನಿ. ನಿಮ್ಮ ವೇಗದಲ್ಲಿ ನಡೆಯಿರಿ.">Come prepared. Walk at your own pace.</h2>
+      <p style="color:var(--ink-soft);margin-top:14px">Late September is the tail of the monsoon — expect rain, mist, mud and warm, humid days. Water and support points are placed along the route, and vehicles accompany the walk for anyone who needs to rest or step out.</p>
+      <ul class="pack">
+        <li data-en="Sturdy, broken-in shoes" data-kn="ಗಟ್ಟಿಯಾದ ಪಾದರಕ್ಷೆ">Sturdy, broken-in shoes</li>
+        <li data-en="A light raincoat or poncho" data-kn="ಹಗುರ ಮಳೆ ಕೋಟು">A light raincoat or poncho</li>
+        <li data-en="A refillable water bottle" data-kn="ನೀರಿನ ಬಾಟಲಿ">A refillable water bottle</li>
+        <li data-en="A hat &amp; sunscreen" data-kn="ಟೋಪಿ ಮತ್ತು ಸನ್‌ಸ್ಕ್ರೀನ್">A hat &amp; sunscreen</li>
+        <li data-en="Any personal medication" data-kn="ವೈಯಕ್ತಿಕ ಔಷಧಿ">Any personal medication</li>
+        <li data-en="A small snack" data-kn="ಸಣ್ಣ ತಿಂಡಿ">A small snack</li>
+      </ul>
+    </div>
+    <div class="safe-note">
+      <h4 data-en="A word on safety" data-kn="ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ">A word on safety</h4>
+      <p>This is a strenuous walk over long hours and hilly terrain. Please register your health honestly, walk within your limits, and follow the guidance of the organisers and the support team on the day. Children and elders are warmly welcome for the shorter stretches and the completion — at their own pace, with support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REGISTER ================= -->
+<section id="register">
+  <div class="wrap">
+    <div class="reg-grid">
+      <div class="reg-meta">
+        <span class="eyebrow" data-en="Reserve your place" data-kn="ನಿಮ್ಮ ಸ್ಥಳ ಕಾಯ್ದಿರಿಸಿ">Reserve your place</span>
+        <h2 class="big" data-en="Registration is free — and required." data-kn="ನೋಂದಣಿ ಉಚಿತ — ಮತ್ತು ಕಡ್ಡಾಯ.">Registration is free — and required.</h2>
+        <div class="pillrow">
+          <span class="pill" data-en="Free" data-kn="ಉಚಿತ">Free</span>
+          <span class="pill" data-en="Registration required" data-kn="ನೋಂದಣಿ ಕಡ್ಡಾಯ">Registration required</span>
+          <span class="pill" data-en="108 walkers only" data-kn="108 ಮಾತ್ರ">108 walkers only</span>
+        </div>
+        <p style="color:var(--ink-soft);font-size:.98rem;margin-bottom:22px">To keep this first Nadappu intimate and safe, we are taking a limited number of walkers this year. Reserve your place, and we'll share the final details — timing, transport and the gathering — closer to the day.</p>
+        <div class="counter">
+          <div class="big" id="remBig">87</div>
+          <div class="sub" data-en="of 108 places remaining" data-kn="108 ರಲ್ಲಿ ಸ್ಥಳ ಉಳಿದಿದೆ">of 108 places remaining</div>
+          <div class="bar"><span id="regBar" style="width:19%"></span></div>
+          <div class="rem" id="regRem">21 walkers registered · 87 places open</div>
+        </div>
+      </div>
+
+      <div id="regFormWrap">
+      <form class="reg" onsubmit="return submitReg(event)">
+        <div id="regErr" style="display:none;background:#fbeee8;border:1px solid #e6c3b6;color:#8a2f24;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:.9rem"></div>
+        <div class="fg"><label>Full name <span class="req">*</span></label><input id="r_name" maxlength="160" required placeholder="e.g. Ponnamma Cariappa"></div>
+        <div class="row2">
+          <div class="fg"><label>Phone / WhatsApp <span class="req">*</span></label><input id="r_phone" maxlength="60" required placeholder="98xxxxxxxx"></div>
+          <div class="fg"><label>Email</label><input id="r_email" type="email" maxlength="200" placeholder="you@example.com"></div>
+        </div>
+        <div class="row2">
+          <div class="fg"><label>Town / village</label><input id="r_place" maxlength="160" placeholder="e.g. Madikeri"></div>
+          <div class="fg"><label>How far will you walk? <span class="req">*</span></label>
+            <select id="r_distance" required>
+              <option value="" selected disabled>Choose…</option>
+              <option>1 km</option><option>5 km</option><option>10 km</option>
+              <option>The full ~35 km</option>
+              <option>Join the completion at Padi (~6 PM)</option>
+            </select>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="fg"><label>Emergency contact — name <span class="req">*</span></label><input id="r_en" maxlength="160" required placeholder="Who should we call?"></div>
+          <div class="fg"><label>Emergency contact — phone <span class="req">*</span></label><input id="r_ep" maxlength="60" required placeholder="Their number"></div>
+        </div>
+        <label class="consent"><input type="checkbox" id="r_waiver" required> <span>I confirm I am physically fit to undertake this walk, I take part <b>at my own risk</b>, and I will follow the organisers’ and support team’s guidance on the day.</span></label>
+        <label class="consent" style="margin-top:10px"><input type="checkbox" id="r_consent" required> <span>I agree to be contacted with details about the Nadappu.</span></label>
+        <button type="submit" class="btn btn-gold" data-en="Reserve my place" data-kn="ನನ್ನ ಸ್ಥಳ ಕಾಯ್ದಿರಿಸಿ">Reserve my place</button>
+        <p class="note">No fee. Your details are used only for the walk and stay private.</p>
+      </form>
+      </div>
+      <div id="regDone" class="reg-state" style="display:none">
+        <div class="tickc">✓</div>
+        <h3>Your place is reserved.</h3>
+        <p>Thank you for walking with us. We’ll be in touch with the final details — timing, transport and the gathering at Padi Igguthappa — closer to the day.</p>
+      </div>
+      <div id="regFull" class="reg-state" style="display:none">
+        <div class="tickc" style="background:var(--coffee);color:#fff">•</div>
+        <h3>This year’s walk is full.</h3>
+        <p>All 108 places are taken. Write to <a href="mailto:machaiah@poonacha.com" style="color:var(--gold)">machaiah@poonacha.com</a> to join the waitlist — and everyone is still welcome at the completion at Padi Igguthappa around 6:00 PM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOLUNTEER ================= -->
+<section id="volunteer" class="band-dark">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-en="Hold the Nadappu together" data-kn="ನಡಪ್ಪನ್ನು ಬೆಂಬಲಿಸಿ">Hold the Nadappu together</span>
+    <h2 class="big" style="color:var(--on-dark)" data-en="Can't walk it all? Help carry it." data-kn="ಎಲ್ಲಾ ನಡೆಯಲಾಗದೆ? ಬೆಂಬಲಿಸಿ.">Can't walk it all? Help carry it.</h2>
+    <div class="roles">
+      <div class="r"><h4 data-en="Water &amp; aid points" data-kn="ನೀರು ಮತ್ತು ನೆರವು">Water &amp; aid points</h4><p>Set up and staff the stops along the route.</p></div>
+      <div class="r"><h4 data-en="Route marshals" data-kn="ಮಾರ್ಗ ಸಹಾಯಕರು">Route marshals</h4><p>Guide walkers and keep everyone safe on the roads.</p></div>
+      <div class="r"><h4 data-en="Support vehicles" data-kn="ಬೆಂಬಲ ವಾಹನ">Support vehicles</h4><p>Shadow the walk for rest, pickups and supplies.</p></div>
+      <div class="r"><h4 data-en="First-aid" data-kn="ಪ್ರಥಮ ಚಿಕಿತ್ಸೆ">First-aid</h4><p>Medics and trained hands along the way.</p></div>
+      <div class="r"><h4 data-en="Elders' support" data-kn="ಹಿರಿಯರ ಬೆಂಬಲ">Elders' support</h4><p>Accompany and care for our elders on the shorter stretches.</p></div>
+      <div class="r"><h4 data-en="Documentation" data-kn="ದಾಖಲೀಕರಣ">Documentation</h4><p>Photographs, notes and voices from the day.</p></div>
+    </div>
+    <a href="mailto:machaiah@poonacha.com?subject=Volunteering%20for%20Kodagu%20Shakthi%20Nadappu" class="btn btn-gold" data-en="I'd like to help" data-kn="ನಾನು ಸಹಾಯ ಮಾಡಬಯಸುತ್ತೇನೆ">I'd like to help</a>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section id="partners">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" data-en="In reverence, with" data-kn="ಗೌರವದೊಂದಿಗೆ">In reverence, with</span>
+    <h2 class="big" data-en="Walking together, supported together." data-kn="ಒಟ್ಟಿಗೆ ನಡೆಯುತ್ತಾ, ಒಟ್ಟಿಗೆ ಬೆಂಬಲಿಸುತ್ತಾ.">Walking together, supported together.</h2>
+    <div class="partners">
+      <div class="pl">Temple / Devakad</div>
+      <div class="pl">Community association</div>
+      <div class="pl">Estate / grower body</div>
+      <div class="pl">Local partner</div>
+      <div class="pl">Your logo here</div>
+    </div>
+    <p style="color:var(--ink-soft);font-size:.9rem;margin-top:16px">Partner slots — send logos and we'll place them here.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="band-2">
+  <div class="narrow">
+    <span class="eyebrow" data-en="Questions" data-kn="ಪ್ರಶ್ನೆಗಳು">Questions</span>
+    <h2 class="big" style="margin-bottom:20px" data-en="Before you set out" data-kn="ಹೊರಡುವ ಮೊದಲು">Before you set out</h2>
+    <details class="faq" open><summary>Is there a fee?</summary><p>No. Registration is free — but it is required, and places are limited to 108 walkers this year.</p></details>
+    <details class="faq"><summary>Can I walk only part of the way?</summary><p>Yes. Join for 1, 5 or 10 km, or the full ~35 km. And everyone is invited to the final steps into Padi Igguthappa around 6:00 PM — the completion we share as one community.</p></details>
+    <details class="faq"><summary>What if it rains?</summary><p>We walk. Late September is the tail of the monsoon, so come with a raincoat and shoes that handle mud. We'll only change plans for genuine safety reasons.</p></details>
+    <details class="faq"><summary>Can elders and children take part?</summary><p>Warmly, yes — for the shorter stretches and the completion, at their own pace and with support. Please register their health details honestly.</p></details>
+    <details class="faq"><summary>How do I get back afterwards?</summary><p>Transport and pickup arrangements will be shared with registered walkers closer to the day.</p></details>
+    <details class="faq"><summary>Is this a protest or a claim over land?</summary><p>No. It is a Nadappu — a walk of gratitude and responsibility. We walk not to claim Kodagu, but to remember our duty to her.</p></details>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="narrow">
+    <div class="emblem-wrap" style="width:104px;margin:0 auto 16px;box-shadow:0 10px 24px rgba(0,0,0,.3)"><div class="emblem-img logo-bg" role="img" aria-label="logo"></div></div>
+    <div class="fk kn">ಕೊಡಗು ಶಕ್ತಿ ನಡಪ್ಪು</div>
+    <div class="fname">Kodagu Shakthi Nadappu</div>
+    <p class="quote">“We walk not to claim Kodagu. We walk to remember our duty to her.”</p>
+    <p style="font-size:.92rem">Talakaveri → Padi Igguthappa · 26 September 2026<br>Questions? <a class="flink" href="mailto:machaiah@poonacha.com">machaiah@poonacha.com</a></p>
+    <div class="fbottom">Est 2026 · By Kodagu, for Kodagu · a part of <a class="flink" href="https://www.kodagu.ai">Kodagu.ai</a></div>
+  </div>
+</footer>
+
+
+
+<script>
+  function setLang(l){
+    document.documentElement.dataset.lang=l;
+    document.getElementById('lang-en').setAttribute('aria-pressed', l==='en');
+    document.getElementById('lang-kn').setAttribute('aria-pressed', l==='kn');
+    document.querySelectorAll('[data-en]').forEach(function(el){ var v=l==='kn'?el.getAttribute('data-kn'):el.getAttribute('data-en'); if(v) el.textContent=v; });
+  }
+  var CAP=108;
+  function paintCount(d){
+    var reg=d.registered||0, rem=(d.remaining!=null?d.remaining:Math.max(0,CAP-reg));
+    var big=document.getElementById('remBig'); if(big) big.textContent=rem;
+    var bar=document.getElementById('regBar'); if(bar) bar.style.width=Math.min(100,Math.round(reg/CAP*100))+'%';
+    var rl=document.getElementById('regRem'); if(rl) rl.textContent=reg+' walkers registered \u00b7 '+rem+' places open';
+    if(d.full){ var ff=document.getElementById('regFull'), fw=document.getElementById('regFormWrap'); if(ff)ff.style.display='block'; if(fw)fw.style.display='none'; }
+  }
+  fetch('/api/shakti/count').then(function(r){return r.json();}).then(paintCount).catch(function(){});
+  function val(id){ var el=document.getElementById(id); return el?(el.value||'').trim():''; }
+  function submitReg(e){
+    e.preventDefault();
+    var f=e.target, btn=f.querySelector('button[type=submit]'), err=document.getElementById('regErr');
+    err.style.display='none';
+    var p={ name:val('r_name'), phone:val('r_phone'), email:val('r_email'), place:val('r_place'), distance:val('r_distance'), emergencyName:val('r_en'), emergencyPhone:val('r_ep'), waiver:document.getElementById('r_waiver').checked };
+    if(!p.name||!p.phone||!p.distance||!p.emergencyName||!p.emergencyPhone||!p.waiver||!document.getElementById('r_consent').checked){ err.textContent='Please complete all required fields and tick both confirmations.'; err.style.display='block'; return false; }
+    btn.disabled=true; btn.textContent='Reserving\u2026';
+    fetch('/api/shakti/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
+      .then(function(r){ return r.json().then(function(d){ return {ok:r.ok,status:r.status,d:d}; },function(){ return {ok:r.ok,status:r.status,d:{}}; }); })
+      .then(function(res){
+        if(res.ok){ document.getElementById('regFormWrap').style.display='none'; var done=document.getElementById('regDone'); done.style.display='block'; done.scrollIntoView({block:'center',behavior:'smooth'}); fetch('/api/shakti/count').then(function(r){return r.json();}).then(paintCount).catch(function(){}); }
+        else if(res.status===409||(res.d&&res.d.full)){ document.getElementById('regFormWrap').style.display='none'; document.getElementById('regFull').style.display='block'; }
+        else { err.textContent=(res.d&&res.d.error)||'Could not register \u2014 please try again.'; err.style.display='block'; btn.disabled=false; btn.textContent='Reserve my place'; }
+      })
+      .catch(function(){ err.textContent='Network error \u2014 please try again.'; err.style.display='block'; btn.disabled=false; btn.textContent='Reserve my place'; });
+    return false;
+  }
+</script>
+
+</body>
+</html>

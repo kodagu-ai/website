@@ -19,7 +19,7 @@ export default function AdminActions({
   current,
   actions,
 }: {
-  endpoint: "directory" | "sankalpa";
+  endpoint: "directory" | "sankalpa" | "shakti";
   id: string;
   current: string;
   actions: Action[];

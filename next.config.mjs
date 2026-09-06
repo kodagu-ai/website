@@ -13,6 +13,8 @@ const nextConfig = {
       // at the clean /sankalpa URL. It's a standalone sub-brand page, so it
       // bypasses the app's shared Header/Footer entirely.
       { source: "/sankalpa", destination: "/sankalpa/index.html" },
+      // Kodagu Shakthi Nadappu — the annual walk. Same standalone-page pattern.
+      { source: "/shakti", destination: "/shakti/index.html" },
     ];
   },
 };

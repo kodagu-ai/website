@@ -33,12 +33,13 @@ function Stat({ label, value }: { label: string; value: number | string }) {
 export default async function AdminDashboard() {
   const supabase = serviceClient();
 
-  const [dir, sank, votes] = await Promise.all([
+  const [dir, sank, votes, shakti] = await Promise.all([
     supabase.from("directory_submissions").select("status").limit(2000),
     supabase.from("sankalpa_entries").select("status").limit(2000),
     supabase
       .from("sankalpa_votes")
       .select("id", { count: "exact", head: true }),
+    supabase.from("shakti_registrations").select("status").limit(2000),
   ]);
 
   const dirRows = (dir.data ?? []) as { status: string }[];
@@ -46,6 +47,8 @@ export default async function AdminDashboard() {
   const d = tally(dirRows, ["pending", "approved", "rejected"]);
   const s = tally(sankRows, ["new", "shortlisted", "winner", "rejected"]);
   const voteCount = votes.count ?? 0;
+  const shaktiRows = (shakti.data ?? []) as { status: string }[];
+  const shaktiConfirmed = shaktiRows.filter((r) => r.status === "confirmed").length;
 
   const errored = dir.error || sank.error || votes.error;
 
@@ -78,6 +81,15 @@ export default async function AdminDashboard() {
         <Stat label="Rejected" value={s.rejected} />
         <Stat label="Entries total" value={sankRows.length} />
         <Stat label="Theme votes cast" value={voteCount} />
+      </div>
+
+      <h2 style={{ fontSize: "1.05rem", margin: "28px 0 12px" }}>
+        <Link href="/admin/shakti">Shakthi Nadappu walk</Link>
+      </h2>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+        <Stat label="Confirmed" value={shaktiConfirmed} />
+        <Stat label="Places open (of 108)" value={Math.max(0, 108 - shaktiConfirmed)} />
+        <Stat label="Registrations total" value={shaktiRows.length} />
       </div>
     </>
   );

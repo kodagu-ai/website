@@ -37,6 +37,7 @@ export default async function AdminPanelLayout({
               <Link href="/admin">Dashboard</Link>
               <Link href="/admin/directory">Directory</Link>
               <Link href="/admin/sankalpa">Sankalpa</Link>
+              <Link href="/admin/shakti">Shakti</Link>
             </nav>
           </div>
           <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
