@@ -16,7 +16,7 @@ const CPA_MAP: Record<string, { crop: string; grade: string; unit: string }> = {
   "Robusta Parchment": { crop: "Coffee", grade: "Robusta Parchment", unit: "/ 50 kg bag" },
   "Robusta Cherry": { crop: "Coffee", grade: "Robusta Cherry", unit: "/ 50 kg bag" },
   Pepper: { crop: "Pepper", grade: "Black pepper", unit: "/ kg" },
-  Cardamom: { crop: "Cardamom", grade: "", unit: "/ 50 kg" },
+  Cardamom: { crop: "Cardamom", grade: "", unit: "/ kg" },
 };
 
 function toNumber(s: string): number {
