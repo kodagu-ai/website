@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 // Kodagu Shakthi Nadappu — walk registration. Free, but required and capped at
-// 108 confirmed walkers. Public (no bearer, like the Sankalpa entry form);
+// 50 confirmed walkers. Public (no bearer, like the Sankalpa entry form);
 // writes to shakthi_registrations via service_role (RLS on, no policies).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CAP = 108;
+const CAP = 50;
 const str = (v: unknown, max = 200): string | null =>
   typeof v === "string" ? v.trim().slice(0, max) || null : null;
 
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
       global: { fetch: (u, i) => fetch(u, { ...i, cache: "no-store" }) },
     });
 
-    // Enforce the cap: count confirmed rows (filter in JS), reject at 108.
+    // Enforce the cap: count confirmed rows (filter in JS), reject at 50.
     const { data: existing, error: cErr } = await supabase
       .from("shakthi_registrations")
       .select("status")

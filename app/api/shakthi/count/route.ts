@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 // Public, read-only live count for the Shakthi Nadappu registration counter.
-// Exposes only aggregate numbers (never any registrant detail). Cap is 108.
+// Exposes only aggregate numbers (never any registrant detail). Cap is 50.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CAP = 108;
+const CAP = 50;
 
 export async function GET() {
   const url = process.env.SUPABASE_URL;
