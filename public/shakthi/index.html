@@ -38,6 +38,10 @@
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
 
   /* ---- nav ---- */
+  .datebar{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-bright) 100%);color:#20170a;font-size:.9rem;line-height:1.4;letter-spacing:.01em;text-align:center;padding:10px 42px 10px 18px;position:relative;font-weight:600}
+  .datebar .x{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;color:#20170a;font-size:20px;line-height:1;cursor:pointer;padding:4px 8px;opacity:.65}
+  .datebar .x:hover{opacity:1}
+  .datebar[hidden]{display:none}
   header.nav{position:sticky;top:0;z-index:40;background:rgba(22,40,26,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px}
   .brand{display:flex;align-items:center;gap:10px;color:var(--on-dark)}
@@ -207,6 +211,12 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.emblem-wrap{width:min(340px,74vw);margin:0 auto 26px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 47%,#f8f4ea 0%,#f4eedf 72%,#efe7d4 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 46px rgba(0,0,0,.34)}.emblem-img{width:90%;height:90%}.logo-bg{background:url("/shakthi/logo.png") center/contain no-repeat}.reg-state{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;text-align:center}.reg-state h3{font-family:var(--font-display);font-weight:500;font-size:1.5rem;color:var(--forest);margin:8px 0 8px}.reg-state p{color:var(--ink-soft);font-size:.98rem;max-width:46ch;margin:0 auto}.tickc{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#20170a;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto}</style>
 </head>
 <body>
+<!-- ================= DATE UPDATE BANNER ================= -->
+<div class="datebar" id="datebar" role="status">
+  <span data-en="📅 Updated date — the walk is now Saturday, 3 October 2026 (Talakaveri → Padi Igguthappa)." data-kn="📅 ದಿನಾಂಕ ಬದಲಾವಣೆ — ನಡಪ್ಪು ಈಗ ಶನಿವಾರ, 3 ಅಕ್ಟೋಬರ್ 2026 (ತಲಕಾವೇರಿ → ಪಾಡಿ ಇಗ್ಗುತ್ತಪ್ಪ).">📅 Updated date — the walk is now Saturday, 3 October 2026 (Talakaveri → Padi Igguthappa).</span>
+  <button class="x" type="button" aria-label="Dismiss" onclick="this.parentNode.hidden=true;try{localStorage.setItem('shakthi_datebar_dismissed','1')}catch(e){}">&times;</button>
+</div>
+<script>try{if(localStorage.getItem('shakthi_datebar_dismissed')==='1'){document.getElementById('datebar').hidden=true;}}catch(e){}</script>
 <!-- ================= NAV ================= -->
 <header class="nav">
   <div class="wrap">
