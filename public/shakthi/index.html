@@ -26,6 +26,7 @@
     color-scheme:light;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none!important}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-weight:400;line-height:1.72;font-size:17px;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;line-height:1.12;text-wrap:balance;margin:0}
   p{margin:0}
@@ -239,7 +240,7 @@
         <button id="lang-en" aria-pressed="true" onclick="setLang('en')">EN</button>
         <button id="lang-kn" aria-pressed="false" onclick="setLang('kn')">ಕನ್ನಡ</button>
       </div>
-      <a href="#register" class="btn btn-gold hide-sm" data-en="Register" data-kn="ನೋಂದಣಿ">Register</a>
+      <a href="#register" class="btn btn-gold hide-sm" data-en="Register" data-kn="ನೋಂದಣಿ" hidden>Register</a>
     </div>
   </div>
 </header>
@@ -263,7 +264,7 @@
     </div>
 
     <div class="hero-cta">
-      <a href="#register" class="btn btn-gold" data-en="Register — it's free" data-kn="ನೋಂದಣಿ — ಉಚಿತ">Register — it's free</a>
+      <a href="#register" class="btn btn-gold" data-en="Register — it's free" data-kn="ನೋಂದಣಿ — ಉಚಿತ" hidden>Register — it's free</a>
       <a href="#route" class="btn btn-ghost" data-en="See the route" data-kn="ಮಾರ್ಗ ನೋಡಿ">See the route</a>
     </div>
     <p class="cap" data-en="Only 50 walkers this year · Registration required" data-kn="ಈ ವರ್ಷ ಕೇವಲ 50 ನಡಿಗೆದಾರರು · ನೋಂದಣಿ ಕಡ್ಡಾಯ">Only <b>50</b> walkers this year · Registration required</p>
@@ -370,7 +371,7 @@
 </section>
 
 <!-- ================= REGISTER ================= -->
-<section id="register">
+<section id="register" hidden>
   <div class="wrap">
     <div class="reg-grid">
       <div class="reg-meta">
