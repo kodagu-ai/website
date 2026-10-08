@@ -3,7 +3,7 @@ import AdminActions from "../AdminActions";
 
 export const dynamic = "force-dynamic";
 
-const CAP = 50;
+const CAP = 500;
 
 type Row = {
   id: string;

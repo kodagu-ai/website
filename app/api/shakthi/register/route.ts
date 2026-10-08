@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CAP = 50;
+const CAP = 500;
 const str = (v: unknown, max = 200): string | null =>
   typeof v === "string" ? v.trim().slice(0, max) || null : null;
 

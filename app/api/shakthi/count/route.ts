@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CAP = 50;
+const CAP = 500;
 
 export async function GET() {
   const url = process.env.SUPABASE_URL;

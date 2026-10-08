@@ -88,7 +88,7 @@ export default async function AdminDashboard() {
       </h2>
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         <Stat label="Confirmed" value={shakthiConfirmed} />
-        <Stat label="Places open (of 50)" value={Math.max(0, 50 - shakthiConfirmed)} />
+        <Stat label="Places open (of 500)" value={Math.max(0, 500 - shakthiConfirmed)} />
         <Stat label="Registrations total" value={shakthiRows.length} />
       </div>
     </>
